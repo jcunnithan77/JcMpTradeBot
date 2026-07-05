@@ -22,8 +22,11 @@ class AppController {
   }
 
   init() {
-    // Purge and completely wipe ANY legacy data or keys from localStorage
-    localStorage.clear();
+    // Purge any simulated or static market data from localStorage (as mandated by user), while keeping API credentials intact across OAuth redirects
+    localStorage.removeItem("tb_market_data");
+    localStorage.removeItem("tb_daily_logs");
+    localStorage.removeItem("tb_swing_trades");
+    localStorage.removeItem("tb_long_term_picks");
 
     this.loadState();
     this.setupEventListeners();

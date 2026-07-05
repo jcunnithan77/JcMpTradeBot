@@ -3,10 +3,10 @@
 
 class FyersConnector {
   constructor() {
-    this.appId = sessionStorage.getItem("tb_fyers_app_id") || "";
-    this.secretId = sessionStorage.getItem("tb_fyers_secret_id") || "";
-    this.redirectUri = sessionStorage.getItem("tb_fyers_redirect_uri") || window.location.href.split("?")[0];
-    this.accessToken = sessionStorage.getItem("tb_fyers_access_token") || "";
+    this.appId = sessionStorage.getItem("tb_fyers_app_id") || localStorage.getItem("tb_fyers_app_id") || "";
+    this.secretId = sessionStorage.getItem("tb_fyers_secret_id") || localStorage.getItem("tb_fyers_secret_id") || "";
+    this.redirectUri = sessionStorage.getItem("tb_fyers_redirect_uri") || localStorage.getItem("tb_fyers_redirect_uri") || window.location.href.split("?")[0];
+    this.accessToken = sessionStorage.getItem("tb_fyers_access_token") || localStorage.getItem("tb_fyers_access_token") || "";
     this.isConnected = false;
     this.pollTimer = null;
     this.listeners = [];
@@ -17,14 +17,11 @@ class FyersConnector {
     
     // Check if redirected back from Fyers OAuth login with ?code= or ?auth_code=
     const urlParams = new URLSearchParams(window.location.search);
-    const authCode = urlParams.get("code") || urlParams.get("auth_code");
+    const hashParams = new URLSearchParams(window.location.hash.replace(/^#\/?/, "?"));
+    const authCode = urlParams.get("code") || urlParams.get("auth_code") || hashParams.get("code") || hashParams.get("auth_code");
     
     if (authCode) {
       console.log("⚡ FYERS OAuth Code detected in URL:", authCode);
-      // Clean URL bar without page reload
-      if (window.history && window.history.replaceState) {
-        window.history.replaceState({}, document.title, window.location.pathname);
-      }
       this.validateAuthCode(authCode);
     } else if (this.appId && this.accessToken) {
       this.connect();
@@ -150,32 +147,10 @@ class FyersConnector {
             </button>
           </div>
 
-          <!-- Option 2: Auth Code Exchange (paste auth_code from URL after Fyers redirect) -->
-          <div style="background:rgba(0,0,0,0.35); border:1px solid rgba(0,240,255,0.2); border-radius:12px; padding:1.25rem; margin-bottom:1.5rem;">
-            <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.75rem;">
-              <span class="badge cyan">Option 2</span>
-              <strong style="color:#fff; font-size:0.95rem;">🔗 Auth Code Exchange</strong>
-            </div>
-            <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:1rem; line-height:1.5;">
-              After clicking "Login with FYERS Portal" above, Fyers redirects you back to this page with a URL like:<br>
-              <code style="font-size:0.75rem; color:var(--accent-cyan); background:rgba(0,0,0,0.4); padding:0.2rem 0.5rem; border-radius:4px;">http://localhost:8000?s=ok&<strong>auth_code=xxxxxxxxxx</strong>&state=...</code><br>
-              Copy the <strong style="color:var(--accent-cyan);">auth_code</strong> value from that URL and paste it below to exchange it for your live access token.
-            </p>
-            <div style="display:flex; gap:0.75rem; align-items:flex-end;">
-              <div class="form-group" style="flex:1; margin:0;">
-                <label class="form-label" style="font-size:0.8rem; color:var(--text-muted); display:block; margin-bottom:0.35rem;">Auth Code (from Fyers redirect URL):</label>
-                <input type="text" id="fyers-auth-code-input" class="form-control" placeholder="Paste auth_code from URL here..." style="width:100%; padding:0.6rem 0.8rem; background:rgba(0,0,0,0.4); border:1px solid var(--accent-cyan); border-radius:8px; color:#fff; font-family:var(--font-mono); font-size:0.82rem;">
-              </div>
-              <button type="button" id="btn-fyers-exchange-code" class="action-btn" style="white-space:nowrap; background:var(--accent-cyan); color:#000; font-weight:800; padding:0.6rem 1.2rem; border-radius:8px; cursor:pointer; flex-shrink:0;">
-                <i class="fa-solid fa-key"></i> Exchange for Token
-              </button>
-            </div>
-          </div>
-
-          <!-- Option 3: Manual Token Paste -->
+          <!-- Option 2: Manual Token Paste -->
           <form id="form-fyers-config" style="background:rgba(0,0,0,0.35); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:1.25rem;">
             <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.85rem;">
-              <span class="badge amber">Option 3</span>
+              <span class="badge amber">Option 2</span>
               <strong style="color:#fff; font-size:0.95rem;">🔑 Manual Token Paste (Fallback)</strong>
             </div>
 
@@ -212,34 +187,6 @@ class FyersConnector {
         this.startOAuthLogin();
       });
 
-      // Auth Code Exchange Trigger (Option 2)
-      modal.querySelector("#btn-fyers-exchange-code").addEventListener("click", async () => {
-        const authCodeInput = document.getElementById("fyers-auth-code-input").value.trim();
-        const appIdInput = document.getElementById("fyers-app-id").value.trim();
-        const secretIdInput = document.getElementById("fyers-secret-id").value.trim();
-        const redirectInput = document.getElementById("fyers-redirect-uri").value.trim() || window.location.href.split("?")[0];
-
-        if (!authCodeInput) {
-          if (window.app) window.app.showToast("⚠️ Missing Auth Code", "Please paste the auth_code from the Fyers redirect URL.");
-          return;
-        }
-        if (!appIdInput || !secretIdInput) {
-          if (window.app) window.app.showToast("⚠️ Missing Credentials", "Please fill in App ID and Secret ID in Option 1 above first.");
-          return;
-        }
-
-        // Save credentials to sessionStorage so validateAuthCode can read them
-        this.appId = appIdInput;
-        this.secretId = secretIdInput;
-        this.redirectUri = redirectInput;
-        sessionStorage.setItem("tb_fyers_app_id", this.appId);
-        sessionStorage.setItem("tb_fyers_secret_id", this.secretId);
-        sessionStorage.setItem("tb_fyers_redirect_uri", this.redirectUri);
-
-        modal.classList.remove("active");
-        await this.validateAuthCode(authCodeInput);
-      });
-
       // Manual Token Submit
       modal.querySelector("#form-fyers-config").addEventListener("submit", (e) => {
         e.preventDefault();
@@ -254,6 +201,9 @@ class FyersConnector {
         sessionStorage.setItem("tb_fyers_app_id", this.appId);
         sessionStorage.setItem("tb_fyers_secret_id", this.secretId);
         sessionStorage.setItem("tb_fyers_access_token", this.accessToken);
+        localStorage.setItem("tb_fyers_app_id", this.appId);
+        localStorage.setItem("tb_fyers_secret_id", this.secretId);
+        localStorage.setItem("tb_fyers_access_token", this.accessToken);
         
         modal.classList.remove("active");
         if (this.appId && this.accessToken) {
@@ -285,6 +235,9 @@ class FyersConnector {
     sessionStorage.setItem("tb_fyers_app_id", this.appId);
     sessionStorage.setItem("tb_fyers_secret_id", this.secretId);
     sessionStorage.setItem("tb_fyers_redirect_uri", this.redirectUri);
+    localStorage.setItem("tb_fyers_app_id", this.appId);
+    localStorage.setItem("tb_fyers_secret_id", this.secretId);
+    localStorage.setItem("tb_fyers_redirect_uri", this.redirectUri);
 
     // Fyers V3 OAuth Authorization URL
     const authUrl = `https://api-t1.fyers.in/api/v3/generate-authcode?client_id=${encodeURIComponent(this.appId)}&redirect_uri=${encodeURIComponent(this.redirectUri)}&response_type=code&state=tradebot_auto_login`;
@@ -297,10 +250,10 @@ class FyersConnector {
   }
 
   async validateAuthCode(authCode) {
-    // After OAuth redirect the page reloads — read credentials from sessionStorage
+    // After OAuth redirect the page reloads — read credentials from sessionStorage or localStorage
     if (!this.appId || !this.secretId) {
-      this.appId = sessionStorage.getItem("tb_fyers_app_id") || "";
-      this.secretId = sessionStorage.getItem("tb_fyers_secret_id") || "";
+      this.appId = sessionStorage.getItem("tb_fyers_app_id") || localStorage.getItem("tb_fyers_app_id") || "";
+      this.secretId = sessionStorage.getItem("tb_fyers_secret_id") || localStorage.getItem("tb_fyers_secret_id") || "";
     }
     
     if (!this.appId || !this.secretId) {
@@ -315,7 +268,7 @@ class FyersConnector {
     try {
       // Ensure redirectUri is set
       if (!this.redirectUri) {
-        this.redirectUri = sessionStorage.getItem("tb_fyers_redirect_uri") || window.location.href.split("?")[0];
+        this.redirectUri = sessionStorage.getItem("tb_fyers_redirect_uri") || localStorage.getItem("tb_fyers_redirect_uri") || window.location.href.split("?")[0];
       }
 
       // Compute SHA-256 hash of appId:secretId as required by Fyers V3
@@ -354,6 +307,12 @@ class FyersConnector {
       if (data && (data.s === "ok" || data.access_token)) {
         this.accessToken = data.access_token;
         sessionStorage.setItem("tb_fyers_access_token", this.accessToken);
+        localStorage.setItem("tb_fyers_access_token", this.accessToken);
+        
+        // Token exchange succeeded! Clean URL bar without reloading
+        if (window.history && window.history.replaceState) {
+          window.history.replaceState({}, document.title, window.location.pathname);
+        }
         
         if (window.app) window.app.showToast("🟢 AUTO-LOGIN SUCCESSFUL!", "Live Fyers Access Token generated. Streaming live exchange quotes...");
         this.connect();
@@ -423,6 +382,9 @@ class FyersConnector {
     sessionStorage.removeItem("tb_fyers_app_id");
     sessionStorage.removeItem("tb_fyers_secret_id");
     sessionStorage.removeItem("tb_fyers_access_token");
+    localStorage.removeItem("tb_fyers_app_id");
+    localStorage.removeItem("tb_fyers_secret_id");
+    localStorage.removeItem("tb_fyers_access_token");
     this.setDisconnectedState("Fyers disconnected. Showing accurate last closed market prices.");
   }
 
