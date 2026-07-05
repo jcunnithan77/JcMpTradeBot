@@ -247,13 +247,14 @@ class FyersConnector {
   }
 
   async validateAuthCode(authCode) {
+    // After OAuth redirect the page reloads — read credentials from sessionStorage
     if (!this.appId || !this.secretId) {
       this.appId = sessionStorage.getItem("tb_fyers_app_id") || "";
       this.secretId = sessionStorage.getItem("tb_fyers_secret_id") || "";
     }
     
     if (!this.appId || !this.secretId) {
-      if (window.app) window.app.showToast("⚠️ Missing Secret ID", "Cannot validate auth code without App ID & Secret ID. Please check Fyers settings.");
+      if (window.app) window.app.showToast("⚠️ Missing Credentials", "App ID & Secret ID not found. Please enter them again in the Fyers settings modal.");
       this.openSettingsModal();
       return;
     }
@@ -262,10 +263,11 @@ class FyersConnector {
     if (window.app) window.app.showToast("⚡ Validating Auth Code...", "Computing SHA-256 AppIdHash & exchanging token with Fyers API...");
 
     try {
-      // Compute SHA-256 hash of appId:secretId required by Fyers V3
+      // Compute SHA-256 hash of appId:secretId as required by Fyers V3
       const sha256Hash = await this.computeSHA256(`${this.appId}:${this.secretId}`);
       
-      const response = await fetch("https://api-t1.fyers.in/api/v3/validate-authcode", {
+      // Correct Fyers V3 token exchange endpoint
+      const response = await fetch("https://api-t1.fyers.in/api/v3/token", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -278,7 +280,7 @@ class FyersConnector {
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP Error ${response.status}`);
+        throw new Error(`HTTP ${response.status} — Token exchange failed`);
       }
 
       const data = await response.json();
@@ -286,14 +288,19 @@ class FyersConnector {
         this.accessToken = data.access_token;
         sessionStorage.setItem("tb_fyers_access_token", this.accessToken);
         
-        if (window.app) window.app.showToast("🟢 AUTO-LOGIN SUCCESSFUL!", "Live Fyers Access Token generated and saved.");
+        if (window.app) window.app.showToast("🟢 AUTO-LOGIN SUCCESSFUL!", "Live Fyers Access Token generated. Streaming live exchange quotes...");
         this.connect();
       } else {
-        throw new Error(data.message || "Invalid auth code response from Fyers");
+        throw new Error(data.message || data.errmsg || "Token exchange failed — check your App ID, Secret ID and redirect URI match your Fyers App dashboard.");
       }
     } catch (err) {
-      console.warn("⚠️ Fyers OAuth validation error or browser CORS block:", err.message);
-      if (window.app) window.app.showToast("⚠️ OAuth Notice", `CORS/Network error: ${err.message}. Please check Fyers settings.`);
+      console.warn("⚠️ Fyers token exchange error:", err.message);
+      // CORS is the most common failure — guide user to paste token manually
+      if (err.message.toLowerCase().includes("failed to fetch") || err.message.toLowerCase().includes("network")) {
+        if (window.app) window.app.showToast("⚠️ CORS Block Detected", "Browser security blocked direct API call. Please use Option 2: paste your Access Token manually.");
+      } else {
+        if (window.app) window.app.showToast("⚠️ Login Error", err.message);
+      }
       this.openSettingsModal();
       this.setDisconnectedState();
     }
@@ -303,9 +310,9 @@ class FyersConnector {
     this.stopSimulation();
     this.updateStatusUI("connecting", "CONNECTING...", "var(--neutral-amber)");
 
-    // Test REST API call to verify token
-    const testSymbols = "NSE:RELIANCE-EQ,NSE:NIFTY50-INDEX,MCX:CRUDEOIL24JULFUT";
-    const url = `https://api.fyers.in/data-rest/v2/quotes/?symbols=${encodeURIComponent(testSymbols)}`;
+    // Fyers V3 correct quotes endpoint
+    const testSymbols = "NSE:RELIANCE-EQ,NSE:NIFTY50-INDEX";
+    const url = `https://api-t1.fyers.in/data/quotes?symbols=${encodeURIComponent(testSymbols)}`;
 
     fetch(url, {
       method: "GET",
@@ -315,25 +322,30 @@ class FyersConnector {
       }
     })
     .then(response => {
-      if (!response.ok) throw new Error(`HTTP Error ${response.status}`);
+      if (!response.ok) throw new Error(`HTTP ${response.status} — Check if your access token has expired`);
       return response.json();
     })
     .then(data => {
-      if (data && data.s === "ok" && data.d) {
+      if (data && (data.s === "ok") && data.d) {
         this.isConnected = true;
         this.isSimulationMode = false;
-        this.updateStatusUI("connected", "LIVE FEED CONNECTED", "var(--bullish-green)");
-        if (window.app) window.app.showToast("🟢 FYERS API LIVE", "Real-time institutional streaming active.");
+        this.updateStatusUI("connected", "🟢 LIVE FEED CONNECTED", "var(--bullish-green)");
+        if (window.app) window.app.showToast("🟢 FYERS LIVE", "Real-time institutional streaming active. Prices update every 2.5s.");
         this.startLivePolling();
       } else {
-        throw new Error("Invalid Fyers response format or expired token");
+        throw new Error(data?.message || "Invalid Fyers response — token may be expired. Please reconnect.");
       }
     })
     .catch(err => {
-      console.warn("⚠️ FYERS API Connection Error or CORS block:", err.message);
+      console.warn("⚠️ FYERS connect error:", err.message);
       this.isConnected = false;
-      this.setDisconnectedState("Fyers API offline or disconnected. Showing accurate last closed market prices.");
-      if (window.app) window.app.showToast("⚫ FYERS DISCONNECTED", "Fyers API offline/CORS fallback. Showing accurate last closed market prices.");
+      if (err.message.toLowerCase().includes("failed to fetch")) {
+        this.updateStatusUI("error", "⚠️ CORS BLOCK", "orange");
+        if (window.app) window.app.showToast("⚠️ CORS Block", "Browser blocked direct API call. Open Fyers App dashboard and add this URL to allowed origins, or use the app from the same server as your redirect URI.");
+      } else {
+        this.setDisconnectedState(err.message);
+        if (window.app) window.app.showToast("⚫ FYERS DISCONNECTED", err.message);
+      }
     });
   }
 
@@ -382,9 +394,9 @@ class FyersConnector {
     const symbols = [...new Set(allStocks.map(s => s.fyersSymbol || s.tvTicker || `NSE:${s.ticker}-EQ`).filter(Boolean))];
     if (symbols.length === 0) return;
 
-    // Batch in groups of 50
+    // Fyers V3 correct quotes endpoint
     const batchSymbols = symbols.slice(0, 50).join(",");
-    const url = `https://api.fyers.in/data-rest/v2/quotes/?symbols=${encodeURIComponent(batchSymbols)}`;
+    const url = `https://api-t1.fyers.in/data/quotes?symbols=${encodeURIComponent(batchSymbols)}`;
 
     fetch(url, {
       method: "GET",
