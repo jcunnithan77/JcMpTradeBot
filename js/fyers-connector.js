@@ -15,10 +15,10 @@ class FyersConnector {
   init() {
     this.setupUI();
     
-    // Check if redirected back from Fyers OAuth login with ?code= or ?auth_code=
+    // Check if redirected back from Fyers OAuth login with ?auth_code=
     const urlParams = new URLSearchParams(window.location.search);
     const hashParams = new URLSearchParams(window.location.hash.replace(/^#\/?/, "?"));
-    const authCode = urlParams.get("code") || urlParams.get("auth_code") || hashParams.get("code") || hashParams.get("auth_code");
+    const authCode = urlParams.get("auth_code") || hashParams.get("auth_code");
     
     if (authCode) {
       console.log("⚡ FYERS OAuth Code detected in URL:", authCode);
