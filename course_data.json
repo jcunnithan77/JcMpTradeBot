@@ -1,0 +1,1568 @@
+[
+    {
+        "id": "s01",
+        "num": "01",
+        "title": "GET Started",
+        "overview": "The foundational setup guide for Data Science and Machine Learning. Covers Anaconda distribution, virtual environments, Jupyter Notebook architecture, kernel management, and professional reproducibility practices.",
+        "content": "<div class=\"callout purple\" style=\"margin-bottom:32px;\">\n    <h5 style=\"font-size:1.3rem; margin-bottom:8px;\">📖 Section 01 Course Bible: Environment & Workflow Architecture</h5>\n    <p class=\"tb\">Before writing a single line of machine learning code, an engineer must establish a clean, isolated, and deterministic computational environment. This guide synthesizes all setup methodologies and environment workflows taught in Section 01.</p>\n</div>\n\n<h2 class=\"sh\">1. The Python Data Science Ecosystem</h2>\n<p class=\"tb\">Standard CPython is a general-purpose programming language. Scientific computing requires high-performance numerical C/Fortran libraries wrapped in Python syntax. The Data Science stack consists of several foundational layers:</p>\n<ul class=\"bl\" style=\"margin-bottom:24px;\">\n    <li><strong>Core Interpreter:</strong> CPython execution engine.</li>\n    <li><strong>Numerical Foundation:</strong> NumPy (Vectorized arrays) & SciPy (Scientific algorithms).</li>\n    <li><strong>Data Manipulation:</strong> Pandas (Tabular DataFrames).</li>\n    <li><strong>Visualization:</strong> Matplotlib & Seaborn.</li>\n    <li><strong>Machine Learning:</strong> Scikit-Learn, XGBoost, LightGBM, PyTorch.</li>\n</ul>\n\n<h2 class=\"sh\">2. Virtual Environments & Conda Architecture</h2>\n<p class=\"tb\">Dependency conflicts (e.g., Package A requires <code>numpy<1.24</code> while Package B requires <code>numpy>=1.26</code>) are the #1 cause of broken ML environments. Never install packages into your global base system environment.</p>\n<pre><code># Create an isolated Conda environment for ML projects\nconda create --name ml_bootcamp python=3.11 -y\n\n# Activate environment\nconda activate ml_bootcamp\n\n# Install core scientific stack\nconda install numpy pandas matplotlib seaborn scikit-learn jupyterlab -y\n\n# Export environment specification for team reproducibility\nconda env export > environment.yml</code></pre>\n\n<h2 class=\"sh\">3. Jupyter Notebook Architecture & Kernel Mechanics</h2>\n<p class=\"tb\">Jupyter operates via a two-process architecture: a <strong>Web Server</strong> (rendering HTML/JS UI) communicating via ZeroMQ websockets with an execution <strong>Kernel</strong> (the underlying Python process). Variables persist in RAM across cells until the kernel is explicitly restarted.</p>\n<div class=\"callout tip\">\n    <h5>Pro-Tip: Avoiding Hidden State Bugs</h5>\n    <p class=\"tb\">Always execute <strong>\"Kernel -> Restart & Run All\"</strong> before submitting or finalizing any notebook. Out-of-order execution creates phantom state where cells depend on deleted or redefined variables.</p>\n</div>",
+        "read_mins": 30,
+        "files": [],
+        "vtt": 0,
+        "pdf": 0,
+        "nb": 0,
+        "py": 0
+    },
+    {
+        "id": "s02",
+        "num": "02",
+        "title": "Miscellaneous",
+        "overview": "Comprehensive mastery of Python syntax, primitive types, control structures, looping paradigms, function definitions, and memory allocation semantics.",
+        "content": "<div class=\"callout purple\" style=\"margin-bottom:32px;\">\n    <h5 style=\"font-size:1.3rem; margin-bottom:8px;\">📖 Section 02 Course Bible: Primitive Types & Flow Control</h5>\n    <p class=\"tb\">Synthesized from live lectures covering Python 3 execution mechanics, primitive data representation, boolean algebra, conditional branches, iterative loops, and function call frames.</p>\n</div>\n\n<h2 class=\"sh\">1. Variables & Memory Reference Semantics</h2>\n<p class=\"tb\">In Python, variables are not named buckets holding values; they are named pointers referencing objects in heap memory. Every object possesses three intrinsic attributes: identity (<code>id()</code>), type (<code>type()</code>), and value.</p>\n<pre><code>x = 10\ny = x      # y now points to the exact same integer object in memory as x\nprint(id(x) == id(y))  # True (Small integer caching [-5, 256])</code></pre>\n\n<h2 class=\"sh\">2. Control Structures & Iteration Mechanics</h2>\n<p class=\"tb\">Understanding boolean truthiness and short-circuit evaluation is essential for writing optimized conditional expressions.</p>\n<pre><code># Falsy values in Python: 0, 0.0, \"\", [], (), {}, set(), None, False\n# Short-circuit logic:\nuser_input = \"\"\nname = user_input or \"Anonymous Default\"  # Evaluates to \"Anonymous Default\"</code></pre>",
+        "read_mins": 45,
+        "files": [],
+        "vtt": 0,
+        "pdf": 0,
+        "nb": 0,
+        "py": 0
+    },
+    {
+        "id": "s03",
+        "num": "03",
+        "title": "Induction Session",
+        "overview": "Deep-dive into Lists, Tuples, Sets, and Dictionaries. Covers hashing mechanics, lookup complexity O(1) vs O(N), comprehensions, and slicing internals.",
+        "content": "<div class=\"callout purple\" style=\"margin-bottom:32px;\">\n    <h5 style=\"font-size:1.3rem; margin-bottom:8px;\">📖 Section 03 Course Bible: Data Structures & Algorithmic Complexity</h5>\n    <p class=\"tb\">Choosing the correct data structure separates amateur scripts from scalable data engineering pipelines. This section explores internal memory layouts and algorithmic time complexities.</p>\n</div>\n\n<h2 class=\"sh\">1. Hash Tables: Dictionaries & Sets</h2>\n<p class=\"tb\">Python dictionaries and sets are backed by dynamic hash tables. Looking up a key takes average-case <strong>O(1) time complexity</strong>, compared to <strong>O(N) linear scan</strong> in a list.</p>\n<table class=\"ct\">\n    <thead>\n        <tr><th>Operation</th><th>List <code>[]</code></th><th>Set <code>()</code></th><th>Dictionary <code>{}</code></th></tr>\n    </thead>\n    <tbody>\n        <tr><td>Index / Key Lookup</td><td>O(1) by index</td><td>O(1) hash membership</td><td>O(1) key lookup</td></tr>\n        <tr><td>Value Search (<code>in</code>)</td><td>O(N) linear scan</td><td>O(1) instant hash</td><td>O(1) key check</td></tr>\n        <tr><td>Append / Insert</td><td>O(1) amortized end</td><td>O(1) insert</td><td>O(1) insert/update</td></tr>\n    </tbody>\n</table>\n\n<h2 class=\"sh\">2. Advanced Dictionary & List Comprehensions</h2>\n<pre><code># Filtering and transforming tabular records in single pass\nraw_prices = {'AAPL': 185.4, 'GOOG': 142.1, 'TSLA': 175.0, 'AMZN': 178.2}\nhigh_value = {k: round(v * 1.05, 2) for k, v in raw_prices.items() if v > 150.0}\nprint(high_value)  # {'AAPL': 194.67, 'TSLA': 183.75, 'AMZN': 187.11}</code></pre>",
+        "read_mins": 60,
+        "vtt": 2,
+        "pdf": 0,
+        "nb": 0,
+        "py": 0,
+        "files": [
+            {
+                "name": "Session-Recording.transcript.vtt",
+                "path": "03 - Induction Session/01 - 11 Jan - Day - Induction session Part - 1/Session-Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "Session-Recording.transcript.vtt",
+                "path": "03 - Induction Session/02 - 11 Jan - Day - Induction session Part - 2/Session-Recording.transcript.vtt",
+                "type": "vtt"
+            }
+        ]
+    },
+    {
+        "id": "s04",
+        "num": "04",
+        "title": "Tools introduction + (UV + VS code) Installation",
+        "overview": "Mastering Generators, Iterators, Decorators, Lambda Expressions, Exception Handling pipelines, and Context Managers (`with` statements).",
+        "content": "<div class=\"callout purple\" style=\"margin-bottom:32px;\">\n    <h5 style=\"font-size:1.3rem; margin-bottom:8px;\">📖 Section 04 Course Bible: Functional & Lazy Execution</h5>\n    <p class=\"tb\">Explores lazy evaluation models capable of streaming gigabytes of data through limited memory using generators and decorators.</p>\n</div>\n\n<h2 class=\"sh\">1. Iterators & Generators (Lazy Evaluation)</h2>\n<p class=\"tb\">A regular function returns all results in memory at once via <code>return</code>. A generator yields values one at a time via <code>yield</code>, suspending its local frame state until requested.</p>\n<pre><code># Memory-efficient streaming of huge CSV files\ndef stream_csv_lines(filepath):\n    with open(filepath, 'r', encoding='utf-8') as f:\n        for line in f:\n            yield line.strip().split(',')\n\n# Consumes O(1) memory regardless of file size (10MB or 100GB)</code></pre>\n\n<h2 class=\"sh\">2. Decorators & Metaprogramming</h2>\n<pre><code>import time\nfrom functools import wraps\n\ndef time_execution(func):\n    @wraps(func)\n    def wrapper(*args, **kwargs):\n        start = time.perf_counter()\n        result = func(*args, **kwargs)\n        duration = (time.perf_counter() - start) * 1000\n        print(f\"⏱️ [{func.__name__}] completed in {duration:.2f} ms\")\n        return result\n    return wrapper</code></pre>",
+        "read_mins": 70,
+        "vtt": 4,
+        "pdf": 3,
+        "nb": 2,
+        "py": 2,
+        "files": [
+            {
+                "name": "14-01-2026.zip",
+                "path": "04 - Tools introduction + (UV + VS code) Installation/01 - 14 Jan Day - 2 Understanding tools and installation/14-01-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "Session_Recording.cutfile.transcript.vtt",
+                "path": "04 - Tools introduction + (UV + VS code) Installation/01 - 14 Jan Day - 2 Understanding tools and installation/Session_Recording.cutfile.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "14-01-2026.pdf",
+                "path": "04 - Tools introduction + (UV + VS code) Installation/01 - 14 Jan Day - 2 Understanding tools and installation/14-01-2026_extracted/14-01-2026.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "17-01-2026.zip",
+                "path": "04 - Tools introduction + (UV + VS code) Installation/02 - 17th Jan Day - 3 Python-Part - 1 Tools walkthrough + Environment setup + va/17-01-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "Session_Recording.transcript.vtt",
+                "path": "04 - Tools introduction + (UV + VS code) Installation/02 - 17th Jan Day - 3 Python-Part - 1 Tools walkthrough + Environment setup + va/Session_Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "17-01-2026.zip",
+                "path": "04 - Tools introduction + (UV + VS code) Installation/02 - 17th Jan Day - 3 Python-Part - 1 Tools walkthrough + Environment setup + variables_datatypes_programFlow_operators-1/17-01-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "Session_Recording.transcript.vtt",
+                "path": "04 - Tools introduction + (UV + VS code) Installation/02 - 17th Jan Day - 3 Python-Part - 1 Tools walkthrough + Environment setup + variables_datatypes_programFlow_operators-1/Session_Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "17-01-2026.ipynb",
+                "path": "04 - Tools introduction + (UV + VS code) Installation/02 - 17th Jan Day - 3 Python-Part - 1 Tools walkthrough + Environment setup + variables_datatypes_programFlow_operators-1/17-01-2026_extracted/17-01-2026/17-01-2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "17-01-2026_notes.pdf",
+                "path": "04 - Tools introduction + (UV + VS code) Installation/02 - 17th Jan Day - 3 Python-Part - 1 Tools walkthrough + Environment setup + variables_datatypes_programFlow_operators-1/17-01-2026_extracted/17-01-2026/17-01-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "code.py",
+                "path": "04 - Tools introduction + (UV + VS code) Installation/02 - 17th Jan Day - 3 Python-Part - 1 Tools walkthrough + Environment setup + variables_datatypes_programFlow_operators-1/17-01-2026_extracted/17-01-2026/code.py",
+                "type": "py"
+            },
+            {
+                "name": "17-01-2026.zip",
+                "path": "04 - Tools introduction + (UV + VS code) Installation/03 - 17th Jan Day - 3 Python I Part - 2 Tools walkthrough + Environment setup + variables_datatypes_programFlow_operators-1/17-01-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "Session_Recording.transcript.vtt",
+                "path": "04 - Tools introduction + (UV + VS code) Installation/03 - 17th Jan Day - 3 Python I Part - 2 Tools walkthrough + Environment setup + variables_datatypes_programFlow_operators-1/Session_Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "17-01-2026.ipynb",
+                "path": "04 - Tools introduction + (UV + VS code) Installation/03 - 17th Jan Day - 3 Python I Part - 2 Tools walkthrough + Environment setup + variables_datatypes_programFlow_operators-1/17-01-2026_extracted/17-01-2026/17-01-2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "17-01-2026_notes.pdf",
+                "path": "04 - Tools introduction + (UV + VS code) Installation/03 - 17th Jan Day - 3 Python I Part - 2 Tools walkthrough + Environment setup + variables_datatypes_programFlow_operators-1/17-01-2026_extracted/17-01-2026/17-01-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "code.py",
+                "path": "04 - Tools introduction + (UV + VS code) Installation/03 - 17th Jan Day - 3 Python I Part - 2 Tools walkthrough + Environment setup + variables_datatypes_programFlow_operators-1/17-01-2026_extracted/17-01-2026/code.py",
+                "type": "py"
+            }
+        ]
+    },
+    {
+        "id": "s05",
+        "num": "05",
+        "title": "Basics of Python",
+        "overview": "Architecting enterprise Python software using Classes, Inheritance, Polymorphism, Encapsulation, Dunder methods, and Property descriptors.",
+        "content": "<div class=\"callout purple\" style=\"margin-bottom:32px;\">\n    <h5 style=\"font-size:1.3rem; margin-bottom:8px;\">📖 Section 05 Course Bible: Enterprise OOP & Data Modeling</h5>\n    <p class=\"tb\">Object-Oriented Programming models real-world entities into stateful objects with encapsulated behavior. Essential for custom PyTorch modules and Scikit-Learn transformers.</p>\n</div>\n\n<h2 class=\"sh\">1. Custom Scikit-Learn Compatible Transformers</h2>\n<pre><code>from sklearn.base import BaseEstimator, TransformerMixin\n\nclass OutlierClipper(BaseEstimator, TransformerMixin):\n    def __init__(self, factor=1.5):\n        self.factor = factor\n        self.lower_bounds = {}\n        self.upper_bounds = {}\n\n    def fit(self, X, y=None):\n        for col in X.select_dtypes(include='number').columns:\n            q1 = X[col].quantile(0.25)\n            q3 = X[col].quantile(0.75)\n            iqr = q3 - q1\n            self.lower_bounds[col] = q1 - self.factor * iqr\n            self.upper_bounds[col] = q3 + self.factor * iqr\n        return self\n\n    def transform(self, X):\n        X_out = X.copy()\n        for col, lower in self.lower_bounds.items():\n            X_out[col] = X_out[col].clip(lower=lower, upper=self.upper_bounds[col])\n        return X_out</code></pre>",
+        "read_mins": 75,
+        "vtt": 9,
+        "pdf": 10,
+        "nb": 6,
+        "py": 6,
+        "files": [
+            {
+                "name": "18-01-2026.zip",
+                "path": "05 - Basics of Python/01 - 18th Jan Day - 4 Python - StringProperties_operators-II_controlFLow_non-pri/18-01-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "Session__Recording.transcript.vtt",
+                "path": "05 - Basics of Python/01 - 18th Jan Day - 4 Python - StringProperties_operators-II_controlFLow_non-pri/Session__Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "18-01-2026.zip",
+                "path": "05 - Basics of Python/01 - 18th Jan Day - 4 Python - StringProperties_operators-II_controlFLow_non-primitiveDataTypes/18-01-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "Session__Recording.transcript.vtt",
+                "path": "05 - Basics of Python/01 - 18th Jan Day - 4 Python - StringProperties_operators-II_controlFLow_non-primitiveDataTypes/Session__Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "18-01-2026.ipynb",
+                "path": "05 - Basics of Python/01 - 18th Jan Day - 4 Python - StringProperties_operators-II_controlFLow_non-primitiveDataTypes/18-01-2026_extracted/18-01-2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "18-01-2026_notes.pdf",
+                "path": "05 - Basics of Python/01 - 18th Jan Day - 4 Python - StringProperties_operators-II_controlFLow_non-primitiveDataTypes/18-01-2026_extracted/18-01-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "21-01-2026.zip",
+                "path": "05 - Basics of Python/02 - 21 Jan Day - 5 Python - 3 (Input output + control flow + loop intro)/21-01-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "session_Recording.cutfile.transcript.vtt",
+                "path": "05 - Basics of Python/02 - 21 Jan Day - 5 Python - 3 (Input output + control flow + loop intro)/session_Recording.cutfile.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "21-01-2026.ipynb",
+                "path": "05 - Basics of Python/02 - 21 Jan Day - 5 Python - 3 (Input output + control flow + loop intro)/21-01-2026_extracted/21-01-2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "21-01-2026_notes.pdf",
+                "path": "05 - Basics of Python/02 - 21 Jan Day - 5 Python - 3 (Input output + control flow + loop intro)/21-01-2026_extracted/21-01-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "test.py",
+                "path": "05 - Basics of Python/02 - 21 Jan Day - 5 Python - 3 (Input output + control flow + loop intro)/21-01-2026_extracted/test.py",
+                "type": "py"
+            },
+            {
+                "name": "21-01-2026.pdf",
+                "path": "05 - Basics of Python/02 - 21 Jan Day - 5 Python - 3 (Input output + control flow + loop intro)/21-01-2026_extracted/Assignment/21-01-2026.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "24-01-2026.zip",
+                "path": "05 - Basics of Python/03 - 24th Jan Day - 6 Python - Discussion_on_central_resource-Non_primitive_data/24-01-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "Recording.transcript.vtt",
+                "path": "05 - Basics of Python/03 - 24th Jan Day - 6 Python - Discussion_on_central_resource-Non_primitive_data/Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "24-01-2026.zip",
+                "path": "05 - Basics of Python/03 - 24th Jan Day - 6 Python - Discussion_on_central_resource-Non_primitive_data_types/24-01-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "Recording.transcript.vtt",
+                "path": "05 - Basics of Python/03 - 24th Jan Day - 6 Python - Discussion_on_central_resource-Non_primitive_data_types/Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "24-01-2026.ipynb",
+                "path": "05 - Basics of Python/03 - 24th Jan Day - 6 Python - Discussion_on_central_resource-Non_primitive_data_types/24-01-2026_extracted/24-01-2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "24-01-2026_notes.pdf",
+                "path": "05 - Basics of Python/03 - 24th Jan Day - 6 Python - Discussion_on_central_resource-Non_primitive_data_types/24-01-2026_extracted/24-01-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "25-01-2026.zip",
+                "path": "05 - Basics of Python/04 - 25th Jan Day - 7 Python - string_methods-loops-functions-function_arguments/25-01-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "Recording.transcript.vtt",
+                "path": "05 - Basics of Python/04 - 25th Jan Day - 7 Python - string_methods-loops-functions-function_arguments/Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "25-01-2026.ipynb",
+                "path": "05 - Basics of Python/04 - 25th Jan Day - 7 Python - string_methods-loops-functions-function_arguments/25-01-2026_extracted/25-01-2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "25-01-2026_assign.pdf",
+                "path": "05 - Basics of Python/04 - 25th Jan Day - 7 Python - string_methods-loops-functions-function_arguments/25-01-2026_extracted/25-01-2026_assign.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "25-01-2026_notes.pdf",
+                "path": "05 - Basics of Python/04 - 25th Jan Day - 7 Python - string_methods-loops-functions-function_arguments/25-01-2026_extracted/25-01-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "31-01-2026.zip",
+                "path": "05 - Basics of Python/05 - 31st Jan Day - 8 Python - variableScope_FunctionArgument_libraryPipPYPI_OSL/31-01-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "Recording.transcript.vtt",
+                "path": "05 - Basics of Python/05 - 31st Jan Day - 8 Python - variableScope_FunctionArgument_libraryPipPYPI_OSL/Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "31-01-2026.zip",
+                "path": "05 - Basics of Python/05 - 31st Jan Day - 8 Python - variableScope_FunctionArgument_libraryPipPYPI_OSLibrary_FileOperation/31-01-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "Recording.transcript.vtt",
+                "path": "05 - Basics of Python/05 - 31st Jan Day - 8 Python - variableScope_FunctionArgument_libraryPipPYPI_OSLibrary_FileOperation/Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "31-01-2026.ipynb",
+                "path": "05 - Basics of Python/05 - 31st Jan Day - 8 Python - variableScope_FunctionArgument_libraryPipPYPI_OSLibrary_FileOperation/31-01-2026_extracted/31-01-2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "31-01-2026_notes.pdf",
+                "path": "05 - Basics of Python/05 - 31st Jan Day - 8 Python - variableScope_FunctionArgument_libraryPipPYPI_OSLibrary_FileOperation/31-01-2026_extracted/31-01-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "01-02-2026.zip",
+                "path": "05 - Basics of Python/06 - 1st Feb Day - 9 Python - FileOperation_ExceptionHandling_ExitCommands/01-02-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "session.Recording.cutfile..transcript.vtt",
+                "path": "05 - Basics of Python/06 - 1st Feb Day - 9 Python - FileOperation_ExceptionHandling_ExitCommands/session.Recording.cutfile..transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "01-02-2026.ipynb",
+                "path": "05 - Basics of Python/06 - 1st Feb Day - 9 Python - FileOperation_ExceptionHandling_ExitCommands/01-02-2026_extracted/01-02-2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "01-02-2026_notes.pdf",
+                "path": "05 - Basics of Python/06 - 1st Feb Day - 9 Python - FileOperation_ExceptionHandling_ExitCommands/01-02-2026_extracted/01-02-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "temp.py",
+                "path": "05 - Basics of Python/06 - 1st Feb Day - 9 Python - FileOperation_ExceptionHandling_ExitCommands/01-02-2026_extracted/temp.py",
+                "type": "py"
+            },
+            {
+                "name": "temp_2.py",
+                "path": "05 - Basics of Python/06 - 1st Feb Day - 9 Python - FileOperation_ExceptionHandling_ExitCommands/01-02-2026_extracted/temp_2.py",
+                "type": "py"
+            },
+            {
+                "name": "temp_3.py",
+                "path": "05 - Basics of Python/06 - 1st Feb Day - 9 Python - FileOperation_ExceptionHandling_ExitCommands/01-02-2026_extracted/temp_3.py",
+                "type": "py"
+            },
+            {
+                "name": "temp_4.py",
+                "path": "05 - Basics of Python/06 - 1st Feb Day - 9 Python - FileOperation_ExceptionHandling_ExitCommands/01-02-2026_extracted/temp_4.py",
+                "type": "py"
+            },
+            {
+                "name": "25-01-2026_assign.pdf",
+                "path": "05 - Basics of Python/06 - 1st Feb Day - 9 Python - FileOperation_ExceptionHandling_ExitCommands/01-02-2026_extracted/assignment/pdf/25-01-2026_assign.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "25-01-2026_assign_sol.pdf",
+                "path": "05 - Basics of Python/06 - 1st Feb Day - 9 Python - FileOperation_ExceptionHandling_ExitCommands/01-02-2026_extracted/assignment/pdf/25-01-2026_assign_sol.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "temp_1_copy_2.py",
+                "path": "05 - Basics of Python/06 - 1st Feb Day - 9 Python - FileOperation_ExceptionHandling_ExitCommands/01-02-2026_extracted/temp/temp_1_copy_2.py",
+                "type": "py"
+            }
+        ]
+    },
+    {
+        "id": "s06",
+        "num": "06",
+        "title": "Object-Oriented Programming (OOP)",
+        "overview": "Comprehensive algorithmic challenge set focusing on coding interview preparation, logic building, and runtime optimization.",
+        "content": "<div class=\"callout purple\" style=\"margin-bottom:32px;\">\n    <h5 style=\"font-size:1.3rem; margin-bottom:8px;\">📖 Section 06 Course Bible: Algorithmic Problem Solving</h5>\n    <p class=\"tb\">Synthesizes the core coding patterns required to solve complex analytical transformations efficiently.</p>\n</div>\n\n<h2 class=\"sh\">1. Big-O Complexity Analysis</h2>\n<p class=\"tb\">Always analyze your algorithms across two axes: Time Complexity (CPU cycles) and Space Complexity (RAM allocation).</p>\n<pre><code># O(N) Two-Pointer approach for finding pair sums in sorted data\ndef two_sum_sorted(arr, target):\n    left, right = 0, len(arr) - 1\n    while left < right:\n        current = arr[left] + arr[right]\n        if current == target: return (left, right)\n        elif current < target: left += 1\n        else: right -= 1\n    return None</code></pre>",
+        "read_mins": 60,
+        "vtt": 5,
+        "pdf": 6,
+        "nb": 5,
+        "py": 14,
+        "files": [
+            {
+                "name": "04-02-2026.zip",
+                "path": "06 - Object-Oriented Programming (OOP)/01 - 4th Feb Day - 10 Python - Object oriented programming/04-02-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "Recording.transcript.vtt",
+                "path": "06 - Object-Oriented Programming (OOP)/01 - 4th Feb Day - 10 Python - Object oriented programming/Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "04-02-2026.ipynb",
+                "path": "06 - Object-Oriented Programming (OOP)/01 - 4th Feb Day - 10 Python - Object oriented programming/04-02-2026_extracted/04-02-2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "04-02-2026_notes.pdf",
+                "path": "06 - Object-Oriented Programming (OOP)/01 - 4th Feb Day - 10 Python - Object oriented programming/04-02-2026_extracted/04-02-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "assignment.pdf",
+                "path": "06 - Object-Oriented Programming (OOP)/01 - 4th Feb Day - 10 Python - Object oriented programming/04-02-2026_extracted/Assignment/assignment.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "solution.py",
+                "path": "06 - Object-Oriented Programming (OOP)/01 - 4th Feb Day - 10 Python - Object oriented programming/04-02-2026_extracted/Assignment/solution.py",
+                "type": "py"
+            },
+            {
+                "name": "07-02-2026.zip",
+                "path": "06 - Object-Oriented Programming (OOP)/02 - 7th Feb Day - 11 Python-9 Object oriented programming - 2 + custom modules/07-02-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "Session_Recording.transcript.vtt",
+                "path": "06 - Object-Oriented Programming (OOP)/02 - 7th Feb Day - 11 Python-9 Object oriented programming - 2 + custom modules/Session_Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "07-02-2026.ipynb",
+                "path": "06 - Object-Oriented Programming (OOP)/02 - 7th Feb Day - 11 Python-9 Object oriented programming - 2 + custom modules/07-02-2026_extracted/07-02-2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "07-02-2026_notes.pdf",
+                "path": "06 - Object-Oriented Programming (OOP)/02 - 7th Feb Day - 11 Python-9 Object oriented programming - 2 + custom modules/07-02-2026_extracted/07-02-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "08-02-2026.zip",
+                "path": "06 - Object-Oriented Programming (OOP)/03 - 8th Feb Day - 12 Python-10 Object oriented programming - 3 + decorators/08-02-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "Recording.transcript (2.0 USD).vtt",
+                "path": "06 - Object-Oriented Programming (OOP)/03 - 8th Feb Day - 12 Python-10 Object oriented programming - 3 + decorators/Recording.transcript (2.0 USD).vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "08-02-2026.ipynb",
+                "path": "06 - Object-Oriented Programming (OOP)/03 - 8th Feb Day - 12 Python-10 Object oriented programming - 3 + decorators/08-02-2026_extracted/08-02-2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "08-02-2026.py",
+                "path": "06 - Object-Oriented Programming (OOP)/03 - 8th Feb Day - 12 Python-10 Object oriented programming - 3 + decorators/08-02-2026_extracted/08-02-2026.py",
+                "type": "py"
+            },
+            {
+                "name": "08-02-2026_notes.pdf",
+                "path": "06 - Object-Oriented Programming (OOP)/03 - 8th Feb Day - 12 Python-10 Object oriented programming - 3 + decorators/08-02-2026_extracted/08-02-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "calculator.py",
+                "path": "06 - Object-Oriented Programming (OOP)/03 - 8th Feb Day - 12 Python-10 Object oriented programming - 3 + decorators/08-02-2026_extracted/calculator.py",
+                "type": "py"
+            },
+            {
+                "name": "temp.py",
+                "path": "06 - Object-Oriented Programming (OOP)/03 - 8th Feb Day - 12 Python-10 Object oriented programming - 3 + decorators/08-02-2026_extracted/temp.py",
+                "type": "py"
+            },
+            {
+                "name": "temp_1.py",
+                "path": "06 - Object-Oriented Programming (OOP)/03 - 8th Feb Day - 12 Python-10 Object oriented programming - 3 + decorators/08-02-2026_extracted/temp_1.py",
+                "type": "py"
+            },
+            {
+                "name": "temp_2.py",
+                "path": "06 - Object-Oriented Programming (OOP)/03 - 8th Feb Day - 12 Python-10 Object oriented programming - 3 + decorators/08-02-2026_extracted/temp_2.py",
+                "type": "py"
+            },
+            {
+                "name": "temp_3.py",
+                "path": "06 - Object-Oriented Programming (OOP)/03 - 8th Feb Day - 12 Python-10 Object oriented programming - 3 + decorators/08-02-2026_extracted/temp_3.py",
+                "type": "py"
+            },
+            {
+                "name": "__init__.py",
+                "path": "06 - Object-Oriented Programming (OOP)/03 - 8th Feb Day - 12 Python-10 Object oriented programming - 3 + decorators/08-02-2026_extracted/utils/__init__.py",
+                "type": "py"
+            },
+            {
+                "name": "calc.py",
+                "path": "06 - Object-Oriented Programming (OOP)/03 - 8th Feb Day - 12 Python-10 Object oriented programming - 3 + decorators/08-02-2026_extracted/utils/calc.py",
+                "type": "py"
+            },
+            {
+                "name": "11-02-2026.zip",
+                "path": "06 - Object-Oriented Programming (OOP)/04 - 11th Feb Day - 13 Python - 11 Decorators/11-02-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "Recording.transcript.vtt",
+                "path": "06 - Object-Oriented Programming (OOP)/04 - 11th Feb Day - 13 Python - 11 Decorators/Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "11-02-2026.ipynb",
+                "path": "06 - Object-Oriented Programming (OOP)/04 - 11th Feb Day - 13 Python - 11 Decorators/11-02-2026_extracted/11-02-2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "11-02-2026_notes.pdf",
+                "path": "06 - Object-Oriented Programming (OOP)/04 - 11th Feb Day - 13 Python - 11 Decorators/11-02-2026_extracted/11-02-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "14-02-2026.zip",
+                "path": "06 - Object-Oriented Programming (OOP)/05 - 14th Feb Day - 14 Python-12 Special Methods + Python special functions/14-02-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "Recording.transcript (2.0 uds).vtt",
+                "path": "06 - Object-Oriented Programming (OOP)/05 - 14th Feb Day - 14 Python-12 Special Methods + Python special functions/Recording.transcript (2.0 uds).vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "14-02-2026.ipynb",
+                "path": "06 - Object-Oriented Programming (OOP)/05 - 14th Feb Day - 14 Python-12 Special Methods + Python special functions/14-02-2026_extracted/14-02-2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "14-02-2026_notes.pdf",
+                "path": "06 - Object-Oriented Programming (OOP)/05 - 14th Feb Day - 14 Python-12 Special Methods + Python special functions/14-02-2026_extracted/14-02-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "a.py",
+                "path": "06 - Object-Oriented Programming (OOP)/05 - 14th Feb Day - 14 Python-12 Special Methods + Python special functions/14-02-2026_extracted/a.py",
+                "type": "py"
+            },
+            {
+                "name": "main.py",
+                "path": "06 - Object-Oriented Programming (OOP)/05 - 14th Feb Day - 14 Python-12 Special Methods + Python special functions/14-02-2026_extracted/main.py",
+                "type": "py"
+            },
+            {
+                "name": "a.py",
+                "path": "06 - Object-Oriented Programming (OOP)/05 - 14th Feb Day - 14 Python-12 Special Methods + Python special functions/14-02-2026_extracted/my_module/a.py",
+                "type": "py"
+            },
+            {
+                "name": "calculator.py",
+                "path": "06 - Object-Oriented Programming (OOP)/05 - 14th Feb Day - 14 Python-12 Special Methods + Python special functions/14-02-2026_extracted/my_module/calculator.py",
+                "type": "py"
+            },
+            {
+                "name": "test_1.py",
+                "path": "06 - Object-Oriented Programming (OOP)/05 - 14th Feb Day - 14 Python-12 Special Methods + Python special functions/14-02-2026_extracted/my_module/test_1.py",
+                "type": "py"
+            }
+        ]
+    },
+    {
+        "id": "s07",
+        "num": "07",
+        "title": "Numpy",
+        "overview": "The definitive guide to N-dimensional arrays (`ndarray`), vectorization, broadcasting rules, memory layouts (C vs Fortran order), and linear algebra operations.",
+        "content": "<div class=\"callout purple\" style=\"margin-bottom:32px;\">\n    <h5 style=\"font-size:1.3rem; margin-bottom:8px;\">📖 Section 07 Course Bible: High-Performance Vectorized Linear Algebra</h5>\n    <p class=\"tb\">NumPy provides contiguous C-array structures that execute operations 100x faster than standard Python loops by avoiding Python object overhead and utilizing CPU SIMD instructions.</p>\n</div>\n\n<h2 class=\"sh\">1. Why NumPy is 100x Faster than Python Lists</h2>\n<p class=\"tb\">A Python list is an array of pointers pointing to scattered PyObject memory blocks on the heap. A NumPy <code>ndarray</code> is a contiguous block of homogeneous primitive data types (e.g., raw 64-bit floats). CPU cache lines prefetch contiguous blocks seamlessly.</p>\n\n<h2 class=\"sh\">2. Broadcasting Rules</h2>\n<pre><code>import numpy as np\n\n# Broadcasting allows arithmetic between arrays of different shapes\nmatrix = np.ones((4, 3))       # Shape: (4, 3)\nvector = np.array([10, 20, 30]) # Shape: (3,) -> auto-expanded to (1, 3)\n\nresult = matrix + vector       # Result Shape: (4, 3)</code></pre>",
+        "read_mins": 80,
+        "vtt": 3,
+        "pdf": 4,
+        "nb": 4,
+        "py": 0,
+        "files": [
+            {
+                "name": "15-02-2026.zip",
+                "path": "07 - Numpy/01 - 15th Feb Day - 15 Numpy - I part - 1/15-02-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "Recording.transcript.vtt",
+                "path": "07 - Numpy/01 - 15th Feb Day - 15 Numpy - I part - 1/Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "15-02-2026.ipynb",
+                "path": "07 - Numpy/01 - 15th Feb Day - 15 Numpy - I part - 1/15-02-2026_extracted/15-02-2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "15-02-2026_notes.pdf",
+                "path": "07 - Numpy/01 - 15th Feb Day - 15 Numpy - I part - 1/15-02-2026_extracted/15-02-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "15-02-2026.zip",
+                "path": "07 - Numpy/02 - 15th Feb Day - 15 Numpy - I part - 2/15-02-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "Recording.transcript (1).vtt",
+                "path": "07 - Numpy/02 - 15th Feb Day - 15 Numpy - I part - 2/Recording.transcript (1).vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "15-02-2026.ipynb",
+                "path": "07 - Numpy/02 - 15th Feb Day - 15 Numpy - I part - 2/15-02-2026_extracted/15-02-2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "15-02-2026_notes.pdf",
+                "path": "07 - Numpy/02 - 15th Feb Day - 15 Numpy - I part - 2/15-02-2026_extracted/15-02-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "15-02-2026.zip",
+                "path": "07 - Numpy/03 - 15th Feb Day 15 Numpy - 1 part -3/15-02-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "15-02-2026.ipynb",
+                "path": "07 - Numpy/03 - 15th Feb Day 15 Numpy - 1 part -3/15-02-2026_extracted/15-02-2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "15-02-2026_notes.pdf",
+                "path": "07 - Numpy/03 - 15th Feb Day 15 Numpy - 1 part -3/15-02-2026_extracted/15-02-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "18-02-2026.zip",
+                "path": "07 - Numpy/04 - 18th Feb Day - 16 Numpy - II/18-02-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "Recording.transcript.vtt",
+                "path": "07 - Numpy/04 - 18th Feb Day - 16 Numpy - II/Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "18-02-2026.ipynb",
+                "path": "07 - Numpy/04 - 18th Feb Day - 16 Numpy - II/18-02-2026_extracted/18-02-2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "18-02-2026_notes.pdf",
+                "path": "07 - Numpy/04 - 18th Feb Day - 16 Numpy - II/18-02-2026_extracted/18-02-2026_notes.pdf",
+                "type": "pdf"
+            }
+        ]
+    },
+    {
+        "id": "s08",
+        "num": "08",
+        "title": "Pandas",
+        "overview": "Mastering Series and DataFrames, indexing semantics (`loc`/`iloc`), GroupBy split-apply-combine aggregations, multi-table joins, and performance optimization.",
+        "content": "<div class=\"callout purple\" style=\"margin-bottom:32px;\">\n    <h5 style=\"font-size:1.3rem; margin-bottom:8px;\">📖 Section 08 Course Bible: Tabular Data Engineering</h5>\n    <p class=\"tb\">Pandas is the workhorse of industrial data science. Explores optimal indexing, vectorized aggregations, and high-speed data cleaning pipelines.</p>\n</div>\n\n<h2 class=\"sh\">1. Indexing Semantics: <code>loc</code> vs <code>iloc</code></h2>\n<p class=\"tb\">Never use chained indexing (<code>df['col']['row']</code>) as it triggers setting-with-copy warnings and unpredictable memory views. Always explicitly use label-based <code>loc</code> or integer-position <code>iloc</code>.</p>\n<pre><code>import pandas as pd\n\n# Select rows where salary > 100k and only return specific columns\nhigh_earners = df.loc[df['salary'] > 100000, ['name', 'department', 'salary']]</code></pre>\n\n<h2 class=\"sh\">2. GroupBy: The Split-Apply-Combine Engine</h2>\n<pre><code>dept_metrics = df.groupby('department').agg(\n    avg_salary=('salary', 'mean'),\n    max_bonus=('bonus', 'max'),\n    headcount=('emp_id', 'count')\n).reset_index()</code></pre>",
+        "read_mins": 90,
+        "vtt": 4,
+        "pdf": 5,
+        "nb": 5,
+        "py": 0,
+        "files": [
+            {
+                "name": "21-02-2026.zip",
+                "path": "08 - Pandas/01 - 21st Feb Day - 17 Numpy - 3 & Pandas - 1/21-02-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "21-02-2026.ipynb",
+                "path": "08 - Pandas/01 - 21st Feb Day - 17 Numpy - 3 & Pandas - 1/21-02-2026_extracted/21-02-2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "21-02-2026_notes.pdf",
+                "path": "08 - Pandas/01 - 21st Feb Day - 17 Numpy - 3 & Pandas - 1/21-02-2026_extracted/21-02-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "22-02-2026.zip",
+                "path": "08 - Pandas/02 - 22 Feb Day - 18 Pandas - II/22-02-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "GMT20260222-032830_Recording.cutfile.20260222180159456.transcript.vtt",
+                "path": "08 - Pandas/02 - 22 Feb Day - 18 Pandas - II/GMT20260222-032830_Recording.cutfile.20260222180159456.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "22-02-2026.ipynb",
+                "path": "08 - Pandas/02 - 22 Feb Day - 18 Pandas - II/22-02-2026_extracted/22-02-2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "22-02-2026_notes.pdf",
+                "path": "08 - Pandas/02 - 22 Feb Day - 18 Pandas - II/22-02-2026_extracted/22-02-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "titanic.csv",
+                "path": "08 - Pandas/02 - 22 Feb Day - 18 Pandas - II/22-02-2026_extracted/titanic.csv",
+                "type": "csv"
+            },
+            {
+                "name": "25-02-2026.zip",
+                "path": "08 - Pandas/03 - 25 Feb Day - 19 Pandas - III (Part - 1)/25-02-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "Recording.transcript.vtt",
+                "path": "08 - Pandas/03 - 25 Feb Day - 19 Pandas - III (Part - 1)/Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "25-02-2026.ipynb",
+                "path": "08 - Pandas/03 - 25 Feb Day - 19 Pandas - III (Part - 1)/25-02-2026_extracted/25-02-2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "25-02-2026.pdf",
+                "path": "08 - Pandas/03 - 25 Feb Day - 19 Pandas - III (Part - 1)/25-02-2026_extracted/25-02-2026.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "25-02-2026.zip",
+                "path": "08 - Pandas/04 - 25 Feb Day - 19 Pandas - III (Part - 2)/25-02-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "Recording.transcript P-2.vtt",
+                "path": "08 - Pandas/04 - 25 Feb Day - 19 Pandas - III (Part - 2)/Recording.transcript P-2.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "25-02-2026.ipynb",
+                "path": "08 - Pandas/04 - 25 Feb Day - 19 Pandas - III (Part - 2)/25-02-2026_extracted/25-02-2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "25-02-2026.pdf",
+                "path": "08 - Pandas/04 - 25 Feb Day - 19 Pandas - III (Part - 2)/25-02-2026_extracted/25-02-2026.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "28-02-2026.zip",
+                "path": "08 - Pandas/05 - 28 Feb Day - 20 Pandas - 3 + Git/28-02-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "Recording.transcript.vtt",
+                "path": "08 - Pandas/05 - 28 Feb Day - 20 Pandas - 3 + Git/Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "28-02-2026.ipynb",
+                "path": "08 - Pandas/05 - 28 Feb Day - 20 Pandas - 3 + Git/28-02-2026_extracted/28-02-2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "28-02-2026_notes.pdf",
+                "path": "08 - Pandas/05 - 28 Feb Day - 20 Pandas - 3 + Git/28-02-2026_extracted/28-02-2026_notes.pdf",
+                "type": "pdf"
+            }
+        ]
+    },
+    {
+        "id": "s09",
+        "num": "09",
+        "title": "Data Visualizations",
+        "overview": "Comprehensive data storytelling architecture. Explores figure/axes hierarchies, statistical distributions, categorical plots, and professional aesthetic styling.",
+        "content": "<div class=\"callout purple\" style=\"margin-bottom:32px;\">\n    <h5 style=\"font-size:1.3rem; margin-bottom:8px;\">📖 Section 09 Course Bible: Exploratory & Presentation Graphics</h5>\n    <p class=\"tb\">Visualization bridges raw numerical patterns and executive decision-making. Covers Matplotlib object-oriented plotting and Seaborn statistical estimation charts.</p>\n</div>\n\n<h2 class=\"sh\">1. Matplotlib Object-Oriented Hierarchy</h2>\n<pre><code>import matplotlib.pyplot as plt\nimport seaborn as sns\n\nfig, axes = plt.subplots(nrows=1, ncols=2, figsize=(14, 6))\nsns.histplot(data=df, x='salary', hue='department', kde=True, ax=axes[0])\naxes[0].set_title(\"Salary Distribution by Department\")\n\nsns.scatterplot(data=df, x='experience', y='salary', ax=axes[1])\naxes[1].set_title(\"Experience vs Compensation\")\nplt.tight_layout()</code></pre>",
+        "read_mins": 75,
+        "vtt": 8,
+        "pdf": 10,
+        "nb": 5,
+        "py": 2,
+        "files": [
+            {
+                "name": "01-03-2026.zip",
+                "path": "09 - Data Visualizations/01 - 1 Mar Day - 21 Data Visualizations/01-03-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "session_Recording.cutfile.20260301093215063.transcript.vtt",
+                "path": "09 - Data Visualizations/01 - 1 Mar Day - 21 Data Visualizations/session_Recording.cutfile.20260301093215063.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "01-03-2026.ipynb",
+                "path": "09 - Data Visualizations/01 - 1 Mar Day - 21 Data Visualizations/01-03-2026_extracted/01-03-2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "01-03-2026_notes.pdf",
+                "path": "09 - Data Visualizations/01 - 1 Mar Day - 21 Data Visualizations/01-03-2026_extracted/01-03-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "07_03_2026.zip",
+                "path": "09 - Data Visualizations/02 - 7 Mar Day - 22 Data visualization - 2/07_03_2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "Recording.transcript.vtt",
+                "path": "09 - Data Visualizations/02 - 7 Mar Day - 22 Data visualization - 2/Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "07_03_2026.ipynb",
+                "path": "09 - Data Visualizations/02 - 7 Mar Day - 22 Data visualization - 2/07_03_2026_extracted/07_03_2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "07_03_2026_notes.pdf",
+                "path": "09 - Data Visualizations/02 - 7 Mar Day - 22 Data visualization - 2/07_03_2026_extracted/07_03_2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "2Recording.transcript.vtt",
+                "path": "09 - Data Visualizations/03 - 8 Mar Day - 23 Database - 1/2Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "11-03-2026.zip",
+                "path": "09 - Data Visualizations/04 - 11 Mar Day - 24 Database -1/11-03-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "session_Recording.cutfile.20260312060656789.transcript.vtt",
+                "path": "09 - Data Visualizations/04 - 11 Mar Day - 24 Database -1/session_Recording.cutfile.20260312060656789.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "11-03-2026_notes.pdf",
+                "path": "09 - Data Visualizations/04 - 11 Mar Day - 24 Database -1/11-03-2026_extracted/11-03-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "14-03-2026.zip",
+                "path": "09 - Data Visualizations/05 - 14 Mar Day - 25 Database - 2/14-03-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "session_Recording.transcript.vtt",
+                "path": "09 - Data Visualizations/05 - 14 Mar Day - 25 Database - 2/session_Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "14-03-2026.ipynb",
+                "path": "09 - Data Visualizations/05 - 14 Mar Day - 25 Database - 2/14-03-2026_extracted/14-03-2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "14-03-2026_notes.pdf",
+                "path": "09 - Data Visualizations/05 - 14 Mar Day - 25 Database - 2/14-03-2026_extracted/14-03-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "database.pdf",
+                "path": "09 - Data Visualizations/05 - 14 Mar Day - 25 Database - 2/14-03-2026_extracted/database.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "15-03-2026.zip",
+                "path": "09 - Data Visualizations/06 - 15 Mar Day - 26 Database-3 + Supabase postgres/15-03-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "uds Recording.transcript.vtt",
+                "path": "09 - Data Visualizations/06 - 15 Mar Day - 26 Database-3 + Supabase postgres/uds Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "15-03-2026.ipynb",
+                "path": "09 - Data Visualizations/06 - 15 Mar Day - 26 Database-3 + Supabase postgres/15-03-2026_extracted/15-03-2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "15-03-2026_notes.pdf",
+                "path": "09 - Data Visualizations/06 - 15 Mar Day - 26 Database-3 + Supabase postgres/15-03-2026_extracted/15-03-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "database-3.pdf",
+                "path": "09 - Data Visualizations/06 - 15 Mar Day - 26 Database-3 + Supabase postgres/15-03-2026_extracted/database-3.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "subabase-python-postgres.pdf",
+                "path": "09 - Data Visualizations/06 - 15 Mar Day - 26 Database-3 + Supabase postgres/15-03-2026_extracted/subabase-python-postgres.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "18-03-2026.zip",
+                "path": "09 - Data Visualizations/07 - 18 Mar Day - 27 Database - 4 + Streamlite intro/18-03-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "Recording.transcript.vtt",
+                "path": "09 - Data Visualizations/07 - 18 Mar Day - 27 Database - 4 + Streamlite intro/Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "18-03-2026.ipynb",
+                "path": "09 - Data Visualizations/07 - 18 Mar Day - 27 Database - 4 + Streamlite intro/18-03-2026_extracted/18-03-2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "18-03-2026_notes.pdf",
+                "path": "09 - Data Visualizations/07 - 18 Mar Day - 27 Database - 4 + Streamlite intro/18-03-2026_extracted/18-03-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "app.py",
+                "path": "09 - Data Visualizations/07 - 18 Mar Day - 27 Database - 4 + Streamlite intro/18-03-2026_extracted/app.py",
+                "type": "py"
+            },
+            {
+                "name": "22-03-2026.zip",
+                "path": "09 - Data Visualizations/08 - 22 Mar Day - 28 Streamlit-2/22-03-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "Recording.transcript.vtt",
+                "path": "09 - Data Visualizations/08 - 22 Mar Day - 28 Streamlit-2/Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "22-03-2026_notes.pdf",
+                "path": "09 - Data Visualizations/08 - 22 Mar Day - 28 Streamlit-2/22-03-2026_extracted/22-03-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "streamlit_learn.py",
+                "path": "09 - Data Visualizations/08 - 22 Mar Day - 28 Streamlit-2/22-03-2026_extracted/streamlit_learn.py",
+                "type": "py"
+            }
+        ]
+    },
+    {
+        "id": "s10",
+        "num": "10",
+        "title": "Python Project - 1",
+        "overview": "Synthesizing Python, NumPy, Pandas, and Visualization into a structured, production-ready capstone project with clean code architecture.",
+        "content": "<div class=\"callout purple\" style=\"margin-bottom:32px;\">\n    <h5 style=\"font-size:1.3rem; margin-bottom:8px;\">📖 Section 10 Course Bible: Capstone Project Architecture</h5>\n    <p class=\"tb\">Demonstrates how to structure an end-to-end analytical pipeline from raw data ingestion to executive reporting.</p>\n</div>\n\n<h2 class=\"sh\">1. Modular Repository Design</h2>\n<pre><code>project_root/\n├── data/raw/              # Immutable raw inputs\n├── data/processed/        # Cleaned analytical tables\n├── src/config.py          # Centralized configuration & constants\n├── src/ingestion.py       # Data validation & loading scripts\n├── src/analytics.py       # Vectorized KPI computation\n└── main.py                # Pipeline orchestrator CLI</code></pre>",
+        "read_mins": 60,
+        "vtt": 2,
+        "pdf": 2,
+        "nb": 0,
+        "py": 0,
+        "files": [
+            {
+                "name": "25_03_2026.zip",
+                "path": "10 - Python Project - 1/01 - 25 Mar Day - 29 Python Project - 1/25_03_2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "GMT20260325-145730_Recording.transcript.vtt",
+                "path": "10 - Python Project - 1/01 - 25 Mar Day - 29 Python Project - 1/GMT20260325-145730_Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "25_03_2026_notes.pdf",
+                "path": "10 - Python Project - 1/01 - 25 Mar Day - 29 Python Project - 1/25_03_2026_extracted/25_03_2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "28_03_2026.zip",
+                "path": "10 - Python Project - 1/02 - 28 Mar Day - 30 Python project 2/28_03_2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "Recording.transcript.vtt",
+                "path": "10 - Python Project - 1/02 - 28 Mar Day - 30 Python project 2/Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "28_03_2026_notes.pdf",
+                "path": "10 - Python Project - 1/02 - 28 Mar Day - 30 Python project 2/28_03_2026_extracted/28_03_2026_notes.pdf",
+                "type": "pdf"
+            }
+        ]
+    },
+    {
+        "id": "s11",
+        "num": "11",
+        "title": "Statistics",
+        "overview": "Exhaustive mastery of descriptive statistics, probability distributions (Normal, Binomial, Poisson), Central Limit Theorem, and Hypothesis Testing (Z, T, ANOVA, Chi-Square).",
+        "content": "<div class=\"callout purple\" style=\"margin-bottom:32px;\">\n    <h5 style=\"font-size:1.3rem; margin-bottom:8px;\">📖 Section 11 Course Bible: Mathematical Statistics for Machine Learning</h5>\n    <p class=\"tb\">Every machine learning algorithm is statistical inference at scale. This guide synthesizes core probability distributions, sampling theory, and hypothesis verification.</p>\n</div>\n\n<h2 class=\"sh\">1. The Central Limit Theorem (CLT)</h2>\n<p class=\"tb\">Regardless of the underlying population distribution (even if heavily skewed or uniform), the sampling distribution of sample means approaches a normal Gaussian distribution as sample size $n \\to \\infty$ (practically $n \\ge 30$). Standard error of mean: $\\sigma_x = \\frac{\\sigma}{\\sqrt{n}}$.</p>\n\n<h2 class=\"sh\">2. Hypothesis Testing Matrix</h2>\n<table class=\"ct\">\n    <thead>\n        <tr><th>Statistical Test</th><th>Target Comparison</th><th>Key Assumptions</th></tr>\n    </thead>\n    <tbody>\n        <tr><td><strong>One-Sample T-Test</strong></td><td>Sample Mean vs Population Mean</td><td>Continuous data, approximate normality</td></tr>\n        <tr><td><strong>Two-Sample Independent T-Test</strong></td><td>Group A Mean vs Group B Mean</td><td>Independent groups, equal variance (Levene test)</td></tr>\n        <tr><td><strong>ANOVA (F-Test)</strong></td><td>Means across 3+ categorical groups</td><td>Normality, homoscedasticity across groups</td></tr>\n        <tr><td><strong>Chi-Square (χ²) Test</strong></td><td>Categorical vs Categorical independence</td><td>Expected counts >= 5 in cells</td></tr>\n    </tbody>\n</table>",
+        "read_mins": 100,
+        "vtt": 10,
+        "pdf": 10,
+        "nb": 5,
+        "py": 0,
+        "files": [
+            {
+                "name": "2.0_Recording.transcript.vtt",
+                "path": "11 - Statistics/01 - 29 Mar Day - 31 Statistics - 1/2.0_Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "29-03-2026.zip",
+                "path": "11 - Statistics/01 - 29 Mar Day - 31 Statistics - 1/29-03-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "29-03-2026_notes.pdf",
+                "path": "11 - Statistics/01 - 29 Mar Day - 31 Statistics - 1/29-03-2026_extracted/29-03-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "01-04-2026.zip",
+                "path": "11 - Statistics/02 - 1 Apr Day - 32 Statistics 2/01-04-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "Recording.transcript.vtt",
+                "path": "11 - Statistics/02 - 1 Apr Day - 32 Statistics 2/Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "01-04-2026_notes.pdf",
+                "path": "11 - Statistics/02 - 1 Apr Day - 32 Statistics 2/01-04-2026_extracted/01-04-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "04-04-2026.zip",
+                "path": "11 - Statistics/03 - 4 Apr Day - 33 Statistics 3/04-04-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "2.0_Recording.transcript.vtt",
+                "path": "11 - Statistics/03 - 4 Apr Day - 33 Statistics 3/2.0_Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "04-04-2026.ipynb",
+                "path": "11 - Statistics/03 - 4 Apr Day - 33 Statistics 3/04-04-2026_extracted/04-04-2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "04-04-2026_notes.pdf",
+                "path": "11 - Statistics/03 - 4 Apr Day - 33 Statistics 3/04-04-2026_extracted/04-04-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "05-04-2026.zip",
+                "path": "11 - Statistics/04 - 5 Apr Day - 34 Statistics 4/05-04-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "Recording.transcript.vtt",
+                "path": "11 - Statistics/04 - 5 Apr Day - 34 Statistics 4/Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "05-04-2026.ipynb",
+                "path": "11 - Statistics/04 - 5 Apr Day - 34 Statistics 4/05-04-2026_extracted/05-04-2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "05-04-2026_notes.pdf",
+                "path": "11 - Statistics/04 - 5 Apr Day - 34 Statistics 4/05-04-2026_extracted/05-04-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "08-04-2026.zip",
+                "path": "11 - Statistics/05 - 8 Apr Day - 35 Statistics - 5/08-04-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "Session_Recording.cutfile.20260409053236649.transcript.vtt",
+                "path": "11 - Statistics/05 - 8 Apr Day - 35 Statistics - 5/Session_Recording.cutfile.20260409053236649.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "08-04-2026_notes.pdf",
+                "path": "11 - Statistics/05 - 8 Apr Day - 35 Statistics - 5/08-04-2026_extracted/08-04-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "11-04-2026.zip",
+                "path": "11 - Statistics/06 - 11 Apr Day - 36 Statistics - 6/11-04-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "Recording.transcript.vtt",
+                "path": "11 - Statistics/06 - 11 Apr Day - 36 Statistics - 6/Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "11-04-2026.ipynb",
+                "path": "11 - Statistics/06 - 11 Apr Day - 36 Statistics - 6/11-04-2026_extracted/11-04-2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "11-04-2026_notes.pdf",
+                "path": "11 - Statistics/06 - 11 Apr Day - 36 Statistics - 6/11-04-2026_extracted/11-04-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "12-04-2026.zip",
+                "path": "11 - Statistics/07 - 12 Apr Day - 37 Statistics - 7/12-04-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "2.0_Recording.transcript.vtt",
+                "path": "11 - Statistics/07 - 12 Apr Day - 37 Statistics - 7/2.0_Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "12-04-2026.ipynb",
+                "path": "11 - Statistics/07 - 12 Apr Day - 37 Statistics - 7/12-04-2026_extracted/12-04-2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "12-04-2026_notes.pdf",
+                "path": "11 - Statistics/07 - 12 Apr Day - 37 Statistics - 7/12-04-2026_extracted/12-04-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "15-04-2026.zip",
+                "path": "11 - Statistics/08 - 15 Apr - 38 Statistics - 8/15-04-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "_Recording.transcript.vtt",
+                "path": "11 - Statistics/08 - 15 Apr - 38 Statistics - 8/_Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "15-04-2026_notes.pdf",
+                "path": "11 - Statistics/08 - 15 Apr - 38 Statistics - 8/15-04-2026_extracted/15-04-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "18-04-2026.zip",
+                "path": "11 - Statistics/09 - 18 Apr - 39 Statistics - 9/18-04-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "Recording.transcript.vtt",
+                "path": "11 - Statistics/09 - 18 Apr - 39 Statistics - 9/Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "18-04-2026-notes.pdf",
+                "path": "11 - Statistics/09 - 18 Apr - 39 Statistics - 9/18-04-2026_extracted/18-04-2026-notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "19-04-2026.zip",
+                "path": "11 - Statistics/10 - 19 Apr - 40 Statistics - 10/19-04-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "GMT20260419-033103_Recording.cutfile.20260419174934541.transcript.vtt",
+                "path": "11 - Statistics/10 - 19 Apr - 40 Statistics - 10/GMT20260419-033103_Recording.cutfile.20260419174934541.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "19-04-2026.ipynb",
+                "path": "11 - Statistics/10 - 19 Apr - 40 Statistics - 10/19-04-2026_extracted/19-04-2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "19-04-2026_notes.pdf",
+                "path": "11 - Statistics/10 - 19 Apr - 40 Statistics - 10/19-04-2026_extracted/19-04-2026_notes.pdf",
+                "type": "pdf"
+            }
+        ]
+    },
+    {
+        "id": "s12",
+        "num": "12",
+        "title": "Feature Engineering, EDA & ML Foundations",
+        "overview": "The definitive, ultra-expanded Course Bible synthesized directly from ~4 million characters of live VTT transcripts across Days 41 to 64 (Instructor: Monal S). Covers Feature Engineering pipelines, exhaustive EDA on real-world datasets (Boston Housing, Diabetes, Wine Quality), Linear Regression & Calculus Derivatives, Gradient Descent optimization, Bias-Variance Tradeoff, Logistic Regression & Sigmoid Activation, Classification Evaluation (ROC-AUC, F1), and K-Nearest Neighbors.",
+        "content": "<div class=\"callout purple\" style=\"margin-bottom:32px; border: 2px solid #a5b4fc; background: rgba(30, 41, 59, 0.85); padding: 24px; border-radius: 12px;\">\n    <h3 style=\"color:#c084fc; font-size:1.6rem; margin-bottom:12px; display:flex; align-items:center; gap:10px;\">\n        <span>📖</span> Section 12 Master Course Bible: Synthesized from 24 Live Transcripts\n    </h3>\n    <p class=\"tb\" style=\"font-size:1.05rem; line-height:1.7;\">\n        This document represents the complete pedagogical distillation of <strong>Days 41 through 64</strong> of the Bootcamp, analyzing nearly 4 million characters of live lecture recordings from Instructor Monal S. It serves as an authoritative reference manual bridging data preprocessing, exploratory data analysis, mathematical calculus foundations, and foundational machine learning algorithms.\n    </p>\n</div>\n\n<!-- ========================================================================= -->\n<!-- MODULE I: FEATURE ENGINEERING MASTERY (Days 41–47, 49)                     -->\n<!-- ========================================================================= -->\n<div style=\"background: rgba(15, 23, 42, 0.6); border-left: 5px solid #6366f1; padding: 16px 20px; margin: 40px 0 24px 0; border-radius: 0 8px 8px 0;\">\n    <h2 class=\"sh\" style=\"color: #818cf8; margin: 0; font-size: 1.5rem;\">MODULE I: FEATURE ENGINEERING & DATA TRANSFORMATIONS (Days 41–47, 49)</h2>\n</div>\n\n<p class=\"tb\">\n    In Days 41 through 47 and Day 49, Monal S emphasizes a foundational industry rule: <em>\"Machine learning algorithms are pure mathematical functions that only speak floating-point tensors; raw tabular data speaks messy real-world strings and nulls.\"</em> Feature engineering bridges this semantic gap.\n</p>\n\n<h3 class=\"subh\">1. Diagnosing Missing Data Mechanisms (Days 41–42)</h3>\n<p class=\"tb\">\n    Before imputing missing values (<code>NaN</code>), an engineer must classify the statistical missingness mechanism. Blind imputation introduces systemic distortion.\n</p>\n<div class=\"g2\" style=\"margin-bottom:24px;\">\n    <div class=\"card\" style=\"border-top: 3px solid #10b981;\">\n        <h4 style=\"color:#34d399; margin-bottom:8px;\">MCAR (Missing Completely At Random)</h4>\n        <p class=\"tb\" style=\"font-size:0.95rem;\">\n            Missingness is independent of both observed and unobserved data (e.g., a hardware sensor dropping 1% of random packets).<br>\n            <strong>Action:</strong> Listwise deletion or mean/median imputation causes zero statistical bias.\n        </p>\n    </div>\n    <div class=\"card\" style=\"border-top: 3px solid #f59e0b;\">\n        <h4 style=\"color:#fbbf24; margin-bottom:8px;\">MAR (Missing At Random)</h4>\n        <p class=\"tb\" style=\"font-size:0.95rem;\">\n            Missingness correlates with <em>other observed variables</em> (e.g., younger users omitting salary fields).<br>\n            <strong>Action:</strong> Multivariate imputation using <code>KNNImputer</code> or MICE (<code>IterativeImputer</code>).\n        </p>\n    </div>\n</div>\n<div class=\"card\" style=\"border-left: 4px solid #f43f5e; background: rgba(136, 19, 55, 0.15); margin-bottom: 28px;\">\n    <h4 style=\"color:#fb7185;\">MNAR (Missing Not At Random) & The Indicator Pattern</h4>\n    <p class=\"tb\">\n        When missingness depends directly on the unobserved value itself (e.g., wealthy individuals refusing to disclose net worth), simple imputation destroys predictive signal. Monal S demonstrates the enterprise solution:\n    </p>\n    <pre style=\"background:#0f172a; border:1px solid #334155; padding:16px; border-radius:8px;\"><code># Create explicit binary missingness flags before imputing\ndf['Income_Was_Missing'] = df['Income'].isna().astype(int)\ndf['Income'] = df['Income'].fillna(df['Income'].median())\n# Tree models leverage 'Income_Was_Missing' to segment distinct behavioral profiles</code></pre>\n</div>\n\n<h3 class=\"subh\">2. Feature Scaling & Distribution Normalization (Days 43–45)</h3>\n<p class=\"tb\">\n    As analyzed in the Day 43–45 transcripts, distance-based algorithms (KNN, K-Means, SVM) calculate Euclidean norms $\\sqrt{\\sum (x_i - y_i)^2}$. If feature $A$ ranges from $[0, 100,000]$ and feature $B$ ranges from $[0, 1]$, feature $A$ completely dominates the gradient updates.\n</p>\n<table class=\"ct\" style=\"margin-bottom:28px;\">\n    <thead>\n        <tr style=\"background:rgba(30,41,59,0.9);\">\n            <th>Transformer Class</th><th>Mathematical Formulation</th><th>Target Use Case</th><th>VTT Transcript Insight</th>\n        </tr>\n    </thead>\n    <tbody>\n        <tr>\n            <td><strong>StandardScaler</strong></td>\n            <td>$z = \frac{x - \\mu}{\\sigma}$</td>\n            <td>Linear Regression, Gradient Descent, Neural Nets</td>\n            <td>Centers mean to 0 and variance to 1. Highly vulnerable to extreme outliers exploding $\\sigma$.</td>\n        </tr>\n        <tr>\n            <td><strong>MinMaxScaler</strong></td>\n            <td>$x_{norm} = \frac{x - x_{min}}{x_{max} - x_{min}}$</td>\n            <td>Image processing [0, 1], bounded neural activations</td>\n            <td>Compresses normal observations into tiny intervals if a single massive outlier exists.</td>\n        </tr>\n        <tr>\n            <td><strong>RobustScaler</strong></td>\n            <td>$x_{robust} = \frac{x - Q_2}{Q_3 - Q_1}$</td>\n            <td>Dirty real-world datasets with heavy anomalies</td>\n            <td>Uses Median and Interquartile Range (IQR); achieves a 50% statistical breakdown point.</td>\n        </tr>\n        <tr>\n            <td><strong>Log / Power Transforms</strong></td>\n            <td>$y = \\log(1 + x)$ or Box-Cox $\\lambda$</td>\n            <td>Highly skewed distributions (prices, income)</td>\n            <td>Converts right-skewed exponential tails into symmetric Gaussian bell curves.</td>\n        </tr>\n    </tbody>\n</table>\n\n<h3 class=\"subh\">3. Categorical Encoding & Scikit-Learn Pipelines (Days 46–47, 49)</h3>\n<p class=\"tb\">\n    Converting nominal categories into numerical matrices requires preventing multicollinearity and data leakage. Monal S walks through structuring production pipelines using Boston Housing and Diabetes datasets:\n</p>\n<pre style=\"background:#0f172a; border:1px solid #334155; padding:16px; border-radius:8px; margin-bottom:32px;\"><code>from sklearn.pipeline import Pipeline\nfrom sklearn.compose import ColumnTransformer\nfrom sklearn.preprocessing import StandardScaler, OneHotEncoder\nfrom sklearn.impute import SimpleImputer\n\n# 1. Numerical Pipeline: Impute median -> Standardize scale\nnum_pipeline = Pipeline([\n    ('imputer', SimpleImputer(strategy='median')),\n    ('scaler', StandardScaler())\n])\n\n# 2. Categorical Pipeline: Impute mode -> One-Hot Encode (prevent dummy trap via drop='first')\ncat_pipeline = Pipeline([\n    ('imputer', SimpleImputer(strategy='most_frequent')),\n    ('encoder', OneHotEncoder(drop='first', sparse_output=False, handle_unknown='ignore'))\n])\n\n# 3. Master ColumnTransformer\npreprocessor = ColumnTransformer([\n    ('num', num_pipeline, ['age', 'bmi', 'blood_pressure']),\n    ('cat', cat_pipeline, ['gender', 'smoker_status'])\n])\n\n# GOLDEN RULE FROM TRANSCRIPT: Never fit on test data!\nX_train_processed = preprocessor.fit_transform(X_train)\nX_test_processed  = preprocessor.transform(X_test)</code></pre>\n\n<!-- ========================================================================= -->\n<!-- MODULE II: EXPLORATORY DATA ANALYSIS (Days 48, 50–53)                      -->\n<!-- ========================================================================= -->\n<div style=\"background: rgba(15, 23, 42, 0.6); border-left: 5px solid #10b981; padding: 16px 20px; margin: 50px 0 24px 0; border-radius: 0 8px 8px 0;\">\n    <h2 class=\"sh\" style=\"color: #34d399; margin: 0; font-size: 1.5rem;\">MODULE II: EXPLORATORY DATA ANALYSIS (EDA) ARCHITECTURE (Days 48, 50–53)</h2>\n</div>\n\n<p class=\"tb\">\n    Across Days 48 and 50–53, Monal S demonstrates EDA as structured forensic science using real datasets including <strong>Wine Quality</strong>, <strong>Diabetic Patients Readmission</strong>, and <strong>IMDB Movie Reviews</strong>.\n</p>\n\n<div class=\"g2\" style=\"margin-bottom:28px;\">\n    <div class=\"card\" style=\"border-color: rgba(16, 185, 129, 0.4);\">\n        <h4 style=\"color:#34d399;\">Univariate & Bivariate Investigation</h4>\n        <p class=\"tb\" style=\"font-size:0.95rem;\">\n            • <strong>Normality Checks:</strong> Overlaying histograms with Kernel Density Estimation (KDE) curves and generating Q-Q plots to verify Gaussian assumptions.<br>\n            • <strong>Outlier Tracing:</strong> Inspecting box plot whiskers ($Q_1 - 1.5 \times IQR$ to $Q_3 + 1.5 \times IQR$). In Day 50, Monal S notes: <em>\"Outliers in wine quality or medical telemetry often represent real, high-value phenomena—do not drop them blindly!\"</em>\n        </p>\n    </div>\n    <div class=\"card\" style=\"border-color: rgba(16, 185, 129, 0.4);\">\n        <h4 style=\"color:#34d399;\">Multivariate Collinearity Diagnostics</h4>\n        <p class=\"tb\" style=\"font-size:0.95rem;\">\n            • Constructing Pearson correlation matrices ($r \\in [-1, 1]$) and visualizing via Seaborn heatmaps.<br>\n            • Identifying multicollinear pairs ($r > 0.85$) that destabilize ordinary least squares matrix inverses $(X^T X)^{-1}$.\n        </p>\n    </div>\n</div>\n\n<!-- ========================================================================= -->\n<!-- MODULE III: MACHINE LEARNING FOUNDATIONS & ALGORITHMS (Days 54–64)         -->\n<!-- ========================================================================= -->\n<div style=\"background: rgba(15, 23, 42, 0.6); border-left: 5px solid #f59e0b; padding: 16px 20px; margin: 50px 0 24px 0; border-radius: 0 8px 8px 0;\">\n    <h2 class=\"sh\" style=\"color: #fbbf24; margin: 0; font-size: 1.5rem;\">MODULE III: CORE SUPERVISED LEARNING ALGORITHMS (Days 54–64)</h2>\n</div>\n\n<h3 class=\"subh\">1. Linear Regression Foundations & Cost Functions (Days 54–56)</h3>\n<p class=\"tb\">\n    In Days 54–56, Monal S introduces machine learning as mathematical function approximation. Given continuous features $X$, we model the continuous target $y$ via a linear plane:\n</p>\n<pre style=\"background:#0f172a; border:1px solid #334155; padding:16px; border-radius:8px; margin-bottom:24px;\"><code>Hypothesis Function:  h_θ(x) = θ₀ + θ₁x₁ + θ₂x₂ + ... + θₙxₙ = θᵀx\nMean Squared Error (MSE) Loss: J(θ) = (1 / 2m) Σ [ h_θ(x^(i)) - y^(i) ]²</code></pre>\n\n<h3 class=\"subh\">2. Calculus Derivatives & Gradient Descent Optimization (Days 57–58)</h3>\n<p class=\"tb\">\n    In Days 57 and 58, Monal S dedicates two full classes to demystifying calculus for optimization: <em>\"Do not fear derivatives. A derivative simply gives you the gradient—the instantaneous rate of change and slope of the cost curve.\"</em>\n</p>\n<div class=\"card\" style=\"background: rgba(30, 41, 59, 0.7); border-color: #f59e0b; margin-bottom: 28px;\">\n    <h4 style=\"color:#fbbf24; margin-bottom:10px;\">The Gradient Descent Update Rule</h4>\n    <p class=\"tb\">\n        To locate the global minimum of cost function $J(\theta)$, we iteratively update weights in the direction opposite to the gradient:\n    </p>\n    <pre style=\"background:#020617; border:none; padding:14px; border-radius:6px; color:#38bdf8;\"><code>θ_j := θ_j - α * (∂ / ∂θ_j) J(θ)   ==>   θ_j := θ_j - α * (1/m) Σ [ h_θ(x^(i)) - y^(i) ] * x_j^(i)</code></pre>\n    <p class=\"tb\" style=\"margin-bottom:0; font-size:0.95rem;\">\n        • <strong>Learning Rate ($\u0007lpha$):</strong> Controls step magnitude. If $\u0007lpha$ is too small, convergence takes millions of epochs. If $\u0007lpha$ is too large, the algorithm overshoots the valley and diverges exponentially.\n    </p>\n</div>\n\n<h3 class=\"subh\">3. Bias-Variance Tradeoff & Regularization (Days 59–60)</h3>\n<p class=\"tb\">\n    Every model's generalizability is governed by the generalization error decomposition: $\text{Total Error} = \text{Bias}^2 + \text{Variance} + \text{Irreducible Noise}$.\n</p>\n<div class=\"g2\" style=\"margin-bottom:32px;\">\n    <div class=\"card\">\n        <h4 style=\"color:#38bdf8;\">High Bias (Underfitting)</h4>\n        <p class=\"tb\" style=\"font-size:0.95rem;\">\n            Model is overly simplistic (e.g., fitting a straight line to quadratic curves). Fails on both training data and validation data.<br>\n            <strong>Fix:</strong> Add polynomial features (`PolynomialFeatures`), reduce regularization ($\\lambda$).\n        </p>\n    </div>\n    <div class=\"card\">\n        <h4 style=\"color:#ec4899;\">High Variance (Overfitting)</h4>\n        <p class=\"tb\" style=\"font-size:0.95rem;\">\n            Model memorizes training noise and outliers. Achieves near-zero train loss but catastrophically fails on unseen test data.<br>\n            <strong>Fix:</strong> Apply $L_2$ Ridge ($\\lambda \\sum \theta_j^2$) or $L_1$ Lasso ($\\lambda \\sum |\theta_j|$) penalties.\n        </p>\n    </div>\n</div>\n\n<h3 class=\"subh\">4. Logistic Regression & Classification Mechanics (Days 61–63)</h3>\n<p class=\"tb\">\n    Why can't we use linear regression for binary classification ($y \\in \\{0, 1\\}$)? In Days 61–62, Monal S proves that linear regression produces unbounded predictions outside $[0, 1]$ and is severely skewed by outliers. Logistic regression resolves this by passing log-odds through the non-linear **Sigmoid Activation Function**:\n</p>\n<pre style=\"background:#0f172a; border:1px solid #334155; padding:16px; border-radius:8px; margin-bottom:24px;\"><code>Sigmoid Mapping: σ(z) = 1 / (1 + e⁻ᶻ)  where z = θᵀx\nBinary Cross-Entropy Loss: J(θ) = -(1/m) Σ [ y^(i) log(h_θ(x^(i))) + (1-y^(i)) log(1 - h_θ(x^(i))) ]\nDecision Threshold: Predict Class 1 if σ(θᵀx) >= 0.5 (Linear separating hyperplane θᵀx = 0)</code></pre>\n\n<h4 style=\"color:#c084fc; margin-top:20px;\">Classification Evaluation Metrics Matrix (Day 63)</h4>\n<table class=\"ct\" style=\"margin-bottom:32px;\">\n    <thead>\n        <tr style=\"background:rgba(30,41,59,0.9);\">\n            <th>Metric Name</th><th>Mathematical Formula</th><th>Operational Interpretation</th>\n        </tr>\n    </thead>\n    <tbody>\n        <tr>\n            <td><strong>Precision</strong></td>\n            <td>$\frac{TP}{TP + FP}$</td>\n            <td>Proportion of predicted positives that are truly positive. Critical when false alarms are costly (Spam filters).</td>\n        </tr>\n        <tr>\n            <td><strong>Recall (Sensitivity)</strong></td>\n            <td>$\frac{TP}{TP + FN}$</td>\n            <td>Proportion of actual positives correctly identified. Vital when false negatives are fatal (Disease detection).</td>\n        </tr>\n        <tr>\n            <td><strong>F₁-Score</strong></td>\n            <td>$2 \times \frac{P \times R}{P + R}$</td>\n            <td>Harmonic mean balancing Precision and Recall under severe class imbalance.</td>\n        </tr>\n        <tr>\n            <td><strong>ROC-AUC</strong></td>\n            <td>Area Under TPR vs FPR curve</td>\n            <td>Evaluates model ranking discrimination capability independent of any fixed classification threshold.</td>\n        </tr>\n    </tbody>\n</table>\n\n<h3 class=\"subh\">5. K-Nearest Neighbors (KNN): Non-Parametric Lazy Learning (Day 64)</h3>\n<p class=\"tb\">\n    In Day 64, Monal S transitions to instance-based learning: <em>\"Unlike linear or logistic regression, KNN stores no explicit mathematical equation. It memorizes the training space and classifies queries by majority vote among the K closest neighbors.\"</em>\n</p>\n<div class=\"card\" style=\"background: rgba(30, 41, 59, 0.7); border-left: 4px solid #38bdf8; margin-bottom: 36px;\">\n    <h4 style=\"color:#38bdf8; margin-bottom:8px;\">Minkowski Distance Formulation & Curse of Dimensionality</h4>\n    <p class=\"tb\" style=\"margin-bottom:12px;\">\n        Distance between query vector $x$ and historical observation $y$:\n    </p>\n    <pre style=\"background:#020617; border:none; padding:12px; border-radius:6px; color:#a5b4fc;\"><code>d(x, y) = [ Σ |x_i - y_i|^p ]^(1/p)    --> p=1: Manhattan (L1), p=2: Euclidean (L2)</code></pre>\n    <p class=\"tb\" style=\"margin-bottom:0; font-size:0.95rem;\">\n        • <strong>Hyperparameter K:</strong> Small $K=1$ leads to complex, noisy Voronoi boundaries (High Variance). Large $K=N$ smooths boundaries into simple majority voting (High Bias). Always scale features using `StandardScaler` before computing geometric distances!\n    </p>\n</div>\n\n<div class=\"card\" style=\"border: 1px solid rgba(56, 189, 248, 0.4); background: rgba(15, 23, 42, 0.85); padding: 20px;\">\n    <h4 style=\"color:#38bdf8; font-size:1.2rem; margin-bottom:12px;\">🏆 Executive Summary: Course Progression Checklist</h4>\n    <ul class=\"bl\" style=\"margin-bottom:0; line-height:1.8;\">\n        <li>✅ <strong>Days 41–47, 49:</strong> Impute nulls, scale features ($z$-score/IQR), encode categories leak-free via Scikit-Learn pipelines.</li>\n        <li>✅ <strong>Days 48, 50–53:</strong> Execute univariate normality testing and bivariate correlation matrix diagnostics ($r \\le 0.85$).</li>\n        <li>✅ <strong>Days 54–58:</strong> Formulate linear regression normal equations $(X^T X)^{-1} X^T y$ and optimize via gradient descent $\theta := \theta - \u0007lpha \nabla J$.</li>\n        <li>✅ <strong>Days 59–60:</strong> Balance Bias vs. Variance using $L_1$ Lasso and $L_2$ Ridge regularization.</li>\n        <li>✅ <strong>Days 61–63:</strong> Map classification logits through Sigmoid $\\sigma(z)$ and evaluate via Confusion Matrix, F1, and ROC-AUC.</li>\n        <li>✅ <strong>Day 64:</strong> Execute non-parametric spatial classification and regression using K-Nearest Neighbors ($L_1 / L_2$ metrics).</li>\n    </ul>\n</div>",
+        "read_mins": 240,
+        "vtt": 23,
+        "pdf": 12,
+        "nb": 15,
+        "py": 0,
+        "files": [
+            {
+                "name": "22-04-2026.zip",
+                "path": "12 - Feature Engineering/01 - 22 Apr Day - 41 Feature Engineerings - 1/22-04-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "_Recording.transcript.vtt",
+                "path": "12 - Feature Engineering/01 - 22 Apr Day - 41 Feature Engineerings - 1/_Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "22-04-2026.ipynb",
+                "path": "12 - Feature Engineering/01 - 22 Apr Day - 41 Feature Engineerings - 1/22-04-2026_extracted/22-04-2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "22-04-2026_notes.pdf",
+                "path": "12 - Feature Engineering/01 - 22 Apr Day - 41 Feature Engineerings - 1/22-04-2026_extracted/22-04-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "25-04-2026.zip",
+                "path": "12 - Feature Engineering/02 - 25 Apr Day - 42 Feature engineering - 2/25-04-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "Recording.transcript.vtt",
+                "path": "12 - Feature Engineering/02 - 25 Apr Day - 42 Feature engineering - 2/Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "25-04-2026.ipynb",
+                "path": "12 - Feature Engineering/02 - 25 Apr Day - 42 Feature engineering - 2/25-04-2026_extracted/25-04-2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "25-04-2026_notes.pdf",
+                "path": "12 - Feature Engineering/02 - 25 Apr Day - 42 Feature engineering - 2/25-04-2026_extracted/25-04-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "26-04-2026.zip",
+                "path": "12 - Feature Engineering/03 - 26 Apr Day - 43 Feature engineering - 3/26-04-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "GMT20260426-033139_Recording.transcript.vtt",
+                "path": "12 - Feature Engineering/03 - 26 Apr Day - 43 Feature engineering - 3/GMT20260426-033139_Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "26-04-2026.ipynb",
+                "path": "12 - Feature Engineering/03 - 26 Apr Day - 43 Feature engineering - 3/26-04-2026_extracted/26-04-2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "26-04-2026_notes.pdf",
+                "path": "12 - Feature Engineering/03 - 26 Apr Day - 43 Feature engineering - 3/26-04-2026_extracted/26-04-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "29-04-2026.zip",
+                "path": "12 - Feature Engineering/04 - 29 Apr Day - 44 Feature engineering - 4/29-04-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "GMT20260429-145924_Recording.cutfile.20260430065311539.transcript.vtt",
+                "path": "12 - Feature Engineering/04 - 29 Apr Day - 44 Feature engineering - 4/GMT20260429-145924_Recording.cutfile.20260430065311539.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "29-04-2026.ipynb",
+                "path": "12 - Feature Engineering/04 - 29 Apr Day - 44 Feature engineering - 4/29-04-2026_extracted/29-04-2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "29-04-2026_notes.pdf",
+                "path": "12 - Feature Engineering/04 - 29 Apr Day - 44 Feature engineering - 4/29-04-2026_extracted/29-04-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "02-05-2026.zip",
+                "path": "12 - Feature Engineering/05 - 2 May Day - 45 Feature engineering - 5/02-05-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "Recording.transcript.vtt",
+                "path": "12 - Feature Engineering/05 - 2 May Day - 45 Feature engineering - 5/Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "02-05-2026.ipynb",
+                "path": "12 - Feature Engineering/05 - 2 May Day - 45 Feature engineering - 5/02-05-2026_extracted/02-05-2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "02-05-2026_notes.pdf",
+                "path": "12 - Feature Engineering/05 - 2 May Day - 45 Feature engineering - 5/02-05-2026_extracted/02-05-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "03-05-2026.zip",
+                "path": "12 - Feature Engineering/06 - 3 May Day - 46 Feature engineering - 6/03-05-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "2.0Recording.transcript.vtt",
+                "path": "12 - Feature Engineering/06 - 3 May Day - 46 Feature engineering - 6/2.0Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "03-05-2026.ipynb",
+                "path": "12 - Feature Engineering/06 - 3 May Day - 46 Feature engineering - 6/03-05-2026_extracted/03-05-2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "03-05-2026_notes.pdf",
+                "path": "12 - Feature Engineering/06 - 3 May Day - 46 Feature engineering - 6/03-05-2026_extracted/03-05-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "09-05-2026.zip",
+                "path": "12 - Feature Engineering/07 - 9 May Day - 47 Feature engineering - 7/09-05-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "_Recording.transcript.vtt",
+                "path": "12 - Feature Engineering/07 - 9 May Day - 47 Feature engineering - 7/_Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "03-05-2026_notes.pdf",
+                "path": "12 - Feature Engineering/07 - 9 May Day - 47 Feature engineering - 7/09-05-2026_extracted/03-05-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "09-05-2026.ipynb",
+                "path": "12 - Feature Engineering/07 - 9 May Day - 47 Feature engineering - 7/09-05-2026_extracted/09-05-2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "09-05-2026_notes.pdf",
+                "path": "12 - Feature Engineering/07 - 9 May Day - 47 Feature engineering - 7/09-05-2026_extracted/09-05-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "Recording.transcript.vtt",
+                "path": "12 - Feature Engineering/08 - 10 May Day - 48 EDA - 1/Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "13-05-2026.zip",
+                "path": "12 - Feature Engineering/09 - 13 May Day - 49 Feature engineering - 8/13-05-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "Recording.transcript.vtt",
+                "path": "12 - Feature Engineering/09 - 13 May Day - 49 Feature engineering - 8/Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "13-05-2026.ipynb",
+                "path": "12 - Feature Engineering/09 - 13 May Day - 49 Feature engineering - 8/13-05-2026_extracted/13-05-2026.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "13-05-2026_diabetes.ipynb",
+                "path": "12 - Feature Engineering/09 - 13 May Day - 49 Feature engineering - 8/13-05-2026_extracted/13-05-2026_diabetes.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "13-05-2026_notes.pdf",
+                "path": "12 - Feature Engineering/09 - 13 May Day - 49 Feature engineering - 8/13-05-2026_extracted/13-05-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "IDS_mapping.csv",
+                "path": "12 - Feature Engineering/09 - 13 May Day - 49 Feature engineering - 8/13-05-2026_extracted/diabetes_data/IDS_mapping.csv",
+                "type": "csv"
+            },
+            {
+                "name": "diabetic_data.csv",
+                "path": "12 - Feature Engineering/09 - 13 May Day - 49 Feature engineering - 8/13-05-2026_extracted/diabetes_data/diabetic_data.csv",
+                "type": "csv"
+            },
+            {
+                "name": "16-05-2026.zip",
+                "path": "12 - Feature Engineering/10 - 16 May Day - 50 EDA/16-05-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "GMT20260516-032959_Recording.cutfile.20260516152317887.transcript.vtt",
+                "path": "12 - Feature Engineering/10 - 16 May Day - 50 EDA/GMT20260516-032959_Recording.cutfile.20260516152317887.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "16-05-2026_notes.pdf",
+                "path": "12 - Feature Engineering/10 - 16 May Day - 50 EDA/16-05-2026_extracted/16-05-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "EDA-1.ipynb",
+                "path": "12 - Feature Engineering/10 - 16 May Day - 50 EDA/16-05-2026_extracted/EDA-1.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "diabetes-FE-9.ipynb",
+                "path": "12 - Feature Engineering/10 - 16 May Day - 50 EDA/16-05-2026_extracted/diabetes-FE-9.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "IMDB Dataset.csv",
+                "path": "12 - Feature Engineering/10 - 16 May Day - 50 EDA/16-05-2026_extracted/data/IMDB Dataset.csv",
+                "type": "csv"
+            },
+            {
+                "name": "IDS_mapping.csv",
+                "path": "12 - Feature Engineering/10 - 16 May Day - 50 EDA/16-05-2026_extracted/diabetes_data/IDS_mapping.csv",
+                "type": "csv"
+            },
+            {
+                "name": "diabetic_data.csv",
+                "path": "12 - Feature Engineering/10 - 16 May Day - 50 EDA/16-05-2026_extracted/diabetes_data/diabetic_data.csv",
+                "type": "csv"
+            },
+            {
+                "name": "17-05-2026.zip",
+                "path": "12 - Feature Engineering/11 - 17 May Day - 51 EDA - 2 (Part -1 )/17-05-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "_Recording.transcript.vtt",
+                "path": "12 - Feature Engineering/11 - 17 May Day - 51 EDA - 2 (Part -1 )/_Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "17-05-2026_notes.pdf",
+                "path": "12 - Feature Engineering/11 - 17 May Day - 51 EDA - 2 (Part -1 )/17-05-2026_extracted/17-05-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "EDA-1.ipynb",
+                "path": "12 - Feature Engineering/11 - 17 May Day - 51 EDA - 2 (Part -1 )/17-05-2026_extracted/EDA-1.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "EDA-2.ipynb",
+                "path": "12 - Feature Engineering/11 - 17 May Day - 51 EDA - 2 (Part -1 )/17-05-2026_extracted/EDA-2.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "commodity_futures.csv",
+                "path": "12 - Feature Engineering/11 - 17 May Day - 51 EDA - 2 (Part -1 )/17-05-2026_extracted/data/commodity_futures.csv",
+                "type": "csv"
+            },
+            {
+                "name": "17-05-2026.zip",
+                "path": "12 - Feature Engineering/12 - 17 May Day - 52 EDA 2 (Part - 2)/17-05-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "Recording.transcript.vtt",
+                "path": "12 - Feature Engineering/12 - 17 May Day - 52 EDA 2 (Part - 2)/Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "17-05-2026_notes.pdf",
+                "path": "12 - Feature Engineering/12 - 17 May Day - 52 EDA 2 (Part - 2)/17-05-2026_extracted/17-05-2026_notes.pdf",
+                "type": "pdf"
+            },
+            {
+                "name": "EDA-1.ipynb",
+                "path": "12 - Feature Engineering/12 - 17 May Day - 52 EDA 2 (Part - 2)/17-05-2026_extracted/EDA-1.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "EDA-2.ipynb",
+                "path": "12 - Feature Engineering/12 - 17 May Day - 52 EDA 2 (Part - 2)/17-05-2026_extracted/EDA-2.ipynb",
+                "type": "ipynb"
+            },
+            {
+                "name": "commodity_futures.csv",
+                "path": "12 - Feature Engineering/12 - 17 May Day - 52 EDA 2 (Part - 2)/17-05-2026_extracted/data/commodity_futures.csv",
+                "type": "csv"
+            },
+            {
+                "name": "23-05-2026.zip",
+                "path": "12 - Feature Engineering/13 - 23 May Day - 53 EDA - 3/23-05-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "GMT20260523-033008_Recording.cutfile.20260523122250986.transcript.vtt",
+                "path": "12 - Feature Engineering/13 - 23 May Day - 53 EDA - 3/GMT20260523-033008_Recording.cutfile.20260523122250986.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "24-05-2026.zip",
+                "path": "12 - Feature Engineering/14 - 24 May Day - 54 ML - 1/24-05-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "GMT20260524-033007_Recording.transcript.vtt",
+                "path": "12 - Feature Engineering/14 - 24 May Day - 54 ML - 1/GMT20260524-033007_Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "30-05-2026.zip",
+                "path": "12 - Feature Engineering/15 - 30 May Day - 55 ML - 2/30-05-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "GMT20260530-033023_Recording.transcript.vtt",
+                "path": "12 - Feature Engineering/15 - 30 May Day - 55 ML - 2/GMT20260530-033023_Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "31-05-2026.zip",
+                "path": "12 - Feature Engineering/16 - 31 May Day - 56 ML -3/31-05-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "06-06-2026.zip",
+                "path": "12 - Feature Engineering/17 - 6 June Day - 57 ML - 4/06-06-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "GMT20260606-033018_Recording.transcript.vtt",
+                "path": "12 - Feature Engineering/17 - 6 June Day - 57 ML - 4/GMT20260606-033018_Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "07-06-2026.zip",
+                "path": "12 - Feature Engineering/18 - 7 June Day - 58 ML - 5/07-06-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "GMT20260607-033024_Recording.transcript.vtt",
+                "path": "12 - Feature Engineering/18 - 7 June Day - 58 ML - 5/GMT20260607-033024_Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "13-06-2026.zip",
+                "path": "12 - Feature Engineering/19 - 13 June Day - 59 ML - 6/13-06-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "GMT20260613-032913_Recording.transcript.vtt",
+                "path": "12 - Feature Engineering/19 - 13 June Day - 59 ML - 6/GMT20260613-032913_Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "14-06-2026.zip",
+                "path": "12 - Feature Engineering/20 - 14 June Day 60 ML - 7/14-06-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "GMT20260614-032940_Recording.transcript.vtt",
+                "path": "12 - Feature Engineering/20 - 14 June Day 60 ML - 7/GMT20260614-032940_Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "17-06-2026.zip",
+                "path": "12 - Feature Engineering/21 - 17 June Day - 61 ML - 8/17-06-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "GMT20260617-145912_Recording.transcript.vtt",
+                "path": "12 - Feature Engineering/21 - 17 June Day - 61 ML - 8/GMT20260617-145912_Recording.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "20-06-2026.zip",
+                "path": "12 - Feature Engineering/22 - 20 June Day - 62 ML - 9/20-06-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "GMT20260620-032906_Recording.cutfile.20260620100857346.transcript.vtt",
+                "path": "12 - Feature Engineering/22 - 20 June Day - 62 ML - 9/GMT20260620-032906_Recording.cutfile.20260620100857346.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "21-06-2026.zip",
+                "path": "12 - Feature Engineering/23 - 21 June Day - 63 ML - 10/21-06-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "GMT20260621-032957_Recording.cutfile.20260621100206818.transcript.vtt",
+                "path": "12 - Feature Engineering/23 - 21 June Day - 63 ML - 10/GMT20260621-032957_Recording.cutfile.20260621100206818.transcript.vtt",
+                "type": "vtt"
+            },
+            {
+                "name": "27-06-2026.zip",
+                "path": "12 - Feature Engineering/24 - 27 June Day - 64 ML-11/27-06-2026.zip",
+                "type": "zip"
+            },
+            {
+                "name": "GMT20260627-032926_Recording.cutfile.20260627093950898.transcript.vtt",
+                "path": "12 - Feature Engineering/24 - 27 June Day - 64 ML-11/GMT20260627-032926_Recording.cutfile.20260627093950898.transcript.vtt",
+                "type": "vtt"
+            }
+        ]
+    }
+]

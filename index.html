@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TradeBot Market Profile & Order Flow Analytics Hub | Daily Index & Stock Setup Analyzer</title>
+  <meta name="description" content="Advanced Indian Stock Market (Nifty, Bank Nifty, Sensex, Midcap) analysis platform based on Peter Steidlmayer's Market Profile (TPO) and Mr. Vishnu R Gupthan's Order Flow strategies.">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+  <!-- App Header & Live Ticker Bar -->
+  <header class="app-header">
+    <div class="logo-container">
+      <div class="logo-icon">TB</div>
+      <div class="logo-text">
+        <h1>TradeBot <span>Market Profile</span></h1>
+      </div>
+    </div>
+
+    <!-- Ticker Grid -->
+    <div class="ticker-bar" id="ticker-bar">
+      <!-- Dynamically populated by app.js -->
+    </div>
+  </header>
+
+  <!-- Navigation Tabs -->
+  <nav class="nav-container">
+    <div class="nav-tabs">
+      <button class="tab-btn active" data-tab="tab-analyzer">
+        <i class="fa-solid fa-chart-column"></i> Daily Index Analyzer
+      </button>
+      <button class="tab-btn" data-tab="tab-swing">
+        <i class="fa-solid fa-rocket"></i> Swing Trade Updates
+      </button>
+      <button class="tab-btn" data-tab="tab-longterm">
+        <i class="fa-solid fa-gem"></i> Wealth Portfolio (Long Term)
+      </button>
+      <button class="tab-btn" data-tab="tab-strategy">
+        <i class="fa-solid fa-wand-magic-sparkles"></i> Strategy Generator
+      </button>
+      <button class="tab-btn" data-tab="tab-bible">
+        <i class="fa-solid fa-book-open-reader"></i> Course Bible & Rules
+      </button>
+      <button class="tab-btn" data-tab="tab-scanner">
+        <i class="fa-solid fa-radar"></i> AI Live Scanner
+      </button>
+      <button class="tab-btn" data-tab="tab-backtest">
+        <i class="fa-solid fa-flask-vial"></i> Backtest Studio
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main Content Area -->
+  <main class="main-content">
+    
+    <!-- TAB 1: DAILY INDEX ANALYZER -->
+    <section id="tab-analyzer" class="tab-pane active">
+      
+      <!-- Control Bar -->
+      <div class="control-bar">
+        <div class="index-pills">
+          <button class="index-pill active" data-index="nifty">NIFTY 50</button>
+          <button class="index-pill" data-index="banknifty">BANK NIFTY</button>
+          <button class="index-pill" data-index="sensex">SENSEX</button>
+          <button class="index-pill" data-index="midcap">MIDCAP SELECT</button>
+        </div>
+
+        <div class="date-selector">
+          <label for="date-selector-input" style="font-size:0.85rem; color:var(--text-muted);"><i class="fa-regular fa-calendar"></i> Session Date:</label>
+          <select id="date-selector-input" class="date-select">
+            <!-- Dynamically populated by app.js -->
+          </select>
+          <button class="action-btn" id="btn-add-log">
+            <i class="fa-solid fa-plus"></i> Add Session Log
+          </button>
+          <button class="action-btn secondary" id="btn-export-plan">
+            <i class="fa-solid fa-share-from-square"></i> Export Plan
+          </button>
+        </div>
+      </div>
+
+      <!-- Analyzer Grid Layout -->
+      <div class="analyzer-grid">
+        
+        <!-- Left Sidebar: Structural Breakdown -->
+        <div class="sidebar-panel">
+          
+          <!-- Session Classification -->
+          <div class="glass-card">
+            <div class="card-header">
+              <span class="card-title"><i class="fa-solid fa-layer-group"></i> Session Classification</span>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:0.85rem;">
+              <div>
+                <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; margin-bottom:0.25rem;">Opening Type:</div>
+                <span id="open-type-badge" class="badge otd">Loading...</span>
+              </div>
+              <div>
+                <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; margin-bottom:0.25rem;">Day Type Structure:</div>
+                <span id="day-type-badge" class="badge nvd">Loading...</span>
+              </div>
+              <div>
+                <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; margin-bottom:0.25rem;">Profile Shape:</div>
+                <span id="profile-shape-badge" class="badge p-shape">Loading...</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Structural References Table -->
+          <div class="glass-card">
+            <div class="card-header">
+              <span class="card-title"><i class="fa-solid fa-crosshairs"></i> Structural References</span>
+            </div>
+            <table class="struct-table">
+              <tbody id="struct-table-body">
+                <!-- Dynamically populated by app.js -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Profile Anomalies -->
+          <div class="glass-card">
+            <div class="card-header">
+              <span class="card-title"><i class="fa-solid fa-triangle-exclamation"></i> Profile Anomalies</span>
+            </div>
+            <ul id="anomalies-list" style="list-style:none;">
+              <!-- Dynamically populated by app.js -->
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Right Panel: TPO Chart & Trade Idea -->
+        <div class="main-analyzer-panel">
+          
+          <!-- TPO Chart Container -->
+          <div class="glass-card" style="padding:1rem;">
+            <div class="card-header" style="margin-bottom:0.75rem; padding: 0 0.5rem 0.5rem;">
+              <span class="card-title"><i class="fa-solid fa-chart-bar"></i> 30-Minute TPO Profile Distribution (A to M Periods)</span>
+              <span style="font-size:0.75rem; color:var(--text-muted);">Click letter block for period info</span>
+            </div>
+            <div id="tpo-chart-container" class="tpo-container">
+              <!-- Dynamically rendered by TPOVisualizer -->
+            </div>
+          </div>
+
+          <!-- Next Day Trade Idea -->
+          <div id="next-day-trade-idea">
+            <!-- Dynamically populated by app.js -->
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- TAB 2: SWING TRADE UPDATES -->
+    <section id="tab-swing" class="tab-pane">
+      
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; flex-wrap:wrap; gap:1rem;">
+        <div>
+          <h2><i class="fa-solid fa-rocket" style="color:var(--accent-cyan);"></i> High-Conviction Swing Trade Setups</h2>
+          <p style="color:var(--text-muted); font-size:0.9rem;">Short-to-medium term stock picks derived from Market Profile breakouts, volume accumulation, and Order Flow Delta.</p>
+        </div>
+        <button class="action-btn" id="btn-add-stock">
+          <i class="fa-solid fa-plus"></i> Add Stock Setup
+        </button>
+      </div>
+
+      <!-- Filter Bar -->
+      <div class="filter-bar">
+        <div class="filter-group">
+          <span class="filter-label"><i class="fa-solid fa-filter"></i> Status:</span>
+          <select id="filter-swing-status" class="filter-select">
+            <option value="all">All Statuses</option>
+            <option value="active">Active Entry</option>
+            <option value="breakout">Near Breakout</option>
+            <option value="target">Target Hit</option>
+            <option value="watchlist">Watchlist</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <span class="filter-label"><i class="fa-solid fa-industry"></i> Sector:</span>
+          <select id="filter-swing-sector" class="filter-select">
+            <option value="all">All Sectors</option>
+            <option value="energy">Energy / Petrochem</option>
+            <option value="auto">Automobile</option>
+            <option value="bank">Banking / Financials</option>
+            <option value="defense">Defense / Capital Goods</option>
+            <option value="tech">Tech / Consumer</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Stock Grid -->
+      <div id="swing-grid" class="stock-grid">
+        <!-- Dynamically populated by app.js -->
+      </div>
+
+    </section>
+
+    <!-- TAB 3: LONG TERM WEALTH PORTFOLIO -->
+    <section id="tab-longterm" class="tab-pane">
+      
+      <div style="margin-bottom:1.5rem;">
+        <h2><i class="fa-solid fa-gem" style="color:var(--accent-purple);"></i> Long Term Wealth Creation & Multi-Bagger Picks</h2>
+        <p style="color:var(--text-muted); font-size:0.9rem;">Portfolio accumulation candidates possessing strong fundamental moats paired with institutional Market Profile base-building zones.</p>
+      </div>
+
+      <!-- Long Term Picks Grid -->
+      <div id="longterm-grid" class="stock-grid">
+        <!-- Dynamically populated by app.js -->
+      </div>
+
+    </section>
+
+    <!-- TAB 4: STRATEGY GENERATOR -->
+    <section id="tab-strategy" class="tab-pane">
+      
+      <div style="margin-bottom:1.5rem;">
+        <h2><i class="fa-solid fa-wand-magic-sparkles" style="color:var(--accent-cyan);"></i> Interactive Strategy & Trade Idea Generator</h2>
+        <p style="color:var(--text-muted); font-size:0.9rem;">Input morning session parameters (Open Type, Day Type, Initial Balance) to automatically generate actionable afternoon or next-day trade setups based on Mr. Vishnu R Gupthan's rules.</p>
+      </div>
+
+      <div class="analyzer-grid" style="grid-template-columns: 450px 1fr;">
+        
+        <!-- Form Panel -->
+        <div class="glass-card">
+          <div class="card-header">
+            <span class="card-title"><i class="fa-solid fa-sliders"></i> Session Parameters</span>
+          </div>
+          <form id="strategy-form" class="strategy-form">
+            
+            <div class="form-group">
+              <label class="form-label" for="index">Select Index:</label>
+              <select name="index" id="index" class="form-control">
+                <option value="NIFTY 50">NIFTY 50</option>
+                <option value="BANK NIFTY">BANK NIFTY</option>
+                <option value="SENSEX">SENSEX</option>
+                <option value="MIDCAP SELECT">MIDCAP SELECT</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="openType">Morning Open Type:</label>
+              <select name="openType" id="openType" class="form-control">
+                <option value="OTD">Open Test Drive (OTD)</option>
+                <option value="OD">Open Drive (OD - Trend)</option>
+                <option value="ORR">Open Rejection Reverse (ORR)</option>
+                <option value="OA">Open Auction (OA - Balance)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="dayType">Expected Day Type:</label>
+              <select name="dayType" id="dayType" class="form-control">
+                <option value="NVD">Normal Variation Day (NVD)</option>
+                <option value="Trend">Trend Day Structure</option>
+                <option value="Normal">Normal Day (Balance)</option>
+                <option value="DD">Double Distribution Day (DD)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="ibWidth">Initial Balance Width:</label>
+              <select name="ibWidth" id="ibWidth" class="form-control">
+                <option value="narrow">Narrow IB (< 150 pts)</option>
+                <option value="moderate">Moderate IB (150 - 250 pts)</option>
+                <option value="wide">Wide IB (> 300 pts)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="bias">Directional Conviction:</label>
+              <select name="bias" id="bias" class="form-control">
+                <option value="bullish">Bullish Momentum</option>
+                <option value="bearish">Bearish Rejection</option>
+                <option value="neutral">Neutral / Range Bound</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="cmp">Current Market Price (CMP):</label>
+              <input type="number" name="cmp" id="cmp" class="form-control" placeholder="Connect Fyers or enter price" step="any">
+            </div>
+
+            <div class="form-group" style="grid-column: 1/-1;">
+              <label class="form-label" for="ibRange">Initial Balance Range (Points):</label>
+              <input type="number" name="ibRange" id="ibRange" class="form-control" placeholder="Connect Fyers or enter IB points" step="any">
+            </div>
+
+            <div style="grid-column: 1/-1; margin-top:0.5rem;">
+              <button type="submit" class="action-btn" style="width:100%; justify-content:center;">
+                <i class="fa-solid fa-calculator"></i> Generate Actionable Trade Setup
+              </button>
+            </div>
+
+          </form>
+        </div>
+
+        <!-- Output Panel -->
+        <div id="strategy-output">
+          <!-- Dynamically populated by StrategyEngine -->
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- TAB 5: COURSE BIBLE & RULES -->
+    <section id="tab-bible" class="tab-pane">
+      
+      <div style="margin-bottom:1.5rem;">
+        <h2><i class="fa-solid fa-book-open-reader" style="color:var(--accent-purple);"></i> Market Profile & Order Flow Course Bible</h2>
+        <p style="color:var(--text-muted); font-size:0.9rem;">Integrated reference guide derived directly from Peter Steidlmayer, Jim Dalton, and Mr. Vishnu R Gupthan's training modules.</p>
+      </div>
+
+      <!-- Course Bible Grid -->
+      <div id="bible-grid" class="bible-grid">
+        <!-- Dynamically populated by app.js -->
+      </div>
+
+    </section>
+
+    <!-- TAB 6: AI LIVE MARKET SCANNER -->
+    <section id="tab-scanner" class="tab-pane">
+      <div id="live-scanner-container"></div>
+    </section>
+
+    <!-- TAB 7: BACKTESTING STUDIO -->
+    <section id="tab-backtest" class="tab-pane">
+      <div id="backtest-studio-container"></div>
+    </section>
+
+  </main>
+
+  <!-- MODAL 1: ADD DAILY SESSION LOG -->
+  <div id="modal-add-log" class="modal-backdrop">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 style="color:var(--accent-cyan);"><i class="fa-solid fa-plus-circle"></i> Add Daily Index Analysis Log</h3>
+        <button class="close-btn">&times;</button>
+      </div>
+      <form id="form-add-log" style="display:flex; flex-direction:column; gap:1.25rem;">
+        
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+          <div class="form-group">
+            <label class="form-label">Index:</label>
+            <select name="indexName" class="form-control" required>
+              <option value="NIFTY 50">NIFTY 50</option>
+              <option value="BANK NIFTY">BANK NIFTY</option>
+              <option value="SENSEX">SENSEX</option>
+              <option value="MIDCAP SELECT">MIDCAP SELECT</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Session Date:</label>
+            <input type="date" name="logDate" class="form-control" value="2026-07-06" required>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+          <div class="form-group">
+            <label class="form-label">Opening Type:</label>
+            <select name="openType" class="form-control" required>
+              <option value="Open Test Drive (OTD)">Open Test Drive (OTD)</option>
+              <option value="Open Drive (OD)">Open Drive (OD)</option>
+              <option value="Open Rejection Reverse (ORR)">Open Rejection Reverse (ORR)</option>
+              <option value="Open Auction (OA)">Open Auction (OA)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Day Type Structure:</label>
+            <select name="dayType" class="form-control" required>
+              <option value="Normal Variation Day (NVD)">Normal Variation Day (NVD)</option>
+              <option value="Trend Day Structure">Trend Day Structure</option>
+              <option value="Normal Day (Balance)">Normal Day (Balance)</option>
+              <option value="Double Distribution Day (DD)">Double Distribution Day (DD)</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:1rem;">
+          <div class="form-group">
+            <label class="form-label">POC Price:</label>
+            <input type="number" name="poc" class="form-control" placeholder="e.g. 24350" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">VAH Price:</label>
+            <input type="number" name="vah" class="form-control" placeholder="e.g. 24380" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">VAL Price:</label>
+            <input type="number" name="val" class="form-control" placeholder="e.g. 24290" required>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+          <div class="form-group">
+            <label class="form-label">IB High (09:15-10:15):</label>
+            <input type="number" name="ibHigh" class="form-control" placeholder="e.g. 24360" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">IB Low:</label>
+            <input type="number" name="ibLow" class="form-control" placeholder="e.g. 24250" required>
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:1rem; margin-top:0.5rem;">
+          <button type="button" class="action-btn secondary btn-cancel">Cancel</button>
+          <button type="submit" class="action-btn">Save Session Log</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL 2: ADD STOCK SETUP -->
+  <div id="modal-add-stock" class="modal-backdrop">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 style="color:var(--bullish-green);"><i class="fa-solid fa-rocket"></i> Add Stock Trade Setup</h3>
+        <button class="close-btn">&times;</button>
+      </div>
+      <form id="form-add-stock" style="display:flex; flex-direction:column; gap:1.25rem;">
+        
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+          <div class="form-group">
+            <label class="form-label">Category:</label>
+            <select name="tradeType" class="form-control" required>
+              <option value="swing">Swing Trade Setup</option>
+              <option value="longterm">Wealth Creation (Long Term)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Stock Name:</label>
+            <input type="text" name="stockName" class="form-control" placeholder="e.g. ITC Ltd" required>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+          <div class="form-group">
+            <label class="form-label">Ticker Symbol:</label>
+            <input type="text" name="tickerSymbol" class="form-control" placeholder="e.g. ITC" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Current Price (CMP):</label>
+            <input type="text" name="cmp" class="form-control" placeholder="e.g. 435.00" required>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:1rem;">
+          <div class="form-group">
+            <label class="form-label">Entry Zone:</label>
+            <input type="text" name="entry" class="form-control" placeholder="e.g. 428 - 432" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Target 1:</label>
+            <input type="text" name="target1" class="form-control" placeholder="e.g. 465" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Stop Loss (SL):</label>
+            <input type="text" name="sl" class="form-control" placeholder="e.g. 412" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Market Profile & Structural Rationale:</label>
+          <textarea name="rationale" class="form-control" rows="3" placeholder="Explain why this trade works based on Market Profile, TPO absorption, or Order Flow Delta..." required></textarea>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:1rem; margin-top:0.5rem;">
+          <button type="button" class="action-btn secondary btn-cancel">Cancel</button>
+          <button type="submit" class="action-btn" style="background:var(--bullish-green); color:#000;">Save Trade Setup</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL 3: AI STOCK PICKER & PICKED LOGIC BREAKDOWN -->
+  <div id="modal-stock-picker" class="modal-backdrop">
+    <div class="modal-picker-card">
+      <div class="modal-header" style="margin-bottom:1.25rem;">
+        <div>
+          <h3 id="picker-stock-title" style="color:var(--accent-cyan); font-size:1.4rem;">Loading Analysis...</h3>
+          <span id="picker-stock-subtitle" style="font-size:0.85rem; color:var(--text-muted);">Equities • AI Institutional Setup</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:1rem;">
+          <span id="picker-ai-score-badge" class="badge bullish">AI Score: 90%</span>
+          <button class="close-btn btn-close-picker">&times;</button>
+        </div>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; padding:0.85rem 1.25rem; background:rgba(0,0,0,0.4); border-radius:10px; border:1px solid rgba(255,255,255,0.08); flex-wrap:wrap; gap:0.5rem;">
+        <div>
+          <span style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Current Market Price</span>
+          <div id="picker-stock-cmp" style="font-size:1.5rem; font-weight:800; color:#fff;">₹ 0.00</div>
+        </div>
+        <div style="font-size:0.85rem; color:var(--accent-cyan);"><i class="fa-solid fa-chart-line"></i> Live TradingView Interactive Chart & 3-Pillar Logic</div>
+      </div>
+
+      <!-- 4-Tab Content Container -->
+      <div id="picker-tab-content"></div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/ai-processing-engine.js"></script>
+  <script src="js/fyers-connector.js"></script>
+  <script src="js/tpo-visualizer.js"></script>
+  <script src="js/strategy-engine.js"></script>
+  <script src="js/live-scanner.js"></script>
+  <script src="js/backtest-engine.js"></script>
+  <script src="js/stock-picker.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,4726 @@
+--- PAGE 1 ---
+Market Profile by Vishnu
+Gupthan
+Disclaimer
+Basics of market profile
+Volume Parameter
+Initial
+lance (IB)
+Point =
+Control (POC)
+Value Area (VA)
+Singles
+Excess
+Single Print (SP)
+Poor High (PH) and Poor Low (PL)
+Failed Auction (FA)
+Spike
+It's Rule
+Range Extension (RE)
+Balance
+Imbalance
+Other Time Frame
+One Time Frame (OTF)
+Mean Reversion
+Market Profile Open Type
+Open Drive (OD)
+Open Test Drive (OTD}
+Open Rejection Reversal (ORRI
+Open Auction
+the Range (OAIR)
+Open Aucion Out ofthe
+[OAOR]
+Market Profile Day Type
+Normal Day
+Normal Variation Day (NVD)
+Neutral Day (ND)
+Neutral Extreme Day (NED)
+Balanced Day
+Trend Day Structure
+Double Distribuion Day
+Shape Profile (Long Builcup Profile)
+Shape Profile (Short Buildup Profile)
+Order
+Fiow
+(OF)
+Commitment of Trade (COT)
+Ycaa=
+Range
+
+--- PAGE 2 ---
+8096
+of 42
+
+--- PAGE 3 ---
+PROLOGUE
+Market Profile (MP} also known a TPO (Time
+Price,
+and Opportunity)
+originally
+conceived and developed by Peter Steidlmayer in the early 1980s during his tenure at
+the Chicago
+Board of Trade
+CBOT}  Steidlmayer'$ groundbreaking work introduced
+new way
+visualize Market
+activity; focusing on how time and price interact to reveal
+areas Of value and acceptance
+His concept revolutionized market analysis Dy portraying
+the market as
+conti
+vouS
+IWC-wav
+auction, where buyers and sellers negotiate value
+through price discovery ratherthan
+Indom fluctuation;
+The methodology was late
+refined
+expanded
+and popularized bY Jim Dalton, whose
+extensive
+researcn and
+publications_
+including Mind
+Over Markets and
+Markets
+Profile , brought Market Profile to a
+lobal audience of protessional
+traders and analysts 
+Dalton';
+interpretation
+emphasized the
+behaviora
+and
+psychological
+dimensions of
+market structure;
+highlighting
+how Market Profile helps traders distinguish between
+trending and balancing conditions, assess conviction, and interpret market intent
+Today, Market Profile stands as
+sophisticated framework for understanding market
+behavior
+By focusing
+price
+accertznce
+Vamme
+area;
+and
+vomme
+distribution,
+reduces
+trading
+noise
+and
+provides
+structured
+ens
+interpreting
+market
+performance
+Rather than viewing the market merely through price movement, Market
+Profile
+reveals the underlying
+auction process
+wnere value evolves
+participants
+continuously negotiate tair price levels 
+According to Mr: Vishnu
+Gupthan
+combining Market Profile with Order Flow analysis
+works best for option buying strategies, while Market Profile
+one
+highly effective for
+swing trading and equity analysis. In Market Profile_
+each letter represents
+time period
+based on tick size , indicating how long the market spent at
+particular price level
+Each
+letter formation presents potential
+trade setups, and combining these with candlestick
+patterns can provide
+dditiona
+trading edge_
+
+--- PAGE 4 ---
+PROLOGUE
+Market Profile (MP} also known
+TPO (Time
+Price,
+and Opportunity} was originally
+conceived and developed by Peter Steidlmayer in the early 1980s during his tenure at
+tne
+Chicago
+Board of Trade (CBOT) Steidlmayer'$ groundbreaking work introduced
+nev way
+visualize market activity; focusing on how time and price interact
+reve3
+areas of value and acceptance
+His concept revolutionized market analysis by portraying
+tne Market a5
+congoucus
+two-way auction, where buyers and sellers negotiate value
+through price discovery rather than
+Indom fluctuation;
+The methodology was
+later refined
+expanded
+and popularized bY Jim Dalton, whose
+extensive
+research
+and
+publications;
+including
+Mind
+Over Markets and
+Markets
+Profile, brought Market Profile to a global audience of professiona
+traders and analysts
+Dalton ;
+interpretation
+emphasized
+tne
+pehavioral
+and psychological
+dimensions
+market structure;
+highlighting
+how Market Profile
+traders distinguish between
+trending and balancing conditions, assess conviction, and interpret market intent:
+Today;
+Market Profile stands
+sphisticated
+framework for understanding market
+behavior
+By focusing
+on price acceptance,
+value areas
+and
+volume distribution,
+reduces
+trading
+noise
+and
+provides
+structured
+ens
+interpreting
+marxet
+performance_
+Rather than viewing the market merely through price movement; Market
+Profile
+reveals the underlying
+auction process
+where value
+evolves
+participants
+continuously
+negotiate fair price levels.
+According to Mr Vishnu
+Gupthan, combining Market Profile with Order Flow analysis
+works best for
+ption buying strategies, while Market Profile
+one
+highly effective for
+swing
+ano equity analysis.
+Market Profile
+each letter represents
+time period
+based
+tick size , indicating how long the market spent at
+particular price level  Each
+letter formation presents potential
+trade setups,
+ind combining these with candlestick
+patterns
+provide additiona
+edge_
+helos
+trading
+trading
+
+--- PAGE 5 ---
+MARKET PROFILE BY VISHNU R GUPTHAN ?
+According
+to Mr Vishnu
+Gupthan_
+the fusion of Market Profile (MPI
+and Order Flow
+analysis offers
+powerful framework for understanding short-term market dynamics,
+particularly effective for option buying strategies_
+By integrating the structural insights of
+Market Profile with the transactiona
+detail of Order
+traders gain
+dual-layer view
+where Market Profile defines where trading activity
+developing
+while
+Order Flow
+revez
+how that activity
+unfolding in real time
+This combination enables more precise
+enty
+timing,
+better  risk-to-reward alignment;
+and
+clear
+validation
+breakout
+reverz
+strength.
+Mr  Vishnu
+has simplified and refined
+the application
+of Market Profile
+concepts,
+bridging the gap between complex institutiona
+methods and practical
+retail execution:
+Jpproz
+ch emphasizes identifying context over signals training traders to
+market $ narrative 35an evolving auction rather than reacting to fixed indicators_
+He highlizhts that Market Profil
+one provides exceptional results for swing trading and
+equity analysis_
+where broader structural insights guide position-based decision-making:
+Each
+leter
+the Market Profile corresponds to
+specific time period (based
+on nck
+size} , reflecting how long the market stayed at each price level. This structure visually
+represents value areas
+acceptance zones,
+and imbalance regions, allowing traders to
+interpret the market's underlying intent
+When these
+ette-
+formations (TPOs} are studied alongside candlestick patterns or Order
+Flow signatures,
+they
+trading eoge enhancing decision accuracy and
+helping traders align their
+ctions with the market's true tempo- Throuzh his structured
+teaching and practical
+demonstrations
+Vishnu
+Gupthan has made advanced Market
+Profile and Order Flow principles more accessibe
+actionable; and results-driven for
+modern traders;
+Flow;
+read
+vield
+powe
+
+--- PAGE 6 ---
+DISCLAIMER
+Trading and investing
+financial markets involve significant risk and may not be suitable
+individual
+Although this course
+structured and simplified by Mr Vishnu
+Gupthan, provides comprehensive insights into Market Profile and Order Flow concepts,
+does not guarantee profitability or prevent losses
+Even with full understanding ofthe materia)
+market movements can De
+unpredictable
+and trades may Move
+your expectations_
+The strategies, examples, and
+explanations included here are intended solely for educationa)
+purposes and should not
+treated
+investment
+trading advice_
+LEARNERS AND TRADERS ARE ADUISED TO:
+Perform independent analysis before entering any trade
+Employ strict risk management
+techniques, including defined stop-losses and prudent position sizing- Trade only with
+capita
+they can afford to lose without financial hardship_
+By engaging with this course
+appiying its tea
+you acknowledge and accept full
+responsibility for
+trading
+outcomes The author Mr Vishnu
+Gupthan, instructor;
+firms and any affiliated parties are not responsible or liable for any direct or indirect
+financial
+oses arising from the use
+interpretation of this material:
+aalnst -
+chings;
+
+--- PAGE 7 ---
+BASICS
+OF
+MARKET
+PROFILE
+COURSEBY VISHNURGUPTHAN
+SCRIBE =
+JNATH JaAahaTHAYO
+
+--- PAGE 8 ---
+BASICS OF MARKET PROFILE
+In Market Profile; each 30-minute period
+represented
+letter; creating
+periods
+throughout the Indian market session for Nifty 50 and other
+tradable indices and stocks:
+The periods begin with 'A' and conclude with 'M' (covering the standard 9.15 AM to 3.30
+PM
+trading session)  According to Market Profile trading principles, the first and last 15
+minutes of the session are typically excluded from active trading setups;
+concept that
+will be explored in detail throughoutthis course
+Vishnu
+Gupthan has developed
+unique nomenclature for each Market Profile period
+to enhance understanding of market behavior during specific timeframes
+This naming
+system simplifies the identification of trading
+pportunities and
+Make;
+easier t0 apply
+Market   Profile
+concepts
+practical trading
+activities_
+This
+framework
+forms
+foundational
+basis of the Market Profile trading course designed by him_
+Note that;
+market
+trade $ first priority
+to identify the market = activity during
+the first quarter
+the day. This information helps make
+informed trading decisions
+throughoutthe day:
+MIMEPERIOD
+ACTIONS
+09.15
+09.45
+period_
+also known as the ACTION period
+typically has
+the highest volume and volatility:
+09.45
+10.15
+period
+where BALANCED ACTION occurs: Together; the_
+and
+periods help determine the market structure for the rest of the day
+andhold significant importance in the ensuing market move
+10.15
+10.45
+period is known as the CHEATING period_
+market extensions that
+occur afte
+the first hour fail around 9038 ofthe time
+Such move
+fails, price typically reverts toward the POC ad VWAP, making
+reversz
+trades the
+preferred strategy in
+period. Any Dreakout
+breakdown without sufficient volume
+treated a5
+fake move, and
+trade
+recc
+mmended. However; ifthe volume criteria are met,
+the breakout can be considered for_
+valid trade. It is also important
+member that most Failed Actions (FA) tend
+occur during the
+period_
+10.45
+11.15
+period shows the market DIRECTION: During
+period_
+price
+should move
+bove or below the Initial
+Balance range
+BR); once
+this happens,
+target of half IB to be given
+the projected
+direction
+to be followed through by the
+period_
+11.15
+11.45
+period provides EXTENSION and can also halt the move initiated by
+the
+period. If [
+period has broken the Initial Balance
+period
+snovlo continue
+the same direction; therwise
+the directionab
+profl
+
+--- PAGE 9 ---
+BASICS OF MARKET PROFILE
+In Market Profile
+each 30-minute period
+represented by
+letter; creating six periods
+tarom
+ghout the
+market session for Nifty 50 and other tradable indices and stocks.
+The periods begin with 'A" and conclud
+with 'M' (covering the standard 9.15 AM to 3.30
+PM trading session)  According
+Market Profile trading principles, the first and last 15
+minutes of the session are typically excluded from active trading setups,
+concept that
+will be explored in detail throughout this course
+Visnnu
+Gupthan
+ha; developed
+unique nomenclature for each Market Profile period
+enhance understanding of market behavior during specific timeframes
+This naming
+system simplifies the identification of trading
+pportunities and makes
+easier to apply
+Market
+Profile
+concepts
+practica
+trading
+activities_
+This   framework
+Torms
+foundational
+basis ofthe Market Profile trading
+-ovmse
+designed by him.
+Ncte that;
+market profile trade'5 first priority
+to identify the market'$ activity during
+the first quarter
+the day. This information
+nelds
+Make
+intormed trading decisions
+throughout the day:
+TIMEPERIOD
+ACTIONS
+09.15
+09.45
+period_
+also Known
+the ACTION period_
+typically has
+the highest volume and volatility:
+09.45
+10.15
+period
+where BALANCED ACTION occurs
+Together; the
+and
+periods
+determine the market structure for the rest ofthe day
+and hold significant importance in the ensuing market move
+10.15
+10.45
+period
+known as the CHEATING period_
+market extensions that
+OCcUC
+after the first hour fail around 9038 ofthe time
+Such Move
+fails, price typically reverts toward the POC and VWAP; making
+reversal trades the preferred strategy in
+period. Any breakout or
+preakdown without sufficient volume
+treateo 353 take move
+and
+no trade
+recommended
+However; ifthe volume criteria are met,
+the breakout can be considered for_
+valid trade: It is
+Iso important
+to remember that most Failed Actions (FA) tend
+occut
+during the
+period_
+10.45
+11.15
+period shows the market DIRECTION. During
+period_
+price
+should move
+Dove
+below the Initialx
+Balance range (IBRI; once
+this happens,
+target of half IB to be given in the projected
+direction
+to be followed throughby the
+period_
+11.15
+11.45
+period provides EXTENSION and can also halt the move initiated by
+the
+period. If
+period has broken the Initial Balance
+period
+should continue
+the same direction; ctherwise, the directiona
+Indian
+help '
+
+--- PAGE 10 ---
+MovE
+is likely to fail. If E period does not go beyond
+period s high
+low; the prior direction
+considereo wea
+and prone to failure.
+However; if
+period extends
+Dove
+below
+perioo_
+thecayis
+more likely to develop into
+trend day or close same price level:
+11.45
+12.15
+period
+known as the FAST or FAIL period_
+this phase; the
+market can either move
+quickly in the direction of the existing move
+or completely fail it reversing the prior move.
+period should
+follow the move given by
+period_
+either UP
+down. If it does not;
+the move initateo
+to stop
+and the market may either
+remain
+the same zone
+reverse.
+12.15
+12.45
+period
+the GO period
+gains importance on gap-Up
+B30-
+down days, often attempting either to fillthe gap or to continue in
+the direction cfthe gap
+gap-Up
+period typically follows
+the uptrend_
+while on
+gap-down
+tendsto follow the
+downtrend_
+may provide
+uptrend or
+rise in 3
+oowntrend tor entries,
+50 it
+crucial to Closely
+monitor the
+period
+gap days
+12.45
+13.15
+period
+tne HAMMER
+period, characterizes by
+sudden
+spike
+price
+that can be particularly stressful for option writers
+(sellers) , especially on expiry days:
+13.15
+13.45
+period
+the INITIATION period, often marking
+second round of
+movement: It can either continue the move started in the
+period
+produce
+nev
+sharp move_
+Both trend continuation and trend
+change can occur during the
+period_
+13.45
+14.14
+period
+the JOKER period
+period makes
+new high an
+new
+ov, profits should be booked immediately; as it can quickly reverse
+the move
+period
+time when price often tests the VWAP
+area_
+No new stop-loss should be placed during
+period; instead,
+either book profits or manage existing positions tightly: When both
+buyers and sellers are active
+period_
+side will eventually exit,
+causing
+sharp Move
+the opposite direction. Ifthe trend has been
+moving Up or down,
+period can suddenly produce
+counter-Move
+as institutions
+djust their positions and triggee
+stop-Ic
+oss8;. No fresh
+positions
+recommended during the
+period.
+14.15
+14.45
+K period
+the KILL period. It is particularly feared after
+the
+period
+If K period shows substantial
+volume; it can move violently with the
+trend_
+especially in
+hero to zero'
+Moves
+produce
+Dy E
+likely
+dzy;
+day;
+
+--- PAGE 11 ---
+Move
+likely to fail. If E period does not go beyond
+period's high
+low; the prior direction
+considered weal
+and prone to failure.
+However; if E period extends
+bove or below
+period_
+the dayis
+More
+likely to develop into
+trend day
+close same price level.
+11.45
+12.15
+period
+known as the FAST or FAIL period. In this phase, the
+market can either move quickly in the direction of the existing move
+completely fail it reversing the prior move
+period snould
+follow the move given by
+period_
+either Up or down. If it does not;
+the move initiated by E is likely to stop, and the market may either
+remain
+the same zone Or reverse
+12.15
+12.45
+period is the GO period_ It gains importance on gap-UP
+gap-
+down days, often attempting either to fill the gap or to continue
+the direction ofthe gap
+gap-Up day; G period typically follows
+the uptreno_
+while on
+gap-down oay;
+tendsto follow the
+downtrend_
+may provide
+an uptrend or
+rise in
+downtrend for entries, 50 it is crucial to closely monitor the
+period
+gap cays_
+12.45
+13.15
+H period is the HAMMER period, characterizes by
+sudden
+spike in price that can be particularly stressful for
+ption writers
+(sellers) , especially on expiry days
+13.15
+13.45
+period
+the INITIATION period, often mae
+second round of
+movement: It can either continue the move started in the
+period
+produce
+new sharp move
+Both trend continuation and trend
+change can occur during the
+period_
+13.45
+14.14
+J period
+the JOKER period_
+If ] period makes
+new high ano
+nev
+Ow, profits should be booked immediately, as
+can quickly reverse
+the move_
+period
+time when price often tests the VWAP
+area_
+No nev stop
+should be
+laced during
+period; instead;
+either book profits or manage existing positions tightly When both
+buyers and sellers are active in J period_
+side will eventually exit;
+causing
+sharp move
+the opposite direction_
+the trend has been
+moving Up
+down, J period can suddenly produce
+counter-Move
+institutions adjust their positions and trigger stop-losses
+No fresh
+positions are recommended
+during the
+period
+14.15
+14.45
+period
+the KILL period
+particularly feared after the
+period.
+If K period shows substantial volume; it can move violently with the
+trend_
+especially in
+'hero to zero
+moves,and can
+Iso produce
+rking
+Flo5s
+
+--- PAGE 12 ---
+strong Girectional
+Moves
+When entering on
+failed auction (FA) and
+carrying the
+osition, it is advisabe
+exit during the K period.
+14.45
+15.15
+period
+known asthe SPIKE
+period. It is usually news-driven and
+generate
+Move vP
+down when the market has been
+range
+period often creates new highs or
+ows an
+Ilso referred
+ate spike:
+15.15
+15.30
+M period
+not particularly significant; as institutions are usually
+adjusting
+their positions during this time: No trades are
+preferred during M period, except
+the case of =
+Neutra
+Extreme
+Day (NED) setup_
+VOLUME PARAMETER
+Volume
+an important paramete
+in Market Profile and can give better results when
+used in combination:
+The following volume
+ranges for NIFTYSO and BANK NIFTY are
+baseline references an may
+under different market conditions
+Volume should
+align
+with
+these
+ranges tor
+confirmed
+trace,
+and
+the
+following
+factors should
+checked
+NIFTY 50
+BANK NIFTY
+Minutes
+Volume
+Volume
+12000 lots
+10800 lcts
+6000 lcts
+5400 lots
+3000 lcts
+1800ots
+In an
+Open Drive (OD) opening
+strong trend
+the first 30 minutes can show
+opening volume of 24,000 to 30,000
+more_
+In an
+Open Test Drive (OTD), the
+opening 30-minute
+volume
+typically lower; usually around 18,000 to Z0,000 lots
+compared with OD. When volume
+iov
+position size should be reduced.
+On expiry day
+and during expiry week, volume can fluctuate sharply; so it is important to stay cautious
+and adjust both position size and risk accordingly:
+INITIAL BALANCE (IB)
+The Initial
+Balance (IB) comprises the
+period plus the
+period_
+covering
+the first hour
+of trading (09.15 to 10.15). This period
+Ilso known 35 the open range orkandlestick
+charts and plays 3 critical role
+shaping tne day $ Overa
+market structure:
+The
+range
+calculated as the difference between the high and low prices during this
+first hour For example;
+the market opens at 24,850 and reaches
+high of 25,000
+quick E
+osing
+Van
+day;
+
+--- PAGE 13 ---
+strong directional moves.
+When entering on
+failed auction (FA) and
+carrying the
+osition,
+advisabl
+to exit during the
+period.
+14.45
+15.15
+period
+known asthe SPIKE period. It is usually news-driven and
+generate
+quick Move VP
+down when the market has been
+range_
+period often creates new highs or lows an
+3150
+referred
+Iate spike:
+15.15
+15.30
+M period
+not particularly
+significant; 3s institutions are usually
+adjusting
+losing their positions during this time
+No trace; are
+preferred during M period, except
+the case of a Neutral
+Extreme
+Day (NED) setup_
+VOLUME PARAMETER
+Volume
+important parameter in Market Profile and can give better results when
+useo
+combination: The following volume
+ranges for NIFTYSO an BANK NIFTY are
+baseline references and may vary under different market conditions
+Volume should
+align
+with
+these ranges for
+confirmed
+trade,
+and the following
+factors should
+cneckeo
+NIFTY 50
+BANK NIFTY
+Minutes
+Volume
+Volume
+12000 lots
+10800 lcts
+6000 lcts
+5400 lots
+3000 lcts
+1800 lots
+Drive (OD) opening
+strong trend day; the first 30 minutes
+show
+opening
+volume of 24,0C0 to 30,000
+More
+an Open Test Drive (OTD),
+opening 30-minute
+volume
+typically lower; usually around
+18,000 to
+20,000 lcts,
+compared with OD. When volume
+ov
+position size should be reduced.
+On expiry day
+and during expiry week; volume can fluctuate sharply, so it
+important to stay cautious
+and adjust both position size and risk accordingly:
+INITIAL BALANCE (IB)
+The Initial Balance (IB) comprises the
+period plus tne
+period_
+coverinz
+t2e first hour
+of trading (09.15 to 10.15). This period
+Iso <nown a5 the
+pen range
+on candlestick
+charts and plays
+critical role in shaping the day'; overal
+market structure.
+The
+range
+calculated as the difference between the
+and
+ow prices during this
+first hour For example;
+the market
+pens at 24,850 and reaches
+high of 25,000, the
+Open
+high
+
+--- PAGE 14 ---
+IB range
+150 points_ The highest point in this first hour
+the
+High (IBH); and the
+lowest is the
+Low (IBL}
+When price moves beyond the IBH or IBL after the first houg;
+is called an Initial
+Balance
+Extension (I32).
+IBEXTENSION (IBE}
+wide Initial Balance (I3
+occurs when Niftyso has
+range of around 140 points and
+BankNifty has
+range of around 400 points.
+such cases, price movement beyond the
+wide
+atively
+Vncommor
+narrow
+however;
+oiten
+consi
+ered
+more
+favorable for trading opportunities
+The Weekly IB
+calculated based on the first
+nours Of
+trading, adjusted for any
+during the week: The Monthly IB
+derived from the first 22 to 23 trading
+hours
+depending on the number of active trading days
+the month:
+As price action within the
+range frequently tar
+stop
+osses, trading inside
+this zone can be relatively risky:
+POINT OF CONTROL (POC)
+The Point of Control (POC} refers to the price
+level
+where the highest trading volume
+occurs
+recrese
+the point where buyers and sellers most commonly agree on fair
+value_
+i5 important to note that the POC corresponds to
+single price level
+with the
+largest traded volume_
+notan area
+High Volume Node (HVN) is closely related to the POC; typically appearing just below it
+Although its volume
+slightly lower
+than that of the POC,
+still indicates
+zone of
+strong market participation:
+Low Volume Node (LVN}, bY contrast, shows significantly
+less volume compared to both POC and HVN. HVNs and LVNs generab
+form when there
+substantial
+voiume
+activity, depending on the market setup
+During trending sessions
+POCs merze moving upward when the market trends higher; or
+merging
+downward
+when
+market  trends
+Ower
+Once
+price
+hit at POC often
+demonstrate strong market performances.
+cases of
+gap-up or
+gap-down opening_
+the price tends
+retest the previous days
+POC;
+behavior commonly known 35
+Mean Reversion: The POC is considered the most
+critical
+reterence
+point in Market Profile analysis
+with other market characteristics
+developing around
+On an
+uptrend day, the POC generally remains below the current
+price=
+if it shifts upward,
+it can indicate profit booking as volumes rise_
+Conversely; in a
+downtrend
+downward
+moving POC reflects continued selling interest:
+An untouched
+untested POC
+referred to 35 3 Virgin POC,
+meaning that the price has
+licays
+rgets
+nting
+
+--- PAGE 15 ---
+IB range
+150 points_ The highest point in this first hour
+the IB High (IBH}; and the
+lowest is the
+Low (IBL}.
+When price moves beyond the
+BH or IBL after the first hour; it is called an Initial
+Balance
+Extension (IBE).
+IBEXTENSION (IBE} 
+wide Initial Balance (IB3
+occurs when Niftyso has
+range
+of around 140 points and
+BankNifty has
+range of around 400 points. In such cases, price movement beyond the
+wide IB
+relatively
+uncommon_
+narrow
+however;
+often considered more
+favorable for
+trading
+pportunities_
+The Weekly
+is calculated based on the first
+hours of trading, adjusted for any
+holidays during the week The Monthly IB
+derived from the first 22 to 23 trading
+hours, depending on the number of active
+days in the month:
+price action within the
+range frequently targets stop
+osses
+trading inside
+this zone can be
+latively risky:
+POINT OF CONTROL (POC)
+The Point of Control (POC} refers to the price
+eve
+where the
+highest trading volume
+occurs
+representing the point where buyers and sellers most commonly
+fair
+value_
+It is important to note that the POC corresponds to
+single price level
+with the
+largest traded volume_
+notan area_
+High Volume Node (HVN)
+closely
+lated to the POC, typically appearing just below
+Although its volume
+slightly lower than that of the POC, it still indicates
+zone cf
+strong market participation.
+Low Volume Node (LVN} bY contrast, shows significantly
+less volume compared to both POC and HVN. HVNs and LVNs generally form when there
+substantial volume
+activity, depending on the market setup
+During trending sessions_
+POCs merze moving upward when the market trends higher; or
+merging
+downwaro
+wnen
+the
+marzet trends
+Oer
+Once
+price
+nit at
+POC
+often
+demonstrate strong market performances
+In cases
+gap-UP
+gap-
+Owr
+opening_
+the price tends to retest tne previous days
+POC;
+behavior commonly known 35
+Mean Reversion. The
+the most
+critical
+reference
+point in Market Profile analysis
+with cther market
+gortidcheratter
+ristics
+developing around it On an uptrend
+the POC generally remains below the current
+price=
+if it shifts upward,
+can indicate profit booking 35 volumes rise. Conversely; in
+downtrend
+doinwarc
+moving POC reflects continued selling interest:
+An untouched
+untested POC is referred to a5
+Virgin POC, meaning that the price has
+trading"
+agree
+dzy;
+
+--- PAGE 16 ---
+VALUE AREA (VA)
+Out of approximately 2ZO trading days in
+Year; only
+bout 115, qualfy as true trend
+days
+When combining these with norma
+variation days,
+decisive
+directiona
+Moves
+occur on rouzhly 32%6 of days The remaining 6323 typically feature
+ange-bound trading
+known a5 balance
+where most traders unfortunately incur losses.
+The Value Area represents the price zone capturing 685 of the day's trading activity,
+encompassing the highest volume concentration- It is bounded by the Value Area High
+(VAH} atthe upper end and Value Area Low
+at the
+ower eno_
+Market rotation within the Value Area
+balance
+range-bound conditions_
+decisive break
+bove VAH
+belov VAL indicates imbalance
+typically marking the start
+ofa trend day: The Value Area dynamically adjusts with ongoing market price action.
+On balanced days
+the profile positioned above the Value Area High often closes toward
+the upper end ofthe range
+There are 220 trading days
+year and only about 1153 ofthose days can be considered
+true trend days
+When including trending days along with norma
+market fluctuations,
+approximately 32% of the days will feature decisive moves. Forthe remaining 68%6 of the
+time
+the market tends t0 trade within
+range that
+often referred to a5
+balance:
+Unfortunately most traders end up booking losses during these 6833 of the day:
+SINGLES
+Singles are
+etters Irom IB
+such 35
+tnat appear singularly
+considered
+"Singles_
+They must appear at the top or bottom ofthe profile
+single or
+single indicates the presence of buyers or seller in the market
+When there
+IB singles it is potentially-
+buying or selling zone_
+When there
+3n IP
+singles, that
+profile move strong on that direction.
+ELutt
+Iu Snples Alo 4
+Selline Tabl
+I0 Sncict,
+Buving
+(VAL)
+signals
+
+--- PAGE 17 ---
+EXCESS
+Other than IB, such as A or B, any letter that appears at the top or bottom ofthe profile
+is called Excess. It is known a5
+wick in the candlestick pattern;
+Iso known a5
+buying or selling tails like singles_
+If the Excess
+observed at the top or bottom of the profile, it signifies the end of
+theaucton:
+However; if the period
+ends with ay of the
+etters
+such as
+or B, it is not
+consideredan excess
+SINGLE PRINT (SP)
+Single Prints form after the Initia
+Balance (IB
+perioo
+appearing a5
+singl
+etter
+(other
+than
+from I3} printed between two
+areas of profile distribution. The signal
+prints
+are emotional buying or selling within the candle
+Single
+Prints must
+develop after the first hour to qualify; earlier occurrences do not
+count They create low-volume nodes and liquidity gaps that markets typically fill later
+The endpoint of
+Single Print oiten senves a5
+potentia
+buy or sell
+evel
+Known
+Imbalance. Single Print
+ai50
+called Imbalance
+the market come backs to test the
+Single Print area that includes previous days Singl
+Prints & can use for
+reversal trade:
+Market Profi
+Imoalance or Single Print setup remains
+evant for testing over
+trading days
+untested during this period, it evolves into
+Demand or Supply zone
+Acwsdncc
+Sinele Print
+Viu uedily Lap
+5uppon
+48907230
+29 0 Iq034 ,
+Any
+
+--- PAGE 18 ---
+Other than IB, such a5
+any letter that appears at the top or bottom of the profile
+is called Excess. It is known a5
+wick in the candlestick pattern;
+Iso known a5
+buying or selling tails like singles_
+If the Excess
+observed at the top or bottom of the profile, it signifies the end of
+theaucton:
+However; if the period
+ends with ay of the
+etters
+such as
+or B, it is not
+consideredan excess.
+SINGLE PRINT (SP)
+Single Prints form after the Initia
+Balance (IB) perioo
+appearing a5
+singl
+etter
+(other
+than
+from I3} printed between two
+areas of profile distribution. The signal
+prints
+are emotional buying or selling within the candle
+Single
+Prints must
+develop after the first hour to qualify; earlier occurrences do not
+count They create low-volume nodes and liquidity gaps that markets typically fill later
+The endpoint of
+Single Print oiten serves a5
+potentia
+buy or sell
+evel
+Known
+Imbalance. Single Print
+ai50
+called Imbalance
+the market come backs to test the
+Single Print area that includes previous days Singl
+Prints & can use for
+reversal trade:
+Market Profi
+Imoalance
+Single Print setup
+remzins
+evant for testing over
+trading days
+untested during this period, it evolves into
+Demand or Supply zone
+Acwstncc
+Sinele Print
+Viu uedily LJp
+5_ppon
+4807210
+I3 @ 1aojq 4
+Guani
+Any
+
+--- PAGE 19 ---
+POORHIGH (PH) AND POOR LOW (pL)
+These are combinations of letters following the IB, such as
+B, with the combination
+of AM, BC, ABD etc at the top
+bottom of tne
+profile
+When they
+ppear at the top,
+they are referred to as
+Poor Hizh_
+while at the bottom
+they are
+called Poor Low. For
+instance=
+letter; such 3 _
+mandatory to considera PH or PL
+Pcor
+High and Poor Low indicate
+revera
+as the liquidity ha
+there.
+candlestick charts
+are known a5 double tops
+Dotoms
+The likelihood of revisiting PH and PL is high:
+PH or PL
+also an Failed Auction (FA)
+it can close at the opposite side with FA
+conditions
+PA-Double
+Doubic
+19p9p1
+lele
+ppde
+PL-Trnic notom
+FAILED AUCTION (FA)
+When price extends from the Initia"
+Balance (IB} but fails to continue and instead
+ose;
+the opposite side of the
+it is known 35
+Failed Auction (FA) An FAcan occur either
+above
+below the IB, depending on where the auction fails_
+Failed
+Aucton
+signals
+potentia
+treno
+cnange
+form after the IB in
+timeframe;
+wheneve=
+time zone extends_
+price should
+not remain
+More
+than 30
+minutes into the next time frame_
+To qualify as a FA, the auction must either fail at the top and close below the I3, or fail
+below and close above the
+this condition
+not met;
+does not count a5
+Failed
+Auction_
+For
+valid FA
+price should not spend more than 30 minutes outside the IB and must
+return inside the IB within 29 minutes_
+price remains outside
+onger;
+cannot be
+considered an FA_
+they
+
+--- PAGE 20 ---
+POORHIGH (PH) AND POOR LOW (PL)
+These are combinations of letters following the IB
+such a5
+with the combination
+of AM, BC, ABD etc at the top
+bottom of the profil
+When they
+ppear at the top,
+they are referred to 35
+Poor High, while at the bottom
+they are called Poor Low. For
+instance
+letzer; sucn a5
+mandatory to consider
+PH or PL
+Poor High and Poor Low indicate
+reversai
+as the liquidity halt there:
+candlestick charts
+they are known
+double tops
+bottoms
+The likelihood of revisiting PH and
+high:
+P or PL
+aiso an
+Failed Auction (FA)
+it can close at the opposite side with FA
+conditions
+nothla
+Doubls
+in +4an4a
+ipdode
+p
+L
+TFTNn G lotom
+FAILED AUCTION (FA)
+When price extends from the Initial
+Balance (IB) but fails to continue and instead closes
+the opposite side of the IB, it is known 35
+Failed Auction (FA) An FA can occur either
+above
+below the IB
+depending
+where the auction fails
+Failed
+Auction signals
+potentia
+trend
+can
+form after the IB in any
+timetrame;
+wnenever
+time
+Zone
+extenos
+price should
+not remain
+More
+tnan 30
+minutes into the next time frame_
+To qualify as a FA, the auction
+Must
+either fail at the top and close below the IB, or fail
+below and close above the
+If this condition
+met;
+does not count a5
+Failed
+Auction.
+For
+valid FA;
+price should not spend more than 30 minutes outside the IB and must
+return inside tne IB within 29 minutes_
+If price
+remzins
+outsioe
+onger;
+cannot be
+considered an FA_
+change
+
+--- PAGE 21 ---
+Where an
+FA Occurs_
+the market trend tends to reverse_
+If, after the initia
+hours (IB);
+price moves Up
+down
+then reverses
+back into the IB and spends time there without
+breaking
+key leve
+often indicates that price
+preparing
+move
+further; eventually
+closing
+the opposite direction-
+The FA point
+to be revisited within T+7
+trading days_ Ifit is not tested within that
+period, it typically evolves into
+buying or selling zone
+multi-day
+occurs wnen an auction tails
+closes back within the IB due to
+insufficient time
+close
+on the
+side_
+On the
+following day;
+gap up
+gap
+down may occur with price closingon the opposite side,confirmingthe FA.
+Failed
+Auctions are relatively
+rare
+occurring
+only about 10 to 12 times in
+typical
+trading year
+tTT 7r
+247j7 75
+24664380
+Adeigane
+Lloie Upposite
+Close Upposite
+HOw SET FA TARGET
+The target for
+Failed Auction (FA}
+determined using tne 7-day Average True Range
+(ATR) to estimate the expected price move after FA confirmation.
+If the FA is confirmed at the top (short setup}; the target is calculated by subtracting the
+7-day ATR value from the FA price. If the FA is confirmed at the bottom (long setup}; the
+tarzet is set by
+dding the 7-day ATR to the FA price_
+When VIX is below 12,the 7-day ATR
+used to fine-tune the target; reflecting the
+Ower
+volatility environment more accurately:
+For example:
+If FA is confirmed at the top at 25,083 with
+7-day ATR of ZCO, the target wou
+25,083
+200
+24,883
+Darl
+likely -
+ppozlte
+
+--- PAGE 22 ---
+FAILED AUCTION FAILED (FAF)
+If FA not given the target on the
+Gme
+day
+Knour
+Failed Auction Failed (FAF):
+Suppose it should give target & the price has to reverse and touched the FA point which
+stop loss.
+As it has to complete on T+
+days after giving the tarzet else it's
+considered FAF
+Tamct Not 4chicvco
+Nnict Ihe i4Nizi < roniltu
+SPIKE & IT"SRULE
+occurs
+during the L+M period (roughly 14.45 to
+15.30 hours} an
+typically
+driven by news, causing the market to move sharply and create
+new high or
+This
+sharp move defines the Spike High (SH} and Spike Lov (SL}
+key observation
+tnat tne next
+day Often presents either
+spike acceptance
+spike rejection trade
+Spike acceptance happens when price moves beyond the spike
+evel
+confirming
+continuation in the spike direction.
+Spike rejection
+occurs when
+price reverses from the spike
+evel, indicating
+rejection
+that extreme_
+To trade
+mark the SH and SL and calculate the range between them. When price
+breaks above SH or below SL,it can be usedas
+to enter
+follov-through trade_
+Wnen trading spikes
+Nifty 50,
+minimum
+Move
+of around 50 points
+generally
+targeted_
+For Bank Nifty;
+minimum of about 150 points
+preferred, especially when
+VIX is low (low volatility environment)-
+Only spikes with
+range are considered suitable for trading; smal
+spike ranges are
+usually avoided asthey tend to lack fol
+llow-through
+Ka=
+Darl
+spike
+trading
+spike
+JEnal
+larg?
+
+--- PAGE 23 ---
+If FA is confirmed at the bottom at 25,083 with the same ATR of 200_
+the target
+would be 25,083
+200 =
+25,283.
+FAILED AUCTION FAILED (FAF)
+If FA not given the target on the same day
+is <nown
+as Failed Auction Failed (FAF):
+Suppose it should give target & the price has
+reverse and touched the FA point which
+stop
+As it has
+complete
+days after giving the target else its
+considered FAF
+Tamct Not 4chicvco
+{naict Ihe i4Nizi < ronilu
+SPIKE & IT"SRULE
+spike orcurs during the L+M period (roughly 14.45 to
+15.30 hours) and
+typically
+driven by news, causing the market to move sharply and create
+new high or low: This
+sharp move defines the Spike High (SH} and Spike Low (SL}
+key observation
+that the next trading day often presents either
+spike acceptance
+spike rejection trade
+Spike acceptance happens when price moves beyond the spike
+evel
+confirming
+continuation in the spike direction_
+Spike rejection
+occurs
+when
+price reverses from the
+spike
+evel, indicating
+rejection cf that extreme_
+To trade
+spike, mark the SH and SL and calculate the range between them. When price
+breaks above SH or below SL,it can be useda5
+signalto enter
+follov-through trade_
+Wnen trading spikes
+Nifty 50,
+minimum
+Nove
+of around 50 points
+generally
+targeted_
+Bank
+minimum of about 150 points
+preterred;
+when
+vIX is
+ow (low volatility environment)
+Only spikes with
+range are considered suitable for trading; small spike ranges are
+USMZ
+avoided as they tend to lack follow-through_
+Nifty;
+ecially -
+larg?
+
+--- PAGE 24 ---
+Kolapcletncn
+SDEE Releckon
+Hoacenna
+RANGE EXTENSION (RE)
+Range Extension occurs when price moves beyond the high or low of the Initia
+Balance
+(IB}. The IB range is simply the difference between the IB high and
+low For example;
+the IB high is 25,000 and the IB low
+24,900_
+the IB range
+100 points_
+range extension can be either successful
+failure_
+successfu
+extension uses half
+ofthe IB range as the first tarzet:
+If price moves
+bove the IB high
+add half the
+range to the
+IB high to get the
+target:
+price moves below the
+ow; subtract half the
+range from the
+ow to get
+the target
+For instance, with an IB range of 100 points, half is 50 points.
+move above 25,000 (IB
+high) would target 25,050;
+move below 24,900 (IB low) would target 24,850.
+Practical example (Nifty Futures}:
+Open at 25,000,
+low 24,900, IB high 25,050
+IB range
+150 points_
+Half
+75 points_
+Successful
+extension: price moves above 25,050 + 75
+=25,125.
+Successful downside extension: price moves belov 24,900-75
+24,825.
+Targets aiter
+successtul extension:
+First target
+(half the IB range 
+775 points
+Second target
+:Zx%IB = 2 IB (full IB range)
+7150
+Doints_
+Third target
+:Z*1 IB = 3 IB (2 times IB range)
+7300 points_
+If price remains within the IB range (between
+low ano
+high} after the extension
+attempt,
+the
+range
+extension
+considered
+failure_
+Note*
+that
+not
+trade
+recomme
+nded on IB tarzet:
+uses
+identify the price
+evels
+pside
+
+--- PAGE 25 ---
+Ognnm
+ULNi
+FFF
+[32942]
+eo
+ou
+JF
+[
+9
+Dm
+Ae=
+dl;
+1
+B
+ADDD
+Tea
+Tp
+Uslun
+2697,
+7I;
+Jtdo =
+4ua
+BALANCE
+Balance
+profile trading refers
+state where supply (sellers) an demand (buyers)
+are in agreement at
+certain price
+evel, creating
+zone Ct
+equilibrium_ This balanced
+area
+typically shows
+Jeroo
+of consolidation, where neither buyers nor sellers are able
+to gain control:
+When this balance
+proken,
+resuits in
+breakout; and the market moves decisively in
+one direction_
+That move away from the balanced zone
+called an imbalance,
+which
+often signals the start of
+new directional
+Move Or
+trend_
+IMBALANCE
+An imbalance
+occurs when
+profile moves beyond the Initial
+Balance
+(IB);
+either
+above the
+high or below the IB
+ow When price breaks the
+range and moves Up Or
+down with momentum,
+called
+imbalance;
+which
+typically marks the start of
+The
+marxet
+natumz
+cycles
+benveen
+balance
+(range;
+and
+imbalance (trend)
+This
+imbalance move
+create three main patterns: Open Drive (OD),
+Open Test Drive
+(OTDI; and Open Rejection Reversal (ORR)
+In OD and OTD, the
+period does not trade below the_
+period, showing continuation in
+the direction of the imbalance:
+ORR;
+the
+period
+Crosses
+below the
+period,
+indicating
+reversz
+within the imbal
+ince structure
+yu
+cm;
+trend
+dave
+
+--- PAGE 26 ---
+OTHER TIMEFRAME OR ONE TIME FRAME (OTF)
+"OTF'
+refers to
+participants such a5 FIls,
+institutions,
+Professional Traders, HNIs,
+and similar players who operate on higher timeframes_ These participants are often
+responsible for driving significant market moves and are typically more visible on trend
+days They are
+5o commonly referred to 35 Large Lot
+ayers (LLP}
+When price reverses multiple times at a specific level
+often indicates the presence of a
+significant OTF at that zone. Such levels should be clearly marked for future reference:
+OTF
+activity
+tends
+become
+more
+prominent
+kex
+event days
+policy
+announcements
+ections, budget
+Wan-te
+ated news
+tariff decisions. These days
+are usually worth noting and analyzing separately:
+To spot OTF zones
+pok for areas where price faces repeated resistance or support and
+where tne
+profile structure appears imbalanced
+hese zones often reflect where large
+players are active_
+If the market consistently closes below the Point of Control (POC} and the POC does not
+merge
+the direction of the prevailing trend_
+that POC generally
+oses its significance
+and should not be treated as
+major reference point:
+MEAN REVERSION
+When the market opens with
+gap up
+gap down,
+price typica
+moves back toward
+the previous day'$ Point of Control (POC) This behavior
+commonly referred to a5 mean
+reversion and can
+be used 35
+trade setup, allowing entries to be planned around
+POC level:
+BRIM POMNT
+When the market cuts
+point vp
+down; the option
+semer
+ose; control
+and
+bezins
+covering their positions
+eading to
+short covering movement
+This
+related to Max
+Pain_
+AVERAGE TRUE RANGE (ATb)
+Daily ATR indicates that Nifty 50
+expected
+move 150 points
+more. When VIX is 12
+below,
+the
+ATR
+should
+calculated  using
+7-day
+period_
+Tne
+ATR
+range is
+determined basedon the daily chart
+larger
+Fpis,
+day;
+
+--- PAGE 27 ---
+OTHER TIME FRAME OR ONE TIME FRAME (OTF)
+"OTF'
+refers to
+participants such 35 FIls,
+institutions,
+Professional
+Traders_
+HNIs,
+FPIs, and similar players who operate on higher timeframes
+These participants are often
+responsible for driving significant market moves and are typically more visible on trend
+days  They are also commonly referred to a5 Large Lot Players (LLP}
+When price reverses multiple times at 3 specific level
+often indicates the presence of a
+significant OTF at that zone. Such levels should be clearly marked for future reference 
+OTF
+activity
+tenos to
+become
+More
+prominent
+kex
+event days
+like
+policy
+announcements
+ections;
+udget
+war-te
+ated news
+tariff decisions_
+These days
+are usua
+worth noting and analyzing separately:
+To spot OTF zones
+ook for areas where price faces repeated resistance or support and
+where the profile structure appears imbalanced_
+These zones often reflect where
+players are active-_
+If the market consistently closes below the Point of Control (POC} and the POC does not
+merge
+the direction of the prevailing trend_
+that POC generally
+oses its significance
+and should
+be treated as
+major reterence point:
+MEAN REVERSION
+Wnen the market Opens with
+gap up
+gap down
+price typically moves back toward
+the previous days
+of Control (POC) This behavior
+commonly referred to as mean
+reversion and can be used as
+trade setup
+llowing entries to be planned around the
+POC level:
+BRIM POINT
+When the market cuts
+point UP
+down; the option seller
+oses control and bezins
+covering their positions
+eading to
+snort covering movement
+This
+related to Max
+Pain:
+AVERAGE TRUE RANGE (ATR)
+Daily ATR indicates that Nifty 50 is expected to move 150 points or more. When VIX is 12
+belov,
+ATR
+should
+calculated using
+7-day period_
+The AYN
+range
+determined basedon the daily chart
+larger
+dzy;
+larg?
+not E
+Point
+
+--- PAGE 28 ---
+MARKET
+PROFILE
+ADVANCED
+SETUP
+COURSEBY VISHNURGUPTHAN
+SaBe: =
+Hay
+WathaXO
+
+--- PAGE 29 ---
+MARKET
+PROFILE
+ADVANCED
+SETUP
+COURSEBY VISHNURGUPTHAN
+SGRMBE: 
+IaTH JhaakaTHaXO
+
+--- PAGE 30 ---
+MARKET
+PROFILE
+ADVANCED
+SETUP
+COURSEBY VISHNURGUPTHAN
+SGAMBE: 
+Ih JhA
+Wthaxo
+
+--- PAGE 31 ---
+MARKET PROFILE OPEN TYPE
+There are four main types of
+pen structures:
+Open Drive (ODJ; Open Test Drive (OTD);
+Open Rejection Reversal (ORR), and Open Auction (OA} The specific type of opening
+depends
+the overall structura
+formation of
+the day: The previous day's profile
+crucial for identifying an determiningthe current day$ open type:
+FOLLOWING OPEN TYPE CAN GIVES A TRENDING MOVE INTHE DAY AS FOLLOws:
+If we identify the Open Type within the Initial Balance (IB) period;
+the day $ trading
+structure is complete,
+llowing us to plan trades accordingly: Once the Open Type
+confirmed
+most of the work
+done only trade execution remains
+Tnese
+Moves
+often news driven.
+Open Drive (OD) there
+saying that when we see an OD
+buy right and sit tight
+rest the OD will do_
+Open Test Drive (OTD)
+Open Rejection Reversal (ORR)
+Open Auction (OA)
+normally gives
+rnge
+the market which
+divided into two 35
+follows 
+Open Auction in the Range (OAIR): opens and stays within the range of previous
+day'$ profile
+Open Auction Out of the Range (OAORJ:
+typically identified
+Gap Up or Gap
+Down
+days_
+When OAIR or OAOR occurs, only local traders are typically active
+and its recommended
+that
+reduce
+the
+ot sizes
+manage
+risk  effectively
+these
+days
+buying
+opportunity arises, enter quickly and exit on profit; 35
+will likely be
+range-bound day:
+OPEM DRIVE (OD)
+In Open Drive (OD) days_
+the market often exhibits significant movement immediately
+after the opening
+either upward
+downward  Typically; the market opens outside the
+previous day's Value Area either above or below indicating strong directiona
+conviction
+and trend intent: To classify
+session 35
+OD day; the volume levels must exceed
+normal
+activity: One key characteristic of such sessions
+that the price Opens on
+one
+extreme
+and
+often
+closes
+neac
+the
+opposite
+end
+the
+range,
+reflecting   strong
+Mcmentun
+throuzhout the day:
+The profil
+structure on OD days typically displays
+singles, forming
+Jaraight line
+like
+ppearance
+uptrend,
+this
+lead; to
+Higher High
+formation, while in
+downtrend
+Torms
+Lower Low
+Multiple letter distributions such as ABGHI are rare,
+OD days rarely show clustered structures_
+large
+
+--- PAGE 32 ---
+MARKET PROFILE OPEN TYPE
+There are four main types of open structures
+Open Drive
+Open Test Drive (OTD);
+Open Rejection Reversal
+(ORRI; and Open Auction (OA}
+The specific type of opening
+depends on the overall structural
+formation of the day. The previous day's profile
+crucz
+for
+identifying
+determining the current day $ open type:
+FOLLOWING OPEN TYPE CAN GIES A TRENDING MOvE INTHE DAY AS FOLLOwS:
+If we identify the Open Type within the Initial Balance (IB} period_
+the day $ trading
+structure
+complete;
+llowing
+to plan trades accordingly: Once the
+Type
+confirmed
+most of the work
+done only trade execution remains.
+These moves are
+often news driven:
+Open Drive (OD) there
+saying that when we see an OD, buy right and sit tight
+rest the OD will do
+Open Test Drive (OTD)
+Open Rejection Reversal (ORR)
+Open Auction (OA}
+normally gives
+range in the market which
+divided into
+follows.
+Open Auction in the Range (OAIRJ: opens and stays within the range of previous
+day's profile:
+Open Auction Out of the Range (OAOR):
+typically identified on Gap Up or Gap
+Down days_
+When OAIR or OAOR occurs, only
+ocal traders are typically active, and its recommended
+that
+reduce
+tne
+ot sizes
+manage
+risk
+effectively
+these days_
+buying
+pportunity
+rises, enter
+quickly and exit on profit, a5
+will likely be
+range-bound day:
+OPEN DRIVE (OD)
+In Open Drive (OD) days;
+the market often exhibits significant movement immediately
+after the opening
+either upward Or downward
+Typically; the market opens outside the
+previous day's Value Area either above or below indicating strong directiona
+conviction
+and trend intent; To classify
+session
+35 an OD
+day; the volume levels must exceed
+normz
+activity: One key characteristic of such sessions
+that the price Opens on one
+Exttreme
+ano
+often
+closes
+mejr
+tne
+eno
+tne
+range, reflecting strong
+n
+ntunt
+throuzhout the day:
+The
+structure on OD days typically displays large
+singles, torming
+Ljaight line-
+like appearance:
+uptrend,
+this
+leads
+Higher High formation
+while in
+downtrend
+it forms
+Lower Low- Multiple lette
+distributions such a; ABGhl are rare; 35
+OD days rarely show clustered structures_
+(ODL;
+Open
+Pposite
+profl
+
+--- PAGE 33 ---
+In an upward OD, the Point of Controe
+POC) generally develops
+the lowe=
+part of the
+profile_
+contrast, during
+downward OD, the POC
+positioned near tne upper
+part Or
+sometimes shifts toward the
+centre
+Because price
+Moves
+rapidly along with volume
+during OD sessions,
+there
+limited opportunity for the profile to merge_
+If the profile
+merges in the opposite direction (against the trend), it often signals unbooked profits
+3nq Can
+DoSe
+potennia
+reversal risk:
+OD sessions usually have follow-through effects
+the
+following trading days_
+Price often
+revisits the previous days opening
+eve 
+triggering
+immediate
+revera
+For
+upward OD, if the POC remains at the bottom;
+it serves a5
+potential support level
+the next session_
+Conversely if the POC
+emains at the top in
+downward OD, it acts a5
+resistance level stratezic zones to plan trades
+When the POC merges at the top in an
+pward OD or atthe bottom
+dovncaro
+OD,
+indicates unrealised profits,
+marking
+dangerous POC suggesting
+potential exhaustion
+the directionae
+Move
+During OD sessions_
+the
+period often
+Surdasses
+surpasses C, and
+indicating strong continuation and well-defined
+singles with consistent follow-Up
+ouying
+selling
+dentification
+heavily   depends
+vclume
+parameters-
+Typically;
+volumes
+around 12,000 represent
+norns
+conditons
+whereas readings of 24,000,
+28,000,
+above 30,000 signal
+OD or Trend Day reflecting strong LLPs participation.
+Without these
+evated volumes
+OD confirmation
+unreliable.
+OD days are rare but potentially highly profitable;
+llowing traders to build and
+hold directiona
+positions with conviction_
+gap-up followed by
+surpassing
+surpassing
+and
+surpassing
+with
+strong volume
+lifies a5 a
+OD (OAOR structure for the
+pening)
+The same
+pattern
+pplies inversely in 3 gap-down scenario during
+owntrend:
+While  historically ODs
+tend
+to persist without
+failure,
+market behaviour
+evolved
+2025 and beyond 
+where not only ODs but several classica
+setups have
+shown increased failure rates due to changing dynamics and
+atility in market
+structure
+QuJ
+
+--- PAGE 34 ---
+during OD sessions_
+tnere
+limited opportunity for the profile to
+MeTzE
+If the profile
+merges in the opposite direction (against the trend),
+often signals
+booked profits
+and can pose
+potentia
+revemsa
+risk
+OD sessions usually have follow-through effects
+the fol
+owing trading days_
+Price often
+revisits the
+previous day's opening
+eve 
+triggering
+immediate reversal
+For
+upward
+Od,
+the POC remains at the bottom_
+serves a5
+potential support levebx
+tne next session
+Conversely;
+the POC remains at the top in
+dovnwarm
+OD,
+acts 35
+resistance level stratezic zones to plan trades_
+When the POC merges at the top inan upward OD or at the bottom in
+downward
+OD, it indicates unrealised
+profits, marking it as
+dangerous POC suggesting
+potentia
+exhaustion of the directiona
+Move
+During OD sessions
+tne
+period ojten surpasses
+surpasses
+and
+indicating strong continuation and well-defined
+singles with consistent follow-up
+buying or selling
+dentification heavily
+depends
+vclume
+parameters 
+Typically;
+volume;
+around 12,000 represent norma
+conditions
+whereas readings of 24,000, 28,000,
+above 30,000 signal
+Trend Day reflecting strong LLPs participation:
+Without these
+evated volumes
+OD confirmation
+unreliable.
+OD cays are
+potentially highly profitable, allowing traders to
+build and
+hold directional positions with conviction_
+gap-up followed by
+surpassing
+surpassing
+and
+surpassing
+with
+strong volume qualifies as an OD (OAOR structure for the opening}
+The same
+pattern
+pplies inversely in
+gap-down scenario during
+downtrend.
+While historically
+ODs
+tend
+persist without
+failure,
+market
+behaviour has
+evolved
+2025 and beyond
+where not only ODs but several classica 
+setups have
+shown increased failure rates due to changing dynamics and volatility
+market
+structure:
+Traao=
+IaLeWoci
+2487
+
+--- PAGE 35 ---
+Laaa
+Ja
+DOt 1718417 ~2
+Joeet
+U4a
+40i441
+FnleHif
+Laetelli
+OPEN TEST DRIVE (OTD)
+An Open Test Drive (OTD} day begins similarly to an Open Drive (OD) with the market
+opening either above or below the Value Area, often accompanied by
+gap UP or down,
+and followed Py small _
+singles_ Before initiating
+rally; the price typically drops, forming
+four to five
+fewer
+singles;
+then
+consolidates at the POC before
+continuing the
+upward Or downward move. Its structure can be deceptive_
+as it tests both the market' $
+conviction and the trader'
+patience_
+Compared to an OD;
+OTD day generally exhibits
+ower volume_
+While OD typically
+records volvmes
+apove
+28,000 to 30,000 lots_
+OTd
+usvally ranges
+benveen
+15,000 to
+19,000 still higher than the average daily participation of around 12,000.
+During an OTD,
+if the market returns to the day's POC,
+often
+presents
+reversal
+opportunity For example; if the market initially moves above and then revisits the POC,
+traders may take positions
+anticipation of
+reversal.
+The primary distinction between OD and OTD lies in their structure:
+OD forms large
+ingles with little to no retraces
+consolidation
+OTD shows smaller
+singles;
+an initia
+price
+and conso
+lidationjaround the
+POC
+Both OD and OTD patterns tend to produce follow-through days
+To identify OD or OTD
+structures,
+focus on volume and price behaviour within the Initia
+Balance (I3) period,
+typically before 9.50 a.m.
+Early
+recognition of the open type provides
+strong trading
+edge and
+Ow
+traders to alizn quickly with directional bias.
+drop
+
+--- PAGE 36 ---
+Laa
+Ja
+DOt 171*417   2
+Ofhiae ~
+7' 100 "4401
+e4 _ <4
+- +
+Laetellzi
+01O
+OPEN TEST DRIVE (OTD)
+An Open Test Drive (OTD} day begins similarly to an Open Drive (OD) with the market
+opening
+ither
+aoove Or
+lov the Value Area, often accompanie
+down
+and followed by small _
+singles_ Before initiating
+rally; the price typically drops, forming
+four to five
+Or Tewer
+singles;
+then
+consolicates at
+the POC before
+continuing the
+upwZ
+downward move. Its structure can be deceptive_
+tests both the markets
+conviction and the trader'
+patience_
+Compared to an
+OD, an OTD day generally exhibits
+Ower
+volume_
+While OD typically
+records volvmes above
+28,000 to 30,000 lots_
+OTD usually ranges between 15,000
+19,000 still higher than the average daily participation of around 12,000.
+During an OTD, if the market returns to the day's POC,
+often
+presents
+reversal
+pportunity For example
+the market initially moves above and then revisits the POC,
+traders may take positions
+anticipation
+reversal:
+The primary distinction between OD and OTD lies in their structure:
+OD forms large
+ingles with little to no retraces
+Conso
+lidation
+OTD shows smaller
+singles 
+initial
+price drop_
+consolidation around
+POC
+Both OD and OTD patterns tend
+produce
+follow-throvgn
+To identify
+oo
+OTD
+structures,
+focus on volume and price behaviour within the Initia
+Balance (I3) period,
+typically before 9.50 a.m.
+Early recognition of the open type provides
+strong trading
+edge and
+llows traders to alizn quickly with directional bias.
+Tsaao=
+Lvorci
+Zurzho -
+davs
+
+--- PAGE 37 ---
+During conso
+dation, the
+OC may display
+clean ABCDE sequence
+clustered without
+interruption by othe
+profil
+letters. However;
+the market fails to produce movement
+during subsequent 6,
+periods
+the move often loses strength- Ifthe POC does not
+merge it signal
+the presence LLP participant_ When the market returns to the same POC
+the following day;
+may offer another reversa
+trade setup_
+Cmallaenola)
+415]
+Corolldellen
+Heei
+Coniolidabon
+Smnella Sralei
+OPEN REJECTIONREVERSAL (ORR)
+An Open Rejection Reversal (ORR)
+the
+pposite of an OD_
+rising market; the price
+opens
+and pushes upward before being rejected
+causing
+to drop below the A-period
+low:
+then rejects that downward move and reverses
+typically confirming the
+reversz
+during the
+period_
+In a uptrend_
+the market may open higher and attempt to continue its rise, but upon
+rejection,
+falls below the low of opening of
+A-period.
+The
+period then atempts
+another decline but finds support at
+Key level sucn
+the previous day's Open, POC,
+VAR;
+VAL and reverses
+eading to
+renewed rally and higher close:
+Conversely; in
+downtrend_
+the market opens and attempts to fall,
+rejected
+then
+rises above the high of opening of A-period. During
+attempts to move higher
+but Taces
+rejection
+near
+key reference (previous Open
+POC;
+VAH_
+VAL}, and reverses
+lower
+resulting in 3 strong
+lownside continuation:
+Wnen the
+period surpasses the
+high after
+ection_
+marks strong
+momentum and
+often sets the
+trending day characterised by higher highs-
+Traders typically
+enter when
+moves beyond
+following
+rejection reversal
+placing
+stop loss below
+tne
+low and targeting directiona
+continuation;
+aain,
+G2ts
+aain
+5tage
+
+--- PAGE 38 ---
+Identifying
+an ORR
+reqmires
+skill and experience,
+but once
+recognised
+often leads to
+smooth and high-probability trades
+Unlike OD
+Ind OTD, ORR does not rely on
+eaciy
+volume confirmation within the 9.50a.m
+window While OD and OTD are identifiable
+during tne
+period,
+ORR confirmation occurs after
+cuts above (or below) ADuring an
+ORR
+the
+period generally exhibits higher volume
+than
+though
+occasionally; the
+volume remains steady without significant surze_
+JJil"
+0 eicig
+L
+dac
+Ddde
+Gem
+OPEM AUCTION IN THE RANGE (OAIR)
+If the market opens within the previous days profile with lower-than-usual volume
+it is
+reterred
+to a5 a OAIR (Open Auction
+Range}  The volume
+sucn cases
+typically
+well below the normal
+volume parameter When this occurs_
+price action often exhibits
+mean reversion toward the
+day'$ POC.
+Both OAIR and OAOR (Open
+Auction Out cf
+Range_
+generally represent balanced_
+non-trending market days
+EpI
+Aie protle open inside the previous day prone
+OPEN AUCTION OUT OF THE RANGE (OAOR)
+When the market opens above
+below the previous day's profile with relatively low
+volvme
+or opens with
+gap Up Or gap down it
+classified a5 an OAOR (Open Auction
+Out of Range)
+such
+Cases
+the opening
+Voime
+typically we
+below the norma
+
+--- PAGE 39 ---
+smooth and high-probability trades
+Unlike OD and
+OTD;
+ORR does not rely
+early
+volvme
+Contrmanon
+within the 9.50
+wingow
+While OD ad OTD are identifiable
+during the
+period,
+ORR confirmation occurs after
+cuts above (or below) ADuring an
+ORR;
+period generally exhibits higher volume than
+though occasionally; the
+volume remains steady without
+significant surze
+HA
+Ezb
+Ii
+Fe
+Jai 4= I=J
+OPEN AUCTION IN THE RANGE (OAIR)
+If the market opens within the previous days profile with
+ower-than-usual volume
+referred to as an OAIR (Open Auction
+Range}  The volume
+such cases
+typically
+pelow the normal
+volume parameter When this occurs
+price action often exhibits
+Mezn
+reverion
+toward the oay$
+Both OAIR an OAOR (Open
+Auction Out of
+Range) generally represent balanced
+non-trending market days.
+Ine Orom- Oneninidetenfvinus Ha
+OPEN AUCTION OUT OF THE RANGE (OAOR)
+When the market opens
+bove
+belov the previous day'$ profil
+with
+tively low
+volvme
+opens with
+gap Up Or gap down it
+classified 35 a OAOR (Open Auction
+Out of Range} In such cases
+the opening volume
+typically wel
+below the normal
+Ka- -
+protla
+
+--- PAGE 40 ---
+volume parameter
+market that opens with
+gap
+considered an OAOR setup and
+often exhibits mean reversion toward the Point
+Control (POC)
+During
+gap
+days
+OAOR
+structures often
+produce significant price
+movement;
+particularly during the
+and H pericds_ These sessions either work toward filling
+the gap
+continue in the direction of the opening imbalance
+Therefore,
+extra
+attention should be given to the
+and H periods on gap days
+Wnen
+gap-Up
+gap-down
+pening
+Occurs
+these
+Gessions
+require
+ciose
+observation:
+If the
+period extends beyond the
+period_
+generally indicates
+continuation and
+potentia
+gap fill.
+Conversely; if the
+period
+rejects the
+period_
+revers3
+2comes
+More
+probable:
+The
+evel should be
+learly marked
+represents
+fresh buying or selling zone
+linked to the gap area and serves a5
+key reference point.
+breakout beyond this
+eve
+may trigger strong directiona
+activity heavy buying
+orezk
+strong selling on
+downside break;
+Jri ? @ A
+FejiFai JIA#Il1
+444
+FatJeal -6 + R4a
+L
+Dm=
+Ftade
+Ikpr/ J47 43 prolis
+MARKET PROFILE DAY TYPE
+The market has two types of days,
+which are Trending days and
+Non
+Trending days
+These two types of days influence trading stratezies and market behavior as trending
+days offer opportunities for trend-following
+while non-trending days are often bette
+suited for mean-reversion
+range-trading strategies. All day types are Non trend days
+Trend day and distribution days are trending structure in the day type which can used to
+identify the trend day:
+NORMAL DAY
+Norma
+Day; the market typically forms
+wide Initial Balance (IB) For @ty 50
+price usually moves within
+range of about
+16-0.750 ofthe previous day's closing price
+during the first hour (the IB period): When Nifty 50 exceeds this range within the initial
+often signals an abnormal profile
+abnorma
+day; where the market tends to
+ose within the value area indicating potential participation from large players
+upside
+Jt
+hour,
+
+--- PAGE 41 ---
+Specifically; when Nifty 50 moves 140 points
+more and Bank Nifty moves 400 points
+more during the first nour; tnese are considered
+Zonormz
+days
+Lonvege
+Nifty 50
+moves below 140 points and Bank Nifty below 400 (or 300) points_
+suggests
+smaller
+which
+usually favorable for
+breakout setup.
+Anything
+below these
+ranges
+termed
+narrow Or sma
+often providing
+breakout opportunity: On days with
+wide IB, any further attempt to extend
+break beyond the
+range typically fails, with
+the market oiten closing
+near the POC (Point of Control)
+within the Value
+Area.
+Statistical
+bservations suggest that
+about 90%6 of
+wide
+days
+sustain
+directiona
+move, while only 103 succeed_
+Therefore, on Norma
+Days
+where
+wide I3 is present; traders should look for potential
+reversals as the preferred trading setup_
+The Reversal Trade Setup works on the principi
+that price extensions beyond
+wide I3 tend
+fail most of the time
+eading the market
+back toward the POC
+KelecIt
+6144'
+Adeie
+IFat _tttate
+NORMAL VARLATION DAY (NVD)
+Norma
+Variation
+Day occurs when the market moves above
+pelow the typical
+range
+normz
+trading session_
+On such days;
+the first target
+half of the Initial
+Balance
+(IB}, and the move can extend Up to the second target at the full IB extension_
+market reaches
+third target on the same day; that session
+classified a5
+Treno Day:
+The Initia
+Balance
+considered norma
+when it is below 140 points in Nifty 50 and
+belov 300 points
+Bank Nifty: On these days,
+traders can
+plan
+B-extension trades
+based
+on the expected range expansion
+When the market moves upward beyond the IB High (IBH} during
+normal variation
+termed
+Normal
+Variation Up Day (NV-UP) Conversely, when the market moves
+downward
+beyond
+the IB
+Low  (IBLI;
+called
+Norma
+Variation
+Down
+Day
+(NV-DOWN}:
+For examp
+Nifty Futures open at 25,000
+with an IB low of 24,900 and af IB high of
+25,050,
+the IB range
+150 points_
+successful range extension requires
+move of at
+least half the
+range (75 points)  Therefore_
+move above 25,125 confirms
+successful
+upside extension on that session_
+day;
+
+--- PAGE 42 ---
+FOREXAMPLE
+First Tar
+XIB (Half
+75 points, representing half ofthe 150-point IB range
+Second Target :
+2 IB = 150 points, representingthe full IB ranze
+Third Tarzet:
+3 IB = 300 points, representing twice the IB range_
+For downward movements, these values are subtracted from the
+Low (IBL} to identify
+the downside extension targets (refer
+Range Extension}. This setup
+also commonly
+referred to a5a IB Extension Trade.
+IMPORTANT NOTE:
+Norma
+Variation Day; the market can reach Up to the second target; whether in an
+uptrend
+downtrend_
+the market reaches the third target
+given day; that
+{essior
+classified
+Trend Day-
+Ae[d Jot
+NEUTRAL DAY (ND)
+Neutral
+Day
+cccuMS
+when the market moves both above the Initia
+Balance High
+(IBHJand below the Initial Balance Low (IBL} during the first hour (IB), Yet closes near the
+Point of Contro
+Poc)
+VWAP without achieving
+ear IB extension.
+Sucn
+day
+reflects balanced
+participation from both buyers an
+sellers, signaling that activity
+present on both sides
+At any given moment; one side may lose control
+allowing the
+otherto pusn the market but no sustained directional
+move emerges within the session.
+Neutral
+Day; most traders often get stopped out, 35 price oscillates within
+nartov
+range and triggers stop
+055 orders
+both sides
+The Initial
+Balance (IB) Zends
+relatively sma
+accompanied
+ow volume
+reinforcing the lack of conviction-
+The
+extension will fail on
+Neutral
+day; the failure also indicates
+failure and mostly the
+extension comes atthe C, h,!,or
+period were it hit the stop loss_
+Entering trades during
+Neutral
+Day can easily become
+trap
+as the choppy; indecisive
+nget'
+
+--- PAGE 43 ---
+are generally advised to exercise
+caumon
+avoid
+ggressive directiona
+entries until
+the market clearly breaks out ofthe neutral structure with conviction.
+UI=
+OHe-cknn
+Nato
+a
+E
+UGTMa
+[36215]
+H545]
+6 IT
+Ec
+76207
+@atem-imm
+C[
+Pmt [EETTet
+NEUTRAL EXTREME DAY (NED)
+Neutral
+Extreme Day occurs when the market breaks either the high or low of the Initial
+Balance (I3)
+range then immediately reverses direction; moves toward the Point of
+Control
+(POCI, and eventually closes at the opposite extreme of the day- This pattern
+reflects
+market that initially fails on one side ad then closes at the opposite extreme,
+implying that both sides of the IB were tested but only one side held through the close
+Neutral
+Extreme Day
+lways closes beyond the IB range and
+also referred to a3 an
+Event Day.
+The Failed Auction pattern,
+by contrast, takes
+lace when the market breaks out of the
+initia
+range but quickly reverses, failing to sustain the breakout All Failed Auction days
+qualify
+Neutra
+Extreme
+Days
+however;
+not all
+Neutral
+Extreme Days are
+Failed
+Auctions_
+The difference
+lies
+time and structure
+Failed
+Auction typically occurs
+within 30 minutes and involves price returning back inside the
+range, while a Neutral
+Extreme Day has no
+specific time constraint and may not return to the IB range at all.
+When both Neutra
+and Neutral
+Extreme Days are ooserved_
+often hints at
+potential
+trending
+Move
+the sessions t0 follov
+Neutral
+Extreme Up Day (NED-UP}
+Occure
+when the market closes above the IB high at the day's upper extreme_
+Conversely;
+Neutral
+Extreme Down Day (NED-DOWN) occurs when the market closes
+low the IB
+the day's
+cwer extreme_
+Both scenarios
+proouce strong
+ldrectaral
+follow-
+throughin the next trading session
+Tre
+
+--- PAGE 44 ---
+EntEm]tEn
+aoenarial
+mdaoae
+HA
+PB
+Fmm
+48
+et
+neleuuy
+8
+436839|
+TCId
+Fq
+Ea
+e[anl
+FE
+JGe
+Prite bile belo  IaH
+BALANCED DAY
+Balanced Day Profile
+Ilso referred to 3;
+Balonced Profile
+Narrow Initiol Bolonce
+Profile
+cha
+icterized by
+tight Initiae
+Balance range and price action that remains
+largely confined within this range throughout the trading session
+Key characteristics ofa Balanced Day include:
+narrov Initia
+Balance,
+with most trading activity cccurring within this limited
+range
+Minima
+price movement outside the IB,as breakout attempts tendto fail quickly:
+market profil
+resembling
+bell cunve
+with the Point of Control
+(POC) entered
+around the
+range 
+showing
+balanced distribution of trade volume_
+Price typically closing within the
+range_
+Such
+days
+often
+considered
+premium-eating
+days
+where
+directional
+rtunities are limited_
+In essence_
+Balanced
+Day reflects
+market
+equilibrium
+without dominant
+directiona
+conviction
+significant
+expansion
+Traders generally anticipate that
+any extensions beyond the IB will be unsustainabl
+and that price will revert toward the
+centre of the range_
+J7ae= (
+75174
+2 .0
+dddd
+131316]
+TZ
+Ven
+Hy
+X /a6
+Mart
+range
+
+--- PAGE 45 ---
+TREND DAY STRUCTURE
+Trend
+Day in
+Market Profile trading typically develops from
+Open Drive (OD}
+structure
+and
+defined
+strong
+one-sided
+directiona
+movement
+sustained
+throughout the trading session_
+Key characteristics ofa Trend Day include:
+A large trading range, with price showing clear directiona
+bias from the open.
+High trading volume, reflecting
+participation
+timeframe
+(institutional)
+traders
+The Point of Control
+POC) typically forms near the
+Ower
+middle portion of the
+profile
+an upward trend_
+and near the upper or middle portion in
+downward
+trend.
+Multiple   singk
+prints
+ppear
+within
+the  profile
+revealing
+strong
+directional
+conviction and low acceptance of counter-trend prices_
+The market consistently forms higher highs and higher lows in
+uptrend
+Owe
+lows and
+ower
+highs in
+downtrend_
+Minima
+price rotation,
+resulting in an
+longated_
+vertically shaped profile that
+visually represents
+persistent trend.
+Follow-through
+common in subsequent sessions_
+often leading to
+gap opening
+the same directionasthe preceding trend day:
+Trend
+signal that
+large timeframe participants dominate
+market activity, ariving
+price steadily in one
+direction with limited counter-trend
+movement:
+Thisstructure
+reflects high conviction
+and strong
+directiona
+bias, offering favorable conditions for
+trend-following strategies that capitalize on sustained
+Momentum
+large
+Davs
+
+--- PAGE 46 ---
+DOUBLE DISTRIBUTION DAY
+Double Distribution Day in Market Profile analysis
+characterized bY the presence of
+multiple singl
+prints tnat separate distinct auction areas
+within the daily profile.
+This
+structure
+eflects
+market tnat nas
+undergone
+significant shift in sentiment
+control
+during the session, creating two distinct value zones
+DOUBLE DISTRIBUTION DAYS ARE GENERALLY CLASSIFIED [NTO TWOTYPES:
+Double Distribution Up Day
+DD-Up): The market typically opens near the
+ower
+the profile and closes near the upper end
+with one
+more sing
+prints
+marking
+transition between the two distributions
+Double Distribution
+Down
+Day (DD-Down}: The market opens toward the upper
+end and closes nearthe lower
+end, showing
+similar separation via singl
+prints.
+If the profile contains one area of single prints
+it is termed
+Double Distribution:
+Two
+singie
+print zones form
+Triple Distribution
+and multiple zones (three or more) indicate
+increasingly complex trending structure. Quadrupl
+distributions are rare and usually
+appear during exceptionally strong, one-directional trend days
+TRADING APPROACH WITHDISTRIBUTION PROFILES
+downward market, when
+single print appears and the price closes above it,
+traders may look for
+buying opportunity if the next trading session
+sustains
+above
+that single print
+Zone
+Failure
+do 50
+may instead
+confirm
+selling
+continuation_
+upward market, when
+sing
+print
+ppears an the price closes above it;
+traders might consider
+sell setup if the market breaks and sustains below that
+eve
+otherwise ,
+remains
+potentia
+buying zone:
+The validity of
+singl
+print typically lasts two to three trading sessions
+Within this
+window;
+market
+Mav
+open
+witn
+gap
+move into
+balance_
+Once
+the price
+decisively breaks above
+below the single print area_
+influence on future trading
+behavior expires.
+DISTRIBUTION CONTEXT
+During trend days,
+the Value
+Area holds
+less analytica
+significance since the market
+tenos
+move persistenty
+direchon
+In such cases; traders should focus more
+the Point of Control
+(POC}
+and single
+print
+zones,
+which
+bette
+indicate
+area; of
+conviction and momentum. Conversely, on non-trending or
+balanced dayiathe Value
+Area
+provides greater context for estimating price acceptance
+potential reversals_
+
+--- PAGE 47 ---
+DOUBLE DISTRIBUTION DAY
+Doubl
+Distribution Day
+Market Profile analysis
+characterized by the presence of
+multiple single prints that separate distinct auction areas
+within the daily profile:
+This
+structure
+eflects
+market that has undergone
+significant shift in sentiment or control
+during the session, creating two distinct value zones
+DOUBLE DISTRIBUTION DAYS ARE GENERALLY CLASSIFIED [NTO TWOTYPES:
+Double Distribution Up Day (DD-Up}: The market typically opens near the
+Ower
+end of the profile and closes near the upper end;
+with one or more
+prints
+marking
+transition between the twO distributions
+Double Distribution
+Down Day (DD-Down}: The market opens toward the upper
+end and closes neartne
+ower end, showing
+similar geparation via singl
+prints.
+If the profile contains one area of single prints
+termed
+Doubl
+Distribution. Two
+single
+print zones form
+Tripl
+Distribution, and multiple zones (three
+more) indicate
+increasingly complex trending structure. Quadrupl
+distributions are
+and usually
+appeae
+during exceptiona
+strong; one-directional trend days_
+TRADING APPROACH WITHDISTRIBUTION PROFILES
+downward market; when
+single print
+ppears and the price closes aoove
+traders may look for
+buying opportunity if the next trading session
+If sustains
+above
+that single print
+zone
+Failure
+may instead
+confirm
+selling
+connnuaton
+upward market, when
+sing
+ppears and the price closes above it,
+traders might consider
+sell setup if the market breaks and sustains below that
+eve 
+otherwise, it remains
+potentia
+buying zone:
+The validity of
+single print typically lasts two to tnree trading sessions.
+Witnin this
+window;
+market
+Mav
+open with
+gap
+move into
+balance_
+Once
+the price
+decisively breaks above
+below the single print area_
+its influence on future trading
+behavior expires.
+DISTRIBUTION CONTEXT
+During treno
+the Value Area holds
+ess analytical
+significance since the market
+tends to move persistently in one direction. In such cases, traders should focus more on
+tne
+Point
+Control
+(POC}
+and single
+print
+zones
+which
+better
+indicate
+area;
+conviction ano
+Momentum;
+Conversely,
+non-trending
+balanced days; the Value
+Area provides greater
+context for estimating price acceptance and potential reversals
+sing
+Print
+davs;
+
+--- PAGE 48 ---
+B SHAPE PROFILE (SHORT BUILDUP PROFILE)
+The b-shaped profile the inverse of the P-shaped pattern features
+Iong singi
+print at
+the top with
+broader; balanced structure at the bottom, forming the shape of the lette_
+This pattern;
+Ilso known a3 the Short Buildup
+Unwinding profile
+indicates
+selling pressure
+or long liquidation_
+the market moves below the bottom of the b-
+shaped profile the following
+viewed a5
+breakout, often leading to
+sharp
+decline
+GE U 125
+KEY INSIGHT:
+Both P-shaped and b-shaped profiles suggest potentia
+trend reversa
+and help identify
+likely breakout zones in the market. When
+profile
+immediately followed by
+profile_
+the combination forms
+inced Profile
+sign
+temporary equilibrium
+between
+buyers
+ano
+sellers,   indicating
+phase
+consolidation
+before
+tne
+next
+directiona
+move.
+LonE
+dzy;
+
+--- PAGE 49 ---
+OPEN TYPE-CHEKLIST
+kt Opznazov
+Blza 3D3viojidz Valuz
+5tZn]vttsj
+con or;c
+Cag nz
+wittauC
+P-zsz7cc af _{nzlczvll
+Mtzrteg
+oiiioizs
+Teimit
+Nrge of 120c0
+teeci-os
+It 43 :76 Sct?7eC7 :jenirs
+Opzn Jn
+IIto
+ncant  iec a 376 OPZrMe
+Gagsego
+owtc
+belov (Lj
+Sttridzeninz
+Picd
+Tzre
+belov
+j
+G aro
+{Dzofdowt
+Tanio ia
+3cerizr
+KFc
+Zzceziri[72
+[767 it IIus
+cishirz
+Zodvii
+Pict
+7eC03g
+fprizz
+POC Waiz;;
+Dzjotunity
+OpzrOrne -PoC
+{UCjo C
+Eai ;
+Dinctn
+Imejpzct ? Dtthimiz
+MmCgot
+CkCtii
+oci 0 Uta
+Manz
+Mu RerGimme
+chanrtariszcs of CD but it t83 t78 3 zrev 3u{ day valla ar83 zafora
+FEimovz
+tar-te
+7oztnzi
+Ma eCr;z
+26rJo52
+{nelesttanbnk djn-€n its
+Jom
+Czene
+IiZrComgd Jena
+iiut
+Iuditei7
+Tare? Df 120l4
+Nias
+Test Du"
+Lialk 6 4
+FoC ll
+90r
+POC 57 OTD:
+roco
+Opznijmo=
+then rejes: # pravol;VALVAH,PI2e
+FicSiic
+Joz-abjv  Lzweni
+MarSi
+OpZni
+Zown,theN Nic?
+previol: VAL VAR Foce mob3xk:7677*78
+JorZt-s Iu
+Uuour Tamzt
+Doper
+Lcous UpX
+Fzie:=
+Tjoi7:
+36237
+Dedo _@
+Aco
+Reiecton
+Doper
+EVJED;
+Fzie:=
+TjotS
+367237
+Ded7e
+Rzvetze
+Fzieno
+#ZPeC
+Iaom
+Jay yiJCAr
+JEGIE
+Tvine
+Imp? _7c3
+DZYDJC
+IaES
+Ttd7E
+Lcums
+ZosjonOpzn
+Llatart Lai
+ORReloz
+C9c25
+Coenime
+MirrtOpen
+jre olz
+{Zroretars 
+Razi=
+jrewdl;eze7e=
+Dachon
+Gevuo te
+Intie
+Ronde
+33.> S3ZC
+far scaljira for 10 paints_
+Dzz7iirziz  
+CinisCeviOrons
+IySECCmOm
+GeaP -
+Manz
+cilca cithid-ividus
+JrCTie
+OLOR
+[379jo 75#Ja
+CeSSCe VME
+Tzrjineezz
+Ka
+CTCriJs
+TZr.
+Koi
+iene
+Oucad-
+Autor
+@utthe
+Iiiij
+j-3036
+0-dEtemrzr
+EzorzC
+376%07 IC
+Cctcgocoono
+OciCC
+IiSmarsI
+ConanetzMnzizr 2
+3e=
+LoUSC -
+MfE
+Tett
+~Zmta
+TvS-i
+Ikowtar
+Tankzmcjz;
+Gadtisejars
+Jan
+Vt
+Uona?
+Dr-e
+
+--- PAGE 50 ---
+OPEN TYPE-CHEKLIST
+Ic Opznazov
+33lza 3i przMdi:ea valli -aetzn]
+Cjnenoril ZZZIMz
+Jmrouz
+P-zizncc Oi_anzic:
+373anJ {78 OTF
+{noulc
+tdtithzejta
+Tnzz Of 12000
+3lT #
+3-30<
+ktit7C
+Eeioenirz
+Drw Uaiete
+Rcanyitha37: Opzn
+9odaazo
+belov (Ljcn
+cthiozic
+TZme
+Eldvlzrj
+Jaro ZY{dz
+Jowntard Tarkze D-jtJy jt certzr
+#pOCme (32 aairsttn8ab3
+ToctKf
+"Khirs
+Jodsi
+Pic-o
+ Mo
+7607
+Tprzz {25-
+TZnzec
+Dzjotjniy
+Aiemene -
+Opzr Oriva #POC
+{upjotat 1723 Dax:
+9076- jicS
+Imegczce
+dthe
+Jireton
+Zodi d te
+Mars
+cranzzrs-croodbuieitzeain jurdaniallzanazefoni:Ea
+Ralgte
+7{7de-721
+MeComsc
+GeRGo5e
+anelc:trenjnk0632872 CN IS
+Jigor
+C-zsee
+Corio jairiuz
+7tat77
+Tarzzofi2000
+Tnltzs
+Iestdo
+LSikc -
+Oidfno6ier
+TZnzz
+OTF willnz:
+Svmetitne-oC
+OuP
+rcoy
+Opzni?
+tn GicrajrMol}VALVA P-6e
+333737
+doziabj
+'L3wi
+Manz;
+J7o
+Cown tha
+6zieea-Orzlols
+VALVAF
+Focemo=
+Jazzi % >w
+Dowr Tarkzt
+Loper
+-NovUP >
+Raica It3ota7:
+36873
+Moe
+Reecon
+Loper
+DOWN;
+Faie _
+Peucge
+Rzieedon
+POSPe
+6iv37D
+Itone
+Velum
+janod
+ttansap
+zosijonOpzn
+MLotan Da
+OF?elors
+Cjpziti
+Zpenire
+Themiz
+jrtolz
+Crofatarzz
+Naz S
+Jnzldlj
+Aucton
+IntIZS
+TVDUTi
+In the
+Ronac
+Teoic
+3a > 637C
+{arselirztor
+Pjing;
+0zz7iirgic_
+divouday-Jrof
+ttar 576 rce
+Zmar
+CI P-
+Mads
+J70
+Rilza Cttrz Pizvidus
+Vmzn C37Dje-7e736
+tzrjinzezz
+Litar
+N-7e
+KOLC
+3SZ
+Cacac j
+308j
+Je"zodC
+Jittarf
+ECorzc
+376Wo7 ic
+Rarze
+czridi
+CongC
+T - n
+Fn a 
+6eZ3E
+Ts 7a
+Tamzimdzn
+TZp-zsenorzitzs7PIMnz
+61776
+T627}
+Vre 
+Vre
+
+--- PAGE 51 ---
+DAY TYPE
+Opzn witrl
+Tenm "z
+Neo_i
+PontazOz
+Bn. wih3z0 pjindajzu 
+JZtdejo
+Vll ikz ;
+Jitznc
+EC30--
+MormaCa
+Pricztogs
+Roc3th:
+Tiiatha
+No-ta
+Tot-ZE
+Normz
+'riaton
+Markz:
+pocarir
+Wue
+below J40portf- NEO
+350 point 38>w
+LNorm?
+COrme
+Icicz
+Ywhicn 6y3tha frttare:ofn3f12
+Tiaton Doy -
+Gozneitzref
+Mar
+15tnez
+OiGeCOCC
+tarze:af 212
+itenoin
+Trode Sctupl
+M-UP nanacos
+AeuoC
+Ciidzio
+Tzio
+7vi7oa78
+cjomge
+Nait -
+banths
+Farzz
+IBH-IBL
+Jumne_rzuminodan;
+VVEParth=
+KiT:
+Meuta Ca=
+Jenraz0with J7c
+Enva bnka].
+Gic Cac;cE
+Ta inabba bontadc
+31720
+tirjito
+#rivma
+Store
+Tankz
+Irsctot
+[amizidzekt
+Ouof
+Tmsoouriizn
+Mmcci
+CSS
+Suzzou
+JoContIrmz 7izr
+af-7e
+FieI_
+Tacjens
+Tzt I z2
+Olta IE
+cleiS
+Glrin
+Meutral Exbem
+CI Failej-JEEnC 
+BTida
+Dacan 737
+This 637 EXoziteja
+JOCt
+Lorb
+aC277-
+Ni-UpC:
+Ieijo "
+NE-CowDs
+ovI3L
+This 637
+ECi7
+TREND DAY STRUCTURE
+cinztarzz
+43taiahzecasrors 376 2 3C3 Dirzc7b7z
+Tovi (Nmzuzrzutrzez
+Uot7
+{CND 33 =
+TaTan
+CLorL
+Jct7c
+Trend Doy
+'0C
+Oocot
+TgC-
+Otorons
+Tamzt
+Tom'ZrE
+[72 -p
+Tou7 MErS=
+Structurz
+Ir 3z7o
+Estributedoz 
+CD.OTdORR
+Cortzizc
+0JoOui
+Kcm -2
+GETZrE
+UcicmITe
+Tanit cisnpitg
+KjCIid jnziz Zrirt
+Kiriiiio
+Dccit#do5s
+c-?
+Caubl
+"uisttnwtor
+Inizmi
+Poc
+OiOu
+IteN: OEy UF
+FSc mro
+Too7
+Nird:
+{nzle grrtomimietelo;=
+i, @4
+Nice
+Ma;
+Znnt trjncawn Mant:clozc 373  Ictdlis Bl  -
+3iza
+obiin-i
+Rana
+Ara
+Ara
+
+--- PAGE 52 ---
+DAY TYPE
+withi7 *ttz
+Neovj -4poine
+Bh with 350
+63301
+E7atztfejo >
+Jicccs
+'areztizi
+Latd 90*_
+TZ-Znsa
+EESISCZ
+Cormz
+CCtuit
+Warme
+rcztoeteneritc
+FOC oftha przfl
+T3Iaftha %3 :
+Aotamd
+Jtiznetortot
+GFTul
+Normz
+tigo7
+AERSE
+belov JJ0joiri-N:087:350 Fjin 37w2i Nora
+Mormal
+Oam
+MojZiazovz
+Jed
+Tzical Nnta
+Torts
+Jay (nif-evzthe
+frttarze: of 73f12
+Varigton Do; -
+3rokznzittzr I3F
+Manz-
+l5tnicha
+TongeCoro
+E-af 2i2
+IIB Extznsi-n
+rde >etupl
+NFUF
+'felorzaba
+243-M Jou"
+Erp 75
+Tne
+Dpjonte
+MatriCiiadi_iis
+Farsz
+Bl-B
+Cunne rzumzMdeazne eparthz
+itt=
+Icite
+MeutaLa
+GCTiRzc
+En bnRiz
+Lanzesiz]
+Ji Cent-tcTaImaieideiOgc
+33768_
+~rjsto
+Ith >  ZIM:
+I EE
+MCCini Zr
+3srar
+CJc Go5e
+Tamizt
+MovZ?
+Coc
+Markzt bzak
+Tarzz (Tc nourithin Mmzoiaz
+JZCi;
+ZUzzzovenJy Mov:azz
+JPzor z
+Itme nizr
+olotine
+FA 3378 7 Fap3678
+OIoIe
+GmE Secida a
+Cett
+EnTTem
+CFail
+Cuzim
+BITidj
+BCITId
+Ao-5
+TJi €
+ZXPictiie
+J0c_
+~nd
+Sieenas-
+NZC
+J77eejo = IpL
+ME-cinTD
+O5o
+EIi7
+TREND DAY STRUCTURE
+Trdin} Tarz?
+Taittcasrjrz 376 { Jojdirscto7a
+thmzuzhiuthi
+Vallt=
+{Cnd33 Z
+Mat TabF4_
+ALar LL_
+Tteno Voy
+POCt
+OoCT
+Tiddaof jrofla
+Tankzt €
+Conkznc
+atitzo
+Zoyn Man
+Aetnctiore
+nizrzr
+umogs
+Wifz f Ieriduejdzzt
+cor Ceceng
+OTo 00357
+~ocitadeio ^0
+Iozklik >7C
+ktras 7 distnbljar
+GZJb jnzlz grirt
+JC-Cown ifdonattzi
+JCUF
+Distibutio
+Intzr)
+Pocu
+ou
+Upanda bilza Tiare
+dou
+6ace
+Mar
+TJSCo7
+Wnzie JnrtomizMizteldr=
+Kelt
+Ricoeiiimar
+Tov LP Jrnz
+Gnmitom cou
+CogeCTEC
+3770
+DECci
+6aidt
+6idt
+
+--- PAGE 53 ---
+OTHER TYPE
+GncIC
+rofc
+clznizc
+nahjoy
+I7s J77
+Tatto
+Trziiizcintos
+Balonceddor
+Piaiios
+Mo7 Dus Je
+7767Menin3 ntly
+aztpz?ori _
+Ismi
+Ialyto Fil
+DcSda
+Gact-
+Cicaii7 Metimiti
+Ecdumotizrezcarumi
+ToS -
+TzI I7C
+2377e
+Mogcr7s
+P Shape
+I; Lar-%JilC
+D-Ston C3t7zgronla
+Ki bteabj
+Jwill
+RaeMiZdi djd [Jdto723e] PrTENEC EZ;cD7jetZc Ztearjleetzn Zecirztsrjre Nik
+Instom
+Lzor Lznz lz c 76jronie
+Natts;
+DiIito6-7iz- 7aj0 Dijneneisednjicerzc
+rakj Pjtanralk
+Ejinztz
+Tto7ejeJine
+P Shape
+Kizsg34Tankztt
+BzjnIaw
+Manz:
+Jnr 76376i~dc
+I Czcicithztzn]
+Baletea
+
+--- PAGE 54 ---
+OTHER TYPE
+Zea7czd Dijnis
+rofe
+tharactznzzz
+nahjoy
+rramtz "
+Tarzi
+Aciltosteinitg
+Balonceddor
+Paiios
+Mo7 Ds Je
+7767{cnin nyaoaztpz ori<Ou Zcvonz
+Ialyt? Fil
+DcSdamcsi
+JZtzinza
+MeXmiti
+actvey Czr zzdarzJrZ
+ToS -
+TzI [76 ZCTOm
+P Shape
+I; Lar-%JilC
+D-Stan Csi7zgronla
+Ki btvabj
+Jrwill
+RaeMiZdidjd [Jdt72323 PrTENEC EZ.cD7jetZc Ztearjleetzn Zeciretsrjrz Nik
+Isom
+Lzne lz 7ejromie
+Natts;
+DiIitof-7iz-{7aj0 Dijnenaisednjicerzc
+Pjtanralk
+Ejinztz
+Tto7ejeJine
+P Shape
+Ki:sg34Tankztt
+BzanIaw
+Manz:
+Jnr 76376i~dc
+I Czcicithztzn]
+Faret
+24t76
+Baletea
+
+--- PAGE 55 ---
+ORDER
+FLOW
+COURSEBY VISHNURGUPTHAN
+SGRMBE: SRINATH JHAAMATHAXO
+
+--- PAGE 56 ---
+ORDER
+FLOW
+COURSEBY VISHNURGUPTHAN
+SCRIBE; =
+INaTh JhaanaThIO
+
+--- PAGE 57 ---
+ORDER
+FLOW
+COURSEBY VISHNURGUPTHAN
+SGRMBE: SRINATH JHAAMATHAXO
+
+--- PAGE 58 ---
+ORDERFLOW (OF)
+Order Flow
+executed order
+Also provides a X-ray view
+cand
+revealing
+internal
+structure to help identify selling
+buying activity within the candle
+It can
+indicate the presence of aggressive sellers or buyers_
+a5 wellas passive orders
+(which are
+typically placed by large players using limit orders)  OF assistance
+identifying the Large
+Lot Players (LLP} The candle colors does not confirm whether it is buying or selling: OF
+contain DELTA
+ACCUMULATED DELTA, VOLUME; ad COT OF summaries executed order
+who put money on the table and we follow them.
+In the left side of the candle figures show the Sellers (BID) and the right side is
+Buyers (ASK):
+DELTA
+total
+number of buy
+total
+number of sell = Delta.
+Delta indicate
+passive trades (Locals}
+Cumulative
+Delta
+delta for the
+entire
+day:
+Positive
+delta
+mean
+buyers
+presence and
+negative delta is seller presence;
+The yellow strip or highlighted price
+indicating
+POC.
+Commitment of Traders COT high & Low:
+COMMITMENT OF TRADE (COt)
+COT indicates aggressive market activity; which can manifest a5 either aggressive selling
+buying_
+As scalpers, we need
+concentrate on these aggressive market movements.
+When COT is high which give high volume per second
+Delta at high called COT HIGH and Delta at
+ow called COT LOW:
+candle; the COT
+HIGH appeac
+at the high ofthe candl
+and the COT LOw
+ippears below in the candle:
+When
+COT
+HiGh
+and
+cOT LOw
+become positive
+it indicates
+aggressive
+buying
+emerging;
+conversely; on tne
+selling side, as both COT are negative_
+This coulo result
+in aggressive movements ofthe candle.
+The option must end with zero (0). Where ever there is
+zero that mean the
+option has ended or if open which is called Un Finished Business (UFB)
+COT has no importance
+last week of the month as ro
+over nappening
+tne market.
+PERSONALITY OF A SHORTTERM TRADER
+Over-commitmentto one side
+Late to tne party:
+Emotional decision-making
+Pied Piper Syndrome
+One big player makes
+move,
+and the crowd follows
+without realizing tney are walking straignt into
+trap. Hedze/prop using this to
+ute
+
+--- PAGE 59 ---
+ORDERFLOW (OF)
+Order Flow
+executed order Also provides an
+X-ray view
+cano
+revealing
+internal
+structure to hel
+dentify
+buying activity within the
+candle_
+It can
+indicate the presence of aggressive sellers or buyers, 35 wel
+as passive orders (which are
+typically placed by large players using limit orders)  OF assistance in identifying the Large
+Lot
+Players (LLP) The candle colors does not confirm whether it
+buying or selling: OF
+contain DELTA, ACCUMULATED DELTA, VOLUME, and COT OF summaries executed order
+who put money on the table and we follow them
+the left side of the candle figures show the Sellers (BID) and the right side is
+Buyers (ASK}:
+DELTA
+total
+number of buy
+total
+number of sell
+Delta.
+Delta indicate
+passive trades (Locals};
+Cumulative
+Delta
+delta for the
+entire
+day:
+Positive
+delta
+Fes
+ouyers
+presence and negative delta
+seller presence:
+The yellow strip or highlighted price
+indicating
+POC.
+Commitment of Traders COT high & Low:
+COMMITMENT OF TRADE (COT)
+COT indicates aggressive market activity; which can manifest as either aggressive selling
+buying
+As scalpers, we need
+concentrate
+on these aggressive
+marxet movements
+When COT
+high which give high volume per second_
+Delta at high called COT HIGH and Delta at
+ow called COT LOW: In
+candle; the COT
+HIGH appears at the high of the candle
+and the COT LOW
+ppears below in tne candle:
+When
+COT
+High
+and
+cOT LOw
+become positive,
+indicates
+aggressive
+buying
+emerging, and conversely; on the selling side, as both COT are negative_
+This could result
+in aggressive movements ofthe candle:
+The option must end with zero (0). Where eve=
+there isa zero that mean the
+ption has ended or if open which
+called Un Finished Business (UFB)
+COT has no importance
+last week of the month
+over
+happening
+the market:
+PERSONALITY OF A SHORTTERM TRADER
+Over-commitment to one side_
+Late
+the party-
+Emotional decision-ma
+Pied Piper Syndrome
+One big player makes
+move,
+and the crllyd follows
+without realizing they are wal
+straight into
+trap  Hedze/prop using this to
+Iure U5
+Rank::"-eaeOrer
+Eaiem
+Iling
+kinz
+lking
+
+--- PAGE 60 ---
+HOw TO START AVOIDING THIS
+Value area
+POC behavior: POC
+VA staying tignt means only
+ocals are
+play-
+Weak high
+ow: Smal
+range high and low rotations_
+SP & excess
+off presence
+Inventory imbalance: Mean reversion setup_
+POC merging
+POC moving with trend
+Move
+algned
+Avoid crowd against
+tne move_
+
+--- PAGE 61 ---
+pout the Autnor
+Author Name
+Tap
+click this placeholder text to add a
+author biography to your book Help readers
+earn More
+bout
+what makes you and your books interesting
+why they should
+pick Up your Dook
+
+--- PAGE 62 ---
+Author Name
+Tap
+click this placeholder text to add a
+autnor
+biography
+your book
+readers
+earn more about
+what makes you and your books interesting
+why they should
+pick up your book
+77a  -
+e
+8096
+of 42
+Help
+
+--- PAGE 63 ---
+Author Name
+Tap
+click this placeholder text to add a
+autnor
+biography
+your book Help readers
+earn more about
+what makes you and your books interesting
+why they should
+pick up your book
+Y0caaa
+

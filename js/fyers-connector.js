@@ -1,0 +1,444 @@
+// TradeBot Market Profile & Order Flow Analytics Hub - FYERS API Live Data Bridge & Automated OAuth Login
+// Supports automated OAuth 2.0 login redirect, SHA-256 AppIdHash token generation, REST Quotes, and AI simulation fallback
+
+class FyersConnector {
+  constructor() {
+    this.appId = sessionStorage.getItem("tb_fyers_app_id") || "";
+    this.secretId = sessionStorage.getItem("tb_fyers_secret_id") || "";
+    this.redirectUri = sessionStorage.getItem("tb_fyers_redirect_uri") || window.location.href.split("?")[0];
+    this.accessToken = sessionStorage.getItem("tb_fyers_access_token") || "";
+    this.isConnected = false;
+    this.pollTimer = null;
+    this.listeners = [];
+  }
+
+  init() {
+    this.setupUI();
+    
+    // Check if redirected back from Fyers OAuth login with ?code= or ?auth_code=
+    const urlParams = new URLSearchParams(window.location.search);
+    const authCode = urlParams.get("code") || urlParams.get("auth_code");
+    
+    if (authCode) {
+      console.log("⚡ FYERS OAuth Code detected in URL:", authCode);
+      // Clean URL bar without page reload
+      if (window.history && window.history.replaceState) {
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
+      this.validateAuthCode(authCode);
+    } else if (this.appId && this.accessToken) {
+      this.connect();
+    } else {
+      this.setDisconnectedState();
+    }
+  }
+
+  setupUI() {
+    // Add Fyers connection button to header if not already present
+    const headerActions = document.querySelector(".scanner-header-actions") || document.querySelector(".nav-container");
+    const existingBtn = document.getElementById("btn-fyers-status");
+    
+    if (!existingBtn && headerActions) {
+      const btn = document.createElement("button");
+      btn.id = "btn-fyers-status";
+      btn.className = "action-btn secondary";
+      btn.style.cssText = "padding:0.45rem 0.9rem; font-size:0.8rem; font-weight:700; display:flex; align-items:center; gap:0.5rem; border:1px solid var(--accent-cyan); background:rgba(0,240,255,0.08); color:#fff; border-radius:8px; cursor:pointer;";
+      btn.innerHTML = `<span class="fyers-indicator" style="width:10px; height:10px; border-radius:50%; background:var(--text-muted); display:inline-block;"></span> <span>⚫ FYERS: DISCONNECTED (CLICK TO CONNECT)</span>`;
+      
+      btn.addEventListener("click", () => this.openSettingsModal());
+      
+      if (headerActions.classList.contains("nav-container")) {
+        headerActions.appendChild(btn);
+      } else {
+        headerActions.insertBefore(btn, headerActions.firstChild);
+      }
+    }
+
+    // Add TPO Study Notes dictionary button if not present
+    const existingDictBtn = document.getElementById("btn-tpo-dict-navbar");
+    if (!existingDictBtn && headerActions) {
+      const dictBtn = document.createElement("button");
+      dictBtn.id = "btn-tpo-dict-navbar";
+      dictBtn.className = "action-btn secondary";
+      dictBtn.style.cssText = "padding:0.45rem 0.9rem; font-size:0.8rem; font-weight:700; display:flex; align-items:center; gap:0.5rem; border:1px solid var(--accent-purple); background:rgba(168,85,247,0.12); color:#fff; border-radius:8px; cursor:pointer; margin-left:0.5rem;";
+      dictBtn.innerHTML = `<i class="fa-solid fa-book-open-reader" style="color:var(--accent-purple);"></i> <span>TPO STUDY NOTES</span>`;
+      dictBtn.addEventListener("click", () => {
+        if (window.openTPODictionaryModal) window.openTPODictionaryModal();
+      });
+      if (headerActions.classList.contains("nav-container")) {
+        headerActions.appendChild(dictBtn);
+      } else {
+        headerActions.insertBefore(dictBtn, headerActions.firstChild);
+      }
+    }
+  }
+
+  updateStatusUI(status, text, color) {
+    const btn = document.getElementById("btn-fyers-status");
+    if (!btn) return;
+    
+    const indicator = btn.querySelector(".fyers-indicator");
+    const label = btn.querySelector("span:last-child");
+    
+    if (indicator) {
+      indicator.style.background = color;
+      indicator.style.boxShadow = `0 0 8px ${color}`;
+    }
+    if (label) {
+      label.textContent = `FYERS: ${text}`;
+    }
+    btn.style.borderColor = color;
+  }
+
+  async computeSHA256(text) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(text);
+    const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+    return hashHex;
+  }
+
+  openSettingsModal() {
+    let modal = document.getElementById("modal-fyers-settings");
+    if (!modal) {
+      modal = document.createElement("div");
+      modal.id = "modal-fyers-settings";
+      modal.className = "modal-backdrop active";
+      modal.innerHTML = `
+        <div class="modal-card" style="max-width:640px; background:var(--bg-secondary); border:1px solid var(--accent-cyan); border-radius:16px; padding:2rem; box-shadow:0 25px 60px rgba(0,0,0,0.9); max-height:90vh; overflow-y:auto;">
+          <div class="modal-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+            <div style="display:flex; align-items:center; gap:0.75rem;">
+              <i class="fa-solid fa-plug-circle-bolt" style="color:var(--accent-cyan); font-size:1.6rem;"></i>
+              <div>
+                <h3 style="color:#fff; font-size:1.3rem; margin:0;">FYERS API V3 Automated Login & Live Bridge</h3>
+                <span style="font-size:0.8rem; color:var(--text-muted);">Connect Fyers account via OAuth 2.0 automated login or manual token</span>
+              </div>
+            </div>
+            <button class="close-btn btn-close-fyers" style="background:none; border:none; color:var(--text-muted); font-size:1.5rem; cursor:pointer;">&times;</button>
+          </div>
+
+          <div style="background:rgba(0,240,255,0.05); border-left:3px solid var(--accent-cyan); padding:0.85rem 1rem; border-radius:8px; margin-bottom:1.5rem; font-size:0.85rem; color:#cbd5e1; line-height:1.5;">
+            <strong>⚡ Automated OAuth 2.0 Login:</strong> Enter your Fyers App ID & Secret ID below and click <strong>"Login with FYERS Portal"</strong>. TradeBot will redirect you to Fyers' secure login screen, catch the authorization code automatically upon return, and compute the SHA-256 AppIdHash to generate your live Access Token!
+          </div>
+
+          <!-- Option 1: Automated OAuth Login -->
+          <div style="background:rgba(0,0,0,0.35); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:1.25rem; margin-bottom:1.5rem;">
+            <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:1rem;">
+              <span class="badge cyan">Option 1</span>
+              <strong style="color:#fff; font-size:0.95rem;">🚀 Automated OAuth Login (Recommended)</strong>
+            </div>
+
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem; margin-bottom:1rem;">
+              <div class="form-group">
+                <label class="form-label" style="font-size:0.8rem; color:var(--text-muted); display:block; margin-bottom:0.35rem;">Fyers App ID (Client ID):</label>
+                <input type="text" id="fyers-app-id" class="form-control" placeholder="e.g. XC00000-100" value="${this.appId}" style="width:100%; padding:0.6rem 0.8rem; background:rgba(0,0,0,0.4); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:#fff; font-family:var(--font-mono); font-size:0.85rem;">
+              </div>
+              <div class="form-group">
+                <label class="form-label" style="font-size:0.8rem; color:var(--text-muted); display:block; margin-bottom:0.35rem;">Secret ID (App Secret):</label>
+                <input type="password" id="fyers-secret-id" class="form-control" placeholder="e.g. ABCDE12345" value="${this.secretId}" style="width:100%; padding:0.6rem 0.8rem; background:rgba(0,0,0,0.4); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:#fff; font-family:var(--font-mono); font-size:0.85rem;">
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom:1.25rem;">
+              <label class="form-label" style="font-size:0.8rem; color:var(--text-muted); display:block; margin-bottom:0.35rem;">Redirect URI (Must match Fyers App Dashboard):</label>
+              <input type="text" id="fyers-redirect-uri" class="form-control" value="${this.redirectUri}" style="width:100%; padding:0.6rem 0.8rem; background:rgba(0,0,0,0.4); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:#cbd5e1; font-family:var(--font-mono); font-size:0.8rem;">
+            </div>
+
+            <button type="button" id="btn-fyers-oauth-login" class="action-btn" style="width:100%; justify-content:center; background:linear-gradient(135deg, var(--accent-cyan), #0099ff); color:#000; font-weight:800; padding:0.75rem; border-radius:8px; box-shadow:0 0 18px rgba(0,240,255,0.35); cursor:pointer;">
+              <i class="fa-solid fa-arrow-right-to-bracket"></i> ⚡ Login with FYERS Portal ↗
+            </button>
+          </div>
+
+          <!-- Option 2: Manual Token Paste -->
+          <form id="form-fyers-config" style="background:rgba(0,0,0,0.35); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:1.25rem;">
+            <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.85rem;">
+              <span class="badge amber">Option 2</span>
+              <strong style="color:#fff; font-size:0.95rem;">🔑 Manual Token Paste (Fallback)</strong>
+            </div>
+
+            <div class="form-group" style="margin-bottom:1.25rem;">
+              <label class="form-label" style="font-size:0.8rem; color:var(--text-muted); display:block; margin-bottom:0.35rem;">Fyers V3 Access Token / JWT:</label>
+              <textarea id="fyers-access-token" class="form-control" rows="2" placeholder="Paste your existing Fyers JWT access token here..." style="width:100%; padding:0.6rem 0.8rem; background:rgba(0,0,0,0.4); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:#fff; font-family:var(--font-mono); font-size:0.75rem;">${this.accessToken}</textarea>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:1rem;">
+              <button type="button" id="btn-fyers-disconnect" class="action-btn secondary" style="flex:1; justify-content:center; border-color:var(--bearish-red); color:var(--bearish-red); padding:0.65rem;">
+                <i class="fa-solid fa-power-off"></i> Disconnect / AI Sim
+              </button>
+              <button type="submit" class="action-btn" style="flex:1; justify-content:center; background:var(--bullish-green); color:#000; font-weight:700; padding:0.65rem;">
+                <i class="fa-solid fa-link"></i> Save & Connect Live
+              </button>
+            </div>
+          </form>
+        </div>
+      `;
+      document.body.appendChild(modal);
+
+      modal.querySelector(".btn-close-fyers").addEventListener("click", () => {
+        modal.classList.remove("active");
+      });
+
+      modal.querySelector("#btn-fyers-disconnect").addEventListener("click", () => {
+        this.disconnect();
+        modal.classList.remove("active");
+        if (window.app) window.app.showToast("Fyers Disconnected", "Switched to AI High-Frequency Simulation Mode.");
+      });
+
+      // OAuth Login Trigger
+      modal.querySelector("#btn-fyers-oauth-login").addEventListener("click", () => {
+        this.startOAuthLogin();
+      });
+
+      // Manual Token Submit
+      modal.querySelector("#form-fyers-config").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const appIdInput = document.getElementById("fyers-app-id").value.trim();
+        const secretIdInput = document.getElementById("fyers-secret-id").value.trim();
+        const tokenInput = document.getElementById("fyers-access-token").value.trim();
+        
+        this.appId = appIdInput;
+        this.secretId = secretIdInput;
+        this.accessToken = tokenInput;
+        
+        sessionStorage.setItem("tb_fyers_app_id", this.appId);
+        sessionStorage.setItem("tb_fyers_secret_id", this.secretId);
+        sessionStorage.setItem("tb_fyers_access_token", this.accessToken);
+        
+        modal.classList.remove("active");
+        if (this.appId && this.accessToken) {
+          this.connect();
+          if (window.app) window.app.showToast("Connecting FYERS API...", `Authenticating App ID: ${this.appId}`);
+        } else {
+          this.startHybridSimulation();
+        }
+      });
+    } else {
+      modal.classList.add("active");
+    }
+  }
+
+  startOAuthLogin() {
+    const appIdInput = document.getElementById("fyers-app-id").value.trim();
+    const secretIdInput = document.getElementById("fyers-secret-id").value.trim();
+    const redirectInput = document.getElementById("fyers-redirect-uri").value.trim() || window.location.href.split("?")[0];
+    
+    if (!appIdInput || !secretIdInput) {
+      if (window.app) window.app.showToast("⚠️ Missing Credentials", "Please enter your Fyers App ID and Secret ID for automated login.");
+      return;
+    }
+
+    this.appId = appIdInput;
+    this.secretId = secretIdInput;
+    this.redirectUri = redirectInput;
+    
+    sessionStorage.setItem("tb_fyers_app_id", this.appId);
+    sessionStorage.setItem("tb_fyers_secret_id", this.secretId);
+    sessionStorage.setItem("tb_fyers_redirect_uri", this.redirectUri);
+
+    // Fyers V3 OAuth Authorization URL
+    const authUrl = `https://api-t1.fyers.in/api/v3/generate-authcode?client_id=${encodeURIComponent(this.appId)}&redirect_uri=${encodeURIComponent(this.redirectUri)}&response_type=code&state=tradebot_auto_login`;
+    
+    if (window.app) window.app.showToast("⚡ Redirecting to FYERS Portal...", "Please complete secure login on Fyers.");
+    
+    setTimeout(() => {
+      window.location.href = authUrl;
+    }, 800);
+  }
+
+  async validateAuthCode(authCode) {
+    if (!this.appId || !this.secretId) {
+      this.appId = sessionStorage.getItem("tb_fyers_app_id") || "";
+      this.secretId = sessionStorage.getItem("tb_fyers_secret_id") || "";
+    }
+    
+    if (!this.appId || !this.secretId) {
+      if (window.app) window.app.showToast("⚠️ Missing Secret ID", "Cannot validate auth code without App ID & Secret ID. Please check Fyers settings.");
+      this.openSettingsModal();
+      return;
+    }
+
+    this.updateStatusUI("authenticating", "VALIDATING LOGIN...", "var(--neutral-amber)");
+    if (window.app) window.app.showToast("⚡ Validating Auth Code...", "Computing SHA-256 AppIdHash & exchanging token with Fyers API...");
+
+    try {
+      // Compute SHA-256 hash of appId:secretId required by Fyers V3
+      const sha256Hash = await this.computeSHA256(`${this.appId}:${this.secretId}`);
+      
+      const response = await fetch("https://api-t1.fyers.in/api/v3/validate-authcode", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          grant_type: "authorization_code",
+          appIdHash: sha256Hash,
+          code: authCode
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP Error ${response.status}`);
+      }
+
+      const data = await response.json();
+      if (data && (data.s === "ok" || data.access_token)) {
+        this.accessToken = data.access_token;
+        sessionStorage.setItem("tb_fyers_access_token", this.accessToken);
+        
+        if (window.app) window.app.showToast("🟢 AUTO-LOGIN SUCCESSFUL!", "Live Fyers Access Token generated and saved.");
+        this.connect();
+      } else {
+        throw new Error(data.message || "Invalid auth code response from Fyers");
+      }
+    } catch (err) {
+      console.warn("⚠️ Fyers OAuth validation error or browser CORS block:", err.message);
+      if (window.app) window.app.showToast("⚠️ OAuth Notice", `CORS/Network error: ${err.message}. Please check Fyers settings.`);
+      this.openSettingsModal();
+      this.setDisconnectedState();
+    }
+  }
+
+  connect() {
+    this.stopSimulation();
+    this.updateStatusUI("connecting", "CONNECTING...", "var(--neutral-amber)");
+
+    // Test REST API call to verify token
+    const testSymbols = "NSE:RELIANCE-EQ,NSE:NIFTY50-INDEX,MCX:CRUDEOIL24JULFUT";
+    const url = `https://api.fyers.in/data-rest/v2/quotes/?symbols=${encodeURIComponent(testSymbols)}`;
+
+    fetch(url, {
+      method: "GET",
+      headers: {
+        "Authorization": `${this.appId}:${this.accessToken}`,
+        "Content-Type": "application/json"
+      }
+    })
+    .then(response => {
+      if (!response.ok) throw new Error(`HTTP Error ${response.status}`);
+      return response.json();
+    })
+    .then(data => {
+      if (data && data.s === "ok" && data.d) {
+        this.isConnected = true;
+        this.isSimulationMode = false;
+        this.updateStatusUI("connected", "LIVE FEED CONNECTED", "var(--bullish-green)");
+        if (window.app) window.app.showToast("🟢 FYERS API LIVE", "Real-time institutional streaming active.");
+        this.startLivePolling();
+      } else {
+        throw new Error("Invalid Fyers response format or expired token");
+      }
+    })
+    .catch(err => {
+      console.warn("⚠️ FYERS API Connection Error or CORS block:", err.message);
+      this.isConnected = false;
+      this.setDisconnectedState("Fyers API offline or disconnected. Showing accurate last closed market prices.");
+      if (window.app) window.app.showToast("⚫ FYERS DISCONNECTED", "Fyers API offline/CORS fallback. Showing accurate last closed market prices.");
+    });
+  }
+
+  disconnect() {
+    this.appId = "";
+    this.secretId = "";
+    this.accessToken = "";
+    sessionStorage.removeItem("tb_fyers_app_id");
+    sessionStorage.removeItem("tb_fyers_secret_id");
+    sessionStorage.removeItem("tb_fyers_access_token");
+    this.setDisconnectedState("Fyers disconnected. Showing accurate last closed market prices.");
+  }
+
+  startLivePolling() {
+    this.stopLivePolling();
+    this.pollTimer = setInterval(() => {
+      if (!this.isConnected) return;
+      this.fetchLiveQuotes();
+    }, 2500);
+  }
+
+  stopLivePolling() {
+    if (this.pollTimer) clearInterval(this.pollTimer);
+  }
+
+  setDisconnectedState(message = "Fyers disconnected. Showing accurate last closed market prices.") {
+    this.stopLivePolling();
+    this.isConnected = false;
+    this.updateStatusUI("disconnected", "⚫ FYERS: DISCONNECTED", "var(--text-muted)");
+    if (message) {
+      console.log(message);
+    }
+  }
+
+  getAllStocks() {
+    if (window.liveScanner && window.liveScanner.stocks && window.liveScanner.stocks.length > 0) {
+      return window.liveScanner.stocks;
+    }
+    return [];
+  }
+
+  fetchLiveQuotes() {
+    // Collect all unique Fyers symbols from our universe
+    const allStocks = this.getAllStocks();
+
+    const symbols = [...new Set(allStocks.map(s => s.fyersSymbol || s.tvTicker || `NSE:${s.ticker}-EQ`).filter(Boolean))];
+    if (symbols.length === 0) return;
+
+    // Batch in groups of 50
+    const batchSymbols = symbols.slice(0, 50).join(",");
+    const url = `https://api.fyers.in/data-rest/v2/quotes/?symbols=${encodeURIComponent(batchSymbols)}`;
+
+    fetch(url, {
+      method: "GET",
+      headers: {
+        "Authorization": `${this.appId}:${this.accessToken}`,
+        "Content-Type": "application/json"
+      }
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data && data.s === "ok" && data.d) {
+        data.d.forEach(item => {
+          if (item && item.v) {
+            this.broadcastQuoteUpdate(item.n, item.v.lp, item.v.ch, item.v.chp, item.v.volume);
+          }
+        });
+      }
+    })
+    .catch(err => {
+      console.warn("Live poll error, falling back to disconnected state:", err.message);
+      this.isConnected = false;
+      this.setDisconnectedState();
+    });
+  }
+
+  broadcastQuoteUpdate(fyersSymbol, lastPrice, change, changePercent, volume) {
+    const allStocks = this.getAllStocks();
+
+    const stock = allStocks.find(s => s.fyersSymbol === fyersSymbol || s.tvTicker === fyersSymbol || `NSE:${s.ticker}-EQ` === fyersSymbol || s.ticker === fyersSymbol);
+    if (stock) {
+      stock.cmp = parseFloat(lastPrice).toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      stock.change = `${change >= 0 ? "+" : ""}${change.toFixed(2)}`;
+      stock.percent = `${changePercent >= 0 ? "+" : ""}${changePercent.toFixed(2)}%`;
+      stock.status = change >= 0 ? "up" : "down";
+      
+      if (window.aiProcessingEngine) {
+        window.aiProcessingEngine.processSymbol(stock);
+      }
+      this.notifyListeners(stock);
+      if (window.app) {
+        if (stock.category === "Index") window.app.renderTickers();
+        if (stock.category === "Swing") window.app.renderSwingTrades();
+        if (stock.category === "Long Term") window.app.renderLongTermPicks();
+      }
+    }
+  }
+
+  subscribe(callback) {
+    if (typeof callback === "function") {
+      this.listeners.push(callback);
+    }
+  }
+
+  notifyListeners(updatedStock) {
+    this.listeners.forEach(cb => cb(updatedStock));
+  }
+}

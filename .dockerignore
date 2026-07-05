@@ -1,0 +1,18 @@
+# Git
+.git
+.gitignore
+
+# Ide & System
+.gemini
+.system_generated
+node_modules
+*.log
+*.tmp
+scratch/
+test.txt
+
+# Large Media & PDF files (Not needed for web app runtime)
+*.pdf
+*.mp4
+*.avi
+*.mkv

@@ -1,0 +1,80 @@
+[
+    {
+        "id": "mp01",
+        "num": "01",
+        "title": "Prologue & Core Philosophy",
+        "overview": "Introduction to Market Profile (TPO), origins by Peter Steidlmayer, behavioral concepts by Jim Dalton, and the synergy between Market Profile and Order Flow analysis.",
+        "content": "<div class=\"callout purple\" style=\"margin-bottom:32px;\">\n    <h5 style=\"font-size:1.3rem; margin-bottom:8px;\">\ud83d\udcd6 Module 01 Course Bible: The Auction Market Theory</h5>\n    <p class=\"tb\">Market Profile (MP), also known as TPO (Time, Price, and Opportunity), was conceived by Peter Steidlmayer at the CBOT in the early 1980s. It visualizes market activity as a continuous two-way auction where buyers and sellers negotiate fair value through price discovery.</p>\n</div>\n\n<h2 class=\"sh\">1. Evolution of Market Profile</h2>\n<p class=\"tb\">Popularized and refined by Jim Dalton (author of <em>Mind Over Markets</em> and <em>Markets in Profile</em>), MP provides a behavioral and psychological framework for reading market intent. Rather than merely viewing price movement, traders observe price acceptance, value areas, and volume distribution.</p>\n<ul class=\"bl\" style=\"margin-bottom:24px;\">\n    <li><strong>Price vs. Value:</strong> Price advertises opportunity; volume and time confirm fair value.</li>\n    <li><strong>Noise Reduction:</strong> Filters out short-term tick volatility to reveal structural intent.</li>\n</ul>\n\n<h2 class=\"sh\">2. Synergy with Order Flow</h2>\n<p class=\"tb\">According to Vishnu R Gupthan, combining Market Profile with Order Flow creates a dual-layer view tailored for dynamic options buying and swing trading:</p>\n<table class=\"ct\">\n    <thead>\n        <tr><th>Dimension</th><th>Market Profile (Macro)</th><th>Order Flow (Micro)</th></tr>\n    </thead>\n    <tbody>\n        <tr><td>Role</td><td>Defines WHERE trading activity & value are developing.</td><td>Reveals HOW execution unfolds in real time at the tape.</td></tr>\n        <tr><td>Key Metrics</td><td>TPOs, Value Area (VA), Point of Control (POC).</td><td>Delta, Cumulative Delta, Bid/Ask imbalances.</td></tr>\n        <tr><td>Strategic Edge</td><td>Structure identification & risk-to-reward mapping.</td><td>Precise entry timing & breakout validation.</td></tr>\n    </tbody>\n</table>",
+        "read_mins": 25,
+        "files": [],
+        "vtt": 0,
+        "pdf": 1,
+        "nb": 0,
+        "py": 0
+    },
+    {
+        "id": "mp02",
+        "num": "02",
+        "title": "Basics of Market Profile Structure",
+        "overview": "Detailed breakdown of 30-minute TPO letters, session timing brackets, Initial Balance (IB), Point of Control (POC), and Value Area (VA).",
+        "content": "<div class=\"callout purple\" style=\"margin-bottom:32px;\">\n    <h5 style=\"font-size:1.3rem; margin-bottom:8px;\">\ud83d\udcd6 Module 02 Course Bible: TPO Building Blocks</h5>\n    <p class=\"tb\">Each 30-minute window of the trading session is represented by a specific letter. Tracking how letters stack at each price level reveals value concentration and institutional involvement.</p>\n</div>\n\n<h2 class=\"sh\">1. Session Brackets & Time Periods</h2>\n<p class=\"tb\">For the Indian market (9:15 AM to 3:30 PM), the session is divided into 30-minute brackets starting from letter <strong>A</strong> and ending at <strong>M</strong>:</p>\n<ul class=\"bl\" style=\"margin-bottom:24px;\">\n    <li><strong>A Period (09:15 - 09:45):</strong> The ACTION period. Characterized by highest volume and volatility.</li>\n    <li><strong>B Period (09:45 - 10:15):</strong> The BALANCED ACTION period. Combined with A period to establish Initial Balance.</li>\n    <li><strong>C Period (10:15 - 10:45):</strong> The CHEATING period. Often tests morning range extremes before reversing.</li>\n    <li><strong>D & E Periods (10:45 - 11:45):</strong> Directional continuation and extension periods.</li>\n    <li><strong>G Period (12:15 - 12:45):</strong> Gain importance on gap days; decides whether gap fills or trend continues.</li>\n    <li><strong>H Period (12:45 - 13:15):</strong> The HAMMER period. Option writers adjust strikes creating sudden spikes.</li>\n    <li><strong>J Period (13:45 - 14:15):</strong> The JOKER period. Rapid reversals occur if new highs/lows fail.</li>\n    <li><strong>K Period (14:15 - 14:45):</strong> The KILL period. Feared by intraday traders due to aggressive \"zero-to-hero\" moves.</li>\n</ul>\n\n<h2 class=\"sh\">2. Core Structural References</h2>\n<div class=\"callout tip\">\n    <h5>Initial Balance (IB)</h5>\n    <p class=\"tb\">The range established during the first hour (A + B periods, 09:15 - 10:15). A wide IB (~400 pts in BankNifty) indicates balance; a narrow IB (<150 pts) favors trend extensions.</p>\n</div>\n<p class=\"tb\"><strong>Point of Control (POC):</strong> The price level with the highest TPO count (most time spent). Represents the fairest price agreed upon by buyers and sellers.<br><strong>Value Area (VA):</strong> The price range encompassing roughly 68% of the day's trading volume/TPOs between Value Area High (VAH) and Value Area Low (VAL).</p>",
+        "read_mins": 35,
+        "files": [],
+        "vtt": 0,
+        "pdf": 1,
+        "nb": 0,
+        "py": 0
+    },
+    {
+        "id": "mp03",
+        "num": "03",
+        "title": "Structural Anomalies & References",
+        "overview": "Mastering Singles, Excess, Single Prints (SP), Poor Highs/Lows, Failed Auctions (FA), and Range Extensions (RE).",
+        "content": "<div class=\"callout purple\" style=\"margin-bottom:32px;\">\n    <h5 style=\"font-size:1.3rem; margin-bottom:8px;\">\ud83d\udcd6 Module 03 Course Bible: Reading Profile Anomalies</h5>\n    <p class=\"tb\">Anomalies in the profile reveal emotional buying/selling, incomplete auctions, and institutional exhaustion zones.</p>\n</div>\n\n<h2 class=\"sh\">1. Single Prints & Excess</h2>\n<p class=\"tb\"><strong>Excess:</strong> Single TPO letters at the extreme top or bottom of a profile acting like candlestick wicks. Signifies strong rejection and end of an auction.<br><strong>Single Prints (SP):</strong> Single letters occurring inside the profile body after the Initial Balance. Represents emotional displacement or liquidity gaps that act as future support/resistance zones.</p>\n\n<h2 class=\"sh\">2. Poor Highs/Lows & Failed Auctions</h2>\n<pre><code># Poor High / Poor Low (PH/PL):\nWhen 2 or more TPO letters share the exact same top or bottom boundary without excess.\nIndicates lack of auction completion and high probability of future retest.\n\n# Failed Auction (FA):\nPrice breaks outside IB but closes back inside within 30 minutes.\nTarget = Opposite side of the profile within T+7 trading days.</code></pre>",
+        "read_mins": 40,
+        "files": [],
+        "vtt": 0,
+        "pdf": 1,
+        "nb": 0,
+        "py": 0
+    },
+    {
+        "id": "mp04",
+        "num": "04",
+        "title": "Market Open Types & Checklists",
+        "overview": "Comprehensive classification of Open Drive (OD), Open Test Drive (OTD), Open Rejection Reverse (ORR), and Open Auction rules.",
+        "content": "<div class=\"callout purple\" style=\"margin-bottom:32px;\">\n    <h5 style=\"font-size:1.3rem; margin-bottom:8px;\">\ud83d\udcd6 Module 04 Course Bible: The Morning Open Dynamics</h5>\n    <p class=\"tb\">The open is the most crucial phase of the trading day. Classifying the open type within the first 30 minutes establishes directional conviction.</p>\n</div>\n\n<h2 class=\"sh\">1. Open Types Breakdown</h2>\n<table class=\"ct\">\n    <thead>\n        <tr><th>Open Type</th><th>Behavior</th><th>Trading Strategy</th></tr>\n    </thead>\n    <tbody>\n        <tr><td><strong>Open Drive (OD)</strong></td><td>Immediate aggressive directional movement from the opening bell with no retracement.</td><td>Sit tight and go with the move. High volume and trend conviction.</td></tr>\n        <tr><td><strong>Open Test Drive (OTD)</strong></td><td>Initial small test toward a reference point (VAL/POC), rejects, then drives aggressively in opposite direction.</td><td>Enter on breakout of opening range after successful test.</td></tr>\n        <tr><td><strong>Open Rejection Reverse (ORR)</strong></td><td>Opens, pushes in one direction, meets strong rejection at key level, and reverses beyond opening price.</td><td>B period reversal is key. Hold position if volume supports reversal.</td></tr>\n        <tr><td><strong>Open Auction (OAIR / OAOR)</strong></td><td>Rotates back and forth inside or outside previous range without clear directional conviction.</td><td>Scalping strategy (10 points). Expect mean reversion to daily POC.</td></tr>\n    </tbody>\n</table>",
+        "read_mins": 35,
+        "files": [],
+        "vtt": 0,
+        "pdf": 1,
+        "nb": 0,
+        "py": 0
+    },
+    {
+        "id": "mp05",
+        "num": "05",
+        "title": "Day Types & Profile Shapes",
+        "overview": "Identifying Normal Days, Normal Variation Days, Trend Days, Neutral Days, Double Distribution Days, and P/b Profile shapes.",
+        "content": "<div class=\"callout purple\" style=\"margin-bottom:32px;\">\n    <h5 style=\"font-size:1.3rem; margin-bottom:8px;\">\ud83d\udcd6 Module 05 Course Bible: Structural Classification of Day Types</h5>\n    <p class=\"tb\">Recognizing day types early permits traders to align take-profit targets and stop-loss placement with expected range volatility.</p>\n</div>\n\n<h2 class=\"sh\">1. Core Day Types</h2>\n<ul class=\"bl\" style=\"margin-bottom:24px;\">\n    <li><strong>Normal Day:</strong> Wide IB (~85% of range). Price stays inside IB; balance day.</li>\n    <li><strong>Normal Variation Day (NVD):</strong> Base IB disrupted after 10:15 AM. Range extends ~1.5x to 2x of IB.</li>\n    <li><strong>Trend Day:</strong> Steady one-sided directional drive. Higher highs/lows with elongated profile and multiple single prints.</li>\n    <li><strong>Neutral Day:</strong> Both IB High and IB Low are broken in the same session. Close determines conviction.</li>\n    <li><strong>Double Distribution Day (DD):</strong> Two distinct balance zones separated by single prints.</li>\n</ul>\n\n<h2 class=\"sh\">2. Asymmetric Profile Shapes</h2>\n<p class=\"tb\"><strong>P-Shape Profile:</strong> Long single print tail at bottom with thick bulge at top. Indicates short covering or aggressive buying.<br><strong>b-Shape Profile:</strong> Long single print tail at top with bulge at bottom. Signifies long liquidation or aggressive shorting.</p>",
+        "read_mins": 45,
+        "files": [],
+        "vtt": 0,
+        "pdf": 1,
+        "nb": 0,
+        "py": 0
+    },
+    {
+        "id": "mp06",
+        "num": "06",
+        "title": "Order Flow Analysis & Commitment of Trade",
+        "overview": "X-raying candlesticks using Order Flow, Delta, Cumulative Delta, and identifying large institutional participation via COT.",
+        "content": "<div class=\"callout purple\" style=\"margin-bottom:32px;\">\n    <h5 style=\"font-size:1.3rem; margin-bottom:8px;\">\ud83d\udcd6 Module 06 Course Bible: Tape Reading & Order Flow</h5>\n    <p class=\"tb\">Order Flow execution reveals internal candle dynamics, separating passive limit orders from aggressive market execution.</p>\n</div>\n\n<h2 class=\"sh\">1. Order Flow Mechanics</h2>\n<ul class=\"bl\" style=\"margin-bottom:24px;\">\n    <li><strong>Footprint Chart:</strong> Left side displays Sellers (BID); Right side displays Buyers (ASK).</li>\n    <li><strong>Delta:</strong> Total Buy Volume minus Total Sell Volume per candle. Positive Delta indicates aggressive buyers.</li>\n    <li><strong>Cumulative Delta (COD):</strong> Running total of Delta throughout the session. Divergences between price and COD signal exhaustion.</li>\n</ul>\n\n<h2 class=\"sh\">2. Commitment of Trade (COT) & Trader Psychology</h2>\n<pre><code># COT High & COT Low:\nAggressive market activity generating high volume per second.\nWhen COT High coincides with candle high and positive Delta = Strong Institutional Buying.\n\n# Avoiding Short-Term Trader Traps:\n- Avoid over-commitment to one side.\n- Watch out for Pied Piper Syndrome (following the crowd straight into a trap).\n- Do not initiate trades against trend momentum during high-volume extensions.</code></pre>",
+        "read_mins": 40,
+        "files": [],
+        "vtt": 0,
+        "pdf": 1,
+        "nb": 0,
+        "py": 0
+    }
+]
