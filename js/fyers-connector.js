@@ -150,10 +150,32 @@ class FyersConnector {
             </button>
           </div>
 
-          <!-- Option 2: Manual Token Paste -->
+          <!-- Option 2: Auth Code Exchange (paste auth_code from URL after Fyers redirect) -->
+          <div style="background:rgba(0,0,0,0.35); border:1px solid rgba(0,240,255,0.2); border-radius:12px; padding:1.25rem; margin-bottom:1.5rem;">
+            <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.75rem;">
+              <span class="badge cyan">Option 2</span>
+              <strong style="color:#fff; font-size:0.95rem;">🔗 Auth Code Exchange</strong>
+            </div>
+            <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:1rem; line-height:1.5;">
+              After clicking "Login with FYERS Portal" above, Fyers redirects you back to this page with a URL like:<br>
+              <code style="font-size:0.75rem; color:var(--accent-cyan); background:rgba(0,0,0,0.4); padding:0.2rem 0.5rem; border-radius:4px;">http://localhost:8000?s=ok&<strong>auth_code=xxxxxxxxxx</strong>&state=...</code><br>
+              Copy the <strong style="color:var(--accent-cyan);">auth_code</strong> value from that URL and paste it below to exchange it for your live access token.
+            </p>
+            <div style="display:flex; gap:0.75rem; align-items:flex-end;">
+              <div class="form-group" style="flex:1; margin:0;">
+                <label class="form-label" style="font-size:0.8rem; color:var(--text-muted); display:block; margin-bottom:0.35rem;">Auth Code (from Fyers redirect URL):</label>
+                <input type="text" id="fyers-auth-code-input" class="form-control" placeholder="Paste auth_code from URL here..." style="width:100%; padding:0.6rem 0.8rem; background:rgba(0,0,0,0.4); border:1px solid var(--accent-cyan); border-radius:8px; color:#fff; font-family:var(--font-mono); font-size:0.82rem;">
+              </div>
+              <button type="button" id="btn-fyers-exchange-code" class="action-btn" style="white-space:nowrap; background:var(--accent-cyan); color:#000; font-weight:800; padding:0.6rem 1.2rem; border-radius:8px; cursor:pointer; flex-shrink:0;">
+                <i class="fa-solid fa-key"></i> Exchange for Token
+              </button>
+            </div>
+          </div>
+
+          <!-- Option 3: Manual Token Paste -->
           <form id="form-fyers-config" style="background:rgba(0,0,0,0.35); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:1.25rem;">
             <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.85rem;">
-              <span class="badge amber">Option 2</span>
+              <span class="badge amber">Option 3</span>
               <strong style="color:#fff; font-size:0.95rem;">🔑 Manual Token Paste (Fallback)</strong>
             </div>
 
@@ -188,6 +210,34 @@ class FyersConnector {
       // OAuth Login Trigger
       modal.querySelector("#btn-fyers-oauth-login").addEventListener("click", () => {
         this.startOAuthLogin();
+      });
+
+      // Auth Code Exchange Trigger (Option 2)
+      modal.querySelector("#btn-fyers-exchange-code").addEventListener("click", async () => {
+        const authCodeInput = document.getElementById("fyers-auth-code-input").value.trim();
+        const appIdInput = document.getElementById("fyers-app-id").value.trim();
+        const secretIdInput = document.getElementById("fyers-secret-id").value.trim();
+        const redirectInput = document.getElementById("fyers-redirect-uri").value.trim() || window.location.href.split("?")[0];
+
+        if (!authCodeInput) {
+          if (window.app) window.app.showToast("⚠️ Missing Auth Code", "Please paste the auth_code from the Fyers redirect URL.");
+          return;
+        }
+        if (!appIdInput || !secretIdInput) {
+          if (window.app) window.app.showToast("⚠️ Missing Credentials", "Please fill in App ID and Secret ID in Option 1 above first.");
+          return;
+        }
+
+        // Save credentials to sessionStorage so validateAuthCode can read them
+        this.appId = appIdInput;
+        this.secretId = secretIdInput;
+        this.redirectUri = redirectInput;
+        sessionStorage.setItem("tb_fyers_app_id", this.appId);
+        sessionStorage.setItem("tb_fyers_secret_id", this.secretId);
+        sessionStorage.setItem("tb_fyers_redirect_uri", this.redirectUri);
+
+        modal.classList.remove("active");
+        await this.validateAuthCode(authCodeInput);
       });
 
       // Manual Token Submit
