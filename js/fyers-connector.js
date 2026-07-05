@@ -263,27 +263,44 @@ class FyersConnector {
     if (window.app) window.app.showToast("⚡ Validating Auth Code...", "Computing SHA-256 AppIdHash & exchanging token with Fyers API...");
 
     try {
+      // Ensure redirectUri is set
+      if (!this.redirectUri) {
+        this.redirectUri = sessionStorage.getItem("tb_fyers_redirect_uri") || window.location.href.split("?")[0];
+      }
+
       // Compute SHA-256 hash of appId:secretId as required by Fyers V3
       const sha256Hash = await this.computeSHA256(`${this.appId}:${this.secretId}`);
-      
+
+      const payload = {
+        grant_type: "authorization_code",
+        appIdHash: sha256Hash,
+        code: authCode,
+        redirect_uri: this.redirectUri   // REQUIRED — must exactly match Fyers App Dashboard
+      };
+
+      console.log("📡 Fyers /token request payload:", {
+        grant_type: payload.grant_type,
+        appIdHash: sha256Hash.slice(0, 12) + "...",   // partial for security
+        code: authCode.slice(0, 8) + "...",
+        redirect_uri: payload.redirect_uri
+      });
+
       // Correct Fyers V3 token exchange endpoint
       const response = await fetch("https://api-t1.fyers.in/api/v3/token", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({
-          grant_type: "authorization_code",
-          appIdHash: sha256Hash,
-          code: authCode
-        })
+        body: JSON.stringify(payload)
       });
 
+      const data = await response.json();
+      console.log("📡 Fyers /token raw response:", data);
+
       if (!response.ok) {
-        throw new Error(`HTTP ${response.status} — Token exchange failed`);
+        throw new Error(`HTTP ${response.status} — ${data?.message || data?.errmsg || "Token exchange failed"}`);
       }
 
-      const data = await response.json();
       if (data && (data.s === "ok" || data.access_token)) {
         this.accessToken = data.access_token;
         sessionStorage.setItem("tb_fyers_access_token", this.accessToken);
