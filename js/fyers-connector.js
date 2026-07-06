@@ -459,7 +459,13 @@ class FyersConnector {
 
   fetchLiveQuotes() {
     const allStocks = this.getAllStocks();
-    const symbols = [...new Set(allStocks.map(s => s.fyersSymbol || s.tvTicker || `NSE:${s.ticker}-EQ`).filter(Boolean))];
+    const symbols = [
+      ...new Set(
+        allStocks
+          .map(s => s.fyersSymbol)           // only use explicit fyersSymbol — never guess
+          .filter(sym => sym && sym !== "undefined" && !sym.includes("undefined"))
+      )
+    ];
     if (symbols.length === 0) {
       console.log("[FYERS] fetchLiveQuotes: no symbols to poll");
       return;
@@ -497,22 +503,35 @@ class FyersConnector {
   broadcastQuoteUpdate(fyersSymbol, lastPrice, change, changePercent, volume) {
     const allStocks = this.getAllStocks();
 
-    const stock = allStocks.find(s => s.fyersSymbol === fyersSymbol || s.tvTicker === fyersSymbol || `NSE:${s.ticker}-EQ` === fyersSymbol || s.ticker === fyersSymbol);
+    // Safely parse all numeric fields — Fyers may send null/undefined outside market hours
+    const lp  = parseFloat(lastPrice)    || 0;
+    const ch  = parseFloat(change)       || 0;
+    const chp = parseFloat(changePercent)|| 0;
+
+    const stock = allStocks.find(s =>
+      s.fyersSymbol === fyersSymbol ||
+      s.tvTicker    === fyersSymbol ||
+      `NSE:${s.ticker}-EQ` === fyersSymbol ||
+      s.ticker === fyersSymbol
+    );
+
     if (stock) {
-      stock.cmp = parseFloat(lastPrice).toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-      stock.change = `${change >= 0 ? "+" : ""}${change.toFixed(2)}`;
-      stock.percent = `${changePercent >= 0 ? "+" : ""}${changePercent.toFixed(2)}%`;
-      stock.status = change >= 0 ? "up" : "down";
-      
+      stock.cmp     = lp.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      stock.change  = `${ch  >= 0 ? "+" : ""}${ch.toFixed(2)}`;
+      stock.percent = `${chp >= 0 ? "+" : ""}${chp.toFixed(2)}%`;
+      stock.status  = ch >= 0 ? "up" : "down";
+      stock.rawLtp  = lp;
+
       if (window.aiProcessingEngine) {
         window.aiProcessingEngine.processSymbol(stock);
       }
       this.notifyListeners(stock);
       if (window.app) {
-        if (stock.category === "Index") window.app.renderTickers();
-        if (stock.category === "Swing") window.app.renderSwingTrades();
-        if (stock.category === "Long Term") window.app.renderLongTermPicks();
+        if (stock.category === "Index")       window.app.renderTickers();
+        if (stock.category === "Swing")       window.app.renderSwingTrades();
+        if (stock.category === "Long Term")   window.app.renderLongTermPicks();
       }
+
     }
   }
 
