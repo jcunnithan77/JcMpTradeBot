@@ -229,32 +229,45 @@ class TradeBotHTTPRequestHandler(BaseHTTPRequestHandler):
         # 4. API: Fyers Token Exchange Proxy (solves CORS)
         if path == "/api/fyers/token":
             try:
-                app_id = payload.get("appId", "").strip()
+                import http.client
+                app_id  = payload.get("appId",   "").strip()
                 secret_id = payload.get("secretId", "").strip()
-                auth_code = payload.get("code", "").strip()
-                
-                # Fyers V3 requirement: appId MUST include the -100 suffix when building appIdHash
-                if "-" not in app_id and len(app_id) == 10:
+                auth_code = payload.get("code",    "").strip()
+
+                # Fyers V3: appId MUST include suffix (e.g. XXXXXXXXXX-100) for appIdHash
+                if "-" not in app_id:
                     app_id = f"{app_id}-100"
 
-                raw_str = f"{app_id}:{secret_id}".encode("utf-8")
+                raw_str    = f"{app_id}:{secret_id}".encode("utf-8")
                 sha256_hash = hashlib.sha256(raw_str).hexdigest()
 
-                fyers_payload = {
+                fyers_payload = json.dumps({
                     "grant_type": "authorization_code",
                     "appIdHash": sha256_hash,
                     "code": auth_code
-                }
+                }).encode("utf-8")
 
-                req = urllib.request.Request(
-                    "https://api-t1.fyers.in/api/v3/validate-authcode",
-                    data=json.dumps(fyers_payload).encode("utf-8"),
+                # Log what we are sending (partial hash for security)
+                print(f"[FYERS] appId={app_id} | hash={sha256_hash[:12]}... | code={auth_code[:10]}...")
+
+                conn = http.client.HTTPSConnection("api-t1.fyers.in")
+                conn.request(
+                    "POST",
+                    "/api/v3/validate-authcode",
+                    body=fyers_payload,
                     headers={"Content-Type": "application/json"}
                 )
-                
-                with urllib.request.urlopen(req) as response:
-                    res_data = json.loads(response.read().decode("utf-8"))
-                    return self.send_json_response(res_data)
+                resp = conn.getresponse()
+                body = resp.read().decode("utf-8")
+                conn.close()
+
+                try:
+                    res_data = json.loads(body)
+                except Exception:
+                    res_data = {"s": "error", "message": body, "code": resp.status}
+
+                # Always return the Fyers response to the browser with its real status
+                return self.send_json_response(res_data, status_code=resp.status if resp.status != 200 else 200)
             except Exception as e:
                 return self.send_error_response(f"Fyers token exchange failed: {str(e)}", status_code=500)
 
