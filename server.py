@@ -19,9 +19,18 @@ import io
 import sys
 import json
 import urllib.parse
+import urllib.request
+import hashlib
 import mimetypes
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import argparse
+
+# Ensure UTF-8 stdout encoding across Windows terminals and Docker logs
+if hasattr(sys.stdout, 'buffer') and getattr(sys.stdout, 'encoding', '').lower() != 'utf-8':
+    try:
+        sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
+    except Exception:
+        pass
 
 # Import Python Backend Engines
 from option_pricing_engine import OptionPricingEngine
@@ -118,9 +127,6 @@ class TradeBotHTTPRequestHandler(BaseHTTPRequestHandler):
         # 6. API: Fyers Live Quotes Proxy (solves CORS)
         if path == "/api/fyers/quotes":
             try:
-                import urllib.request
-                import urllib.parse
-                
                 query = urllib.parse.urlparse(self.path).query
                 params = urllib.parse.parse_qs(query)
                 symbols = params.get("symbols", [""])[0]
@@ -223,9 +229,6 @@ class TradeBotHTTPRequestHandler(BaseHTTPRequestHandler):
         # 4. API: Fyers Token Exchange Proxy (solves CORS)
         if path == "/api/fyers/token":
             try:
-                import urllib.request
-                import hashlib
-                
                 app_id = payload.get("appId", "")
                 secret_id = payload.get("secretId", "")
                 auth_code = payload.get("code", "")
@@ -256,9 +259,6 @@ class TradeBotHTTPRequestHandler(BaseHTTPRequestHandler):
         # 5. API: Fyers Live Quotes Proxy (POST)
         if path == "/api/fyers/quotes":
             try:
-                import urllib.request
-                import urllib.parse
-                
                 symbols = payload.get("symbols", "")
                 auth_header = self.headers.get("Authorization", "") or payload.get("auth", "")
                 
@@ -303,28 +303,23 @@ def run_server(port: int = 8000):
     server_address = ("", port)
     httpd = HTTPServer(server_address, TradeBotHTTPRequestHandler)
     print("\n" + "="*70)
-    print(f"🚀 TRADEBOT PYTHON BACKEND SERVER RUNNING ON PORT {port} 🚀")
+    print(f"[READY] TRADEBOT PYTHON BACKEND SERVER RUNNING ON PORT {port}")
     print("="*70)
-    print(f"  • Web Application : http://localhost:{port}/")
-    print(f"  • Health Check    : http://localhost:{port}/api/health")
-    print(f"  • Options API     : http://localhost:{port}/api/options/estimate (POST)")
-    print(f"  • Strategy API    : http://localhost:{port}/api/strategy/generate (POST)")
-    print(f"  • Live Scanner    : http://localhost:{port}/api/scanner/live (GET)")
-    print(f"  • Backtest Studio : http://localhost:{port}/api/backtest/run (GET)")
+    print(f"  * Web Application : http://localhost:{port}/")
+    print(f"  * Health Check    : http://localhost:{port}/api/health")
+    print(f"  * Options API     : http://localhost:{port}/api/options/estimate (POST)")
+    print(f"  * Strategy API    : http://localhost:{port}/api/strategy/generate (POST)")
+    print(f"  * Live Scanner    : http://localhost:{port}/api/scanner/live (GET)")
+    print(f"  * Backtest Studio : http://localhost:{port}/api/backtest/run (GET)")
     print("="*70 + "\n")
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:
-        print("\n🛑 Shutting down TradeBot Python Backend Server...")
+        print("\n[STOP] Shutting down TradeBot Python Backend Server...")
         httpd.server_close()
 
 
 if __name__ == "__main__":
-    if hasattr(sys.stdout, 'buffer') and getattr(sys.stdout, 'encoding', '').lower() != 'utf-8':
-        try:
-            sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
-        except Exception:
-            pass
     parser = argparse.ArgumentParser(description="TradeBot Market Profile Python Backend Server")
     parser.add_argument("--port", "-p", type=int, default=int(os.environ.get("PORT", 8000)), help="Port to run server on (default: 8000)")
     args = parser.parse_args()
