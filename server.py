@@ -127,7 +127,7 @@ class TradeBotHTTPRequestHandler(BaseHTTPRequestHandler):
         # 6. API: Fyers Live Quotes Proxy (solves CORS)
         if path == "/api/fyers/quotes":
             try:
-                import http.client
+                import http.client, ssl
                 query = urllib.parse.urlparse(self.path).query
                 params = urllib.parse.parse_qs(query)
                 symbols = params.get("symbols", [""])[0]
@@ -138,11 +138,16 @@ class TradeBotHTTPRequestHandler(BaseHTTPRequestHandler):
 
                 print(f"[FYERS-QUOTES] symbols={symbols[:60]}... | auth={auth_header[:20]}...")
 
-                conn = http.client.HTTPSConnection("api-t1.fyers.in", timeout=8)
+                ctx = ssl.create_default_context()
+                conn = http.client.HTTPSConnection("api-t1.fyers.in", timeout=8, context=ctx)
                 conn.request(
                     "GET",
                     f"/data/quotes?symbols={urllib.parse.quote(symbols)}",
-                    headers={"Authorization": auth_header, "Content-Type": "application/json"}
+                    headers={
+                        "Authorization": auth_header,
+                        "Content-Type": "application/json",
+                        "User-Agent": "Mozilla/5.0 (compatible; TradeBot/1.0)"
+                    }
                 )
                 resp = conn.getresponse()
                 body = resp.read().decode("utf-8")
@@ -241,7 +246,7 @@ class TradeBotHTTPRequestHandler(BaseHTTPRequestHandler):
         # 4. API: Fyers Token Exchange Proxy (solves CORS)
         if path == "/api/fyers/token":
             try:
-                import http.client
+                import http.client, ssl
                 app_id  = payload.get("appId",   "").strip()
                 secret_id = payload.get("secretId", "").strip()
                 auth_code = payload.get("code",    "").strip()
@@ -262,12 +267,16 @@ class TradeBotHTTPRequestHandler(BaseHTTPRequestHandler):
                 # Log what we are sending (partial hash for security)
                 print(f"[FYERS] appId={app_id} | hash={sha256_hash[:12]}... | code={auth_code[:10]}...")
 
-                conn = http.client.HTTPSConnection("api-t1.fyers.in")
+                ctx = ssl.create_default_context()
+                conn = http.client.HTTPSConnection("api-t1.fyers.in", context=ctx)
                 conn.request(
                     "POST",
                     "/api/v3/validate-authcode",
                     body=fyers_payload,
-                    headers={"Content-Type": "application/json"}
+                    headers={
+                        "Content-Type": "application/json",
+                        "User-Agent": "Mozilla/5.0 (compatible; TradeBot/1.0)"
+                    }
                 )
                 resp = conn.getresponse()
                 body = resp.read().decode("utf-8")
@@ -286,18 +295,31 @@ class TradeBotHTTPRequestHandler(BaseHTTPRequestHandler):
         # 5. API: Fyers Live Quotes Proxy (POST)
         if path == "/api/fyers/quotes":
             try:
+                import http.client, ssl
                 symbols = payload.get("symbols", "")
                 auth_header = self.headers.get("Authorization", "") or payload.get("auth", "")
-                
-                url = f"https://api-t1.fyers.in/data/quotes?symbols={urllib.parse.quote(symbols)}"
-                req = urllib.request.Request(
-                    url,
-                    headers={"Authorization": auth_header, "Content-Type": "application/json"}
+
+                ctx = ssl.create_default_context()
+                conn = http.client.HTTPSConnection("api-t1.fyers.in", timeout=8, context=ctx)
+                conn.request(
+                    "GET",
+                    f"/data/quotes?symbols={urllib.parse.quote(symbols)}",
+                    headers={
+                        "Authorization": auth_header,
+                        "Content-Type": "application/json",
+                        "User-Agent": "Mozilla/5.0 (compatible; TradeBot/1.0)"
+                    }
                 )
-                
-                with urllib.request.urlopen(req) as response:
-                    res_data = json.loads(response.read().decode("utf-8"))
-                    return self.send_json_response(res_data)
+                resp = conn.getresponse()
+                body = resp.read().decode("utf-8")
+                conn.close()
+
+                try:
+                    res_data = json.loads(body)
+                except Exception:
+                    res_data = {"s": "error", "message": body, "code": resp.status}
+
+                return self.send_json_response(res_data)
             except Exception as e:
                 return self.send_error_response(f"Fyers quote fetch failed: {str(e)}", status_code=500)
 
