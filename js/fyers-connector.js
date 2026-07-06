@@ -239,9 +239,8 @@ class FyersConnector {
     localStorage.setItem("tb_fyers_secret_id", this.secretId);
     localStorage.setItem("tb_fyers_redirect_uri", this.redirectUri);
 
-    // Fyers V3 OAuth Authorization URL (remove -100 suffix for generate-authcode step)
-    const clientIdForUrl = this.appId.replace(/-100$/, "");
-    const authUrl = `https://api-t1.fyers.in/api/v3/generate-authcode?client_id=${encodeURIComponent(clientIdForUrl)}&redirect_uri=${encodeURIComponent(this.redirectUri)}&response_type=code&state=tradebot_auto_login`;
+    // Fyers V3 OAuth Authorization URL — use full client_id including suffix (e.g. XXXXXXXXXX-100)
+    const authUrl = `https://api-t1.fyers.in/api/v3/generate-authcode?client_id=${encodeURIComponent(this.appId)}&redirect_uri=${encodeURIComponent(this.redirectUri)}&response_type=code&state=tradebot_auto_login`;
     
     if (window.app) window.app.showToast("⚡ Redirecting to FYERS Portal...", "Please complete secure login on Fyers.");
     
