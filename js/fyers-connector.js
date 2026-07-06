@@ -445,8 +445,9 @@ class FyersConnector {
 
   getAllStocks() {
     let stocks = [];
-    if (window.liveScanner && window.liveScanner.stocks) {
-      stocks = stocks.concat(window.liveScanner.stocks);
+    const scanner = window.liveScanner || window.app?.liveScanner;
+    if (scanner && scanner.stocks) {
+      stocks = stocks.concat(scanner.stocks);
     }
     if (window.aiProcessingEngine && typeof window.aiProcessingEngine.getLiveTickers === "function") {
       stocks = stocks.concat(window.aiProcessingEngine.getLiveTickers());

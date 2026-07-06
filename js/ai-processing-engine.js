@@ -296,8 +296,9 @@ class AIProcessingEngine {
 
   // 6. LIVE MARKET FEED GENERATORS (Replaces static data.js)
   getLiveTickers() {
-    if (window.liveScanner && window.liveScanner.stocks) {
-      const indexItems = window.liveScanner.stocks.filter(s => s.category === "Index");
+    const scanner = window.liveScanner || window.app?.liveScanner;
+    if (scanner && scanner.stocks) {
+      const indexItems = scanner.stocks.filter(s => s.category === "Index");
       if (indexItems.length > 0) {
         return indexItems.map(s => ({
           id: s.id || s.ticker.toLowerCase(),
@@ -546,8 +547,9 @@ class AIProcessingEngine {
   }
 
   getLiveSwingTrades() {
-    if (window.liveScanner && window.liveScanner.stocks) {
-      const swingItems = window.liveScanner.stocks.filter(s => s.category === "Swing");
+    const scanner = window.liveScanner || window.app?.liveScanner;
+    if (scanner && scanner.stocks) {
+      const swingItems = scanner.stocks.filter(s => s.category === "Swing");
       if (swingItems.length > 0) {
         return swingItems.map(s => {
           const cmpNum = parseFloat((s.cmp || "0").replace(/,/g, ""));
@@ -575,8 +577,9 @@ class AIProcessingEngine {
   }
 
   getLiveLongTermPicks() {
-    if (window.liveScanner && window.liveScanner.stocks) {
-      const ltItems = window.liveScanner.stocks.filter(s => s.category === "Long Term");
+    const scanner = window.liveScanner || window.app?.liveScanner;
+    if (scanner && scanner.stocks) {
+      const ltItems = scanner.stocks.filter(s => s.category === "Long Term");
       if (ltItems.length > 0) {
         return ltItems.map(s => {
           const cmpNum = parseFloat((s.cmp || "0").replace(/,/g, ""));

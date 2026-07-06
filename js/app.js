@@ -18,6 +18,13 @@ class AppController {
     this.fyersConnector = new FyersConnector();
     this.liveScanner = new LiveScanner("live-scanner-container");
     this.backtestEngine = new BacktestEngine("backtest-studio-container");
+
+    // Expose instances globally on window so cross-component references work seamlessly
+    window.tpoVisualizer = this.tpoVisualizer;
+    window.strategyEngine = this.strategyEngine;
+    window.fyersConnector = this.fyersConnector;
+    window.liveScanner = this.liveScanner;
+    window.backtestEngine = this.backtestEngine;
   }
 
   init() {
