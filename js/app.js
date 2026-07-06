@@ -18,6 +18,7 @@ class AppController {
     this.fyersConnector = new FyersConnector();
     this.liveScanner = new LiveScanner("live-scanner-container");
     this.backtestEngine = new BacktestEngine("backtest-studio-container");
+    this.stockPicker = window.stockPicker || (typeof StockPicker !== "undefined" ? new StockPicker() : null);
 
     // Expose instances globally on window so cross-component references work seamlessly
     window.tpoVisualizer = this.tpoVisualizer;
@@ -25,6 +26,7 @@ class AppController {
     window.fyersConnector = this.fyersConnector;
     window.liveScanner = this.liveScanner;
     window.backtestEngine = this.backtestEngine;
+    window.stockPicker = this.stockPicker;
   }
 
   init() {
