@@ -8,6 +8,7 @@ class FyersConnector {
     this.redirectUri = sessionStorage.getItem("tb_fyers_redirect_uri") || localStorage.getItem("tb_fyers_redirect_uri") || window.location.href.split("?")[0];
     this.accessToken = sessionStorage.getItem("tb_fyers_access_token") || localStorage.getItem("tb_fyers_access_token") || "";
     this.isConnected = false;
+    this.isSimulationMode = false;
     this.pollTimer = null;
     this.listeners = [];
   }
@@ -416,6 +417,21 @@ class FyersConnector {
 
   stopLivePolling() {
     if (this.pollTimer) clearInterval(this.pollTimer);
+    this.pollTimer = null;
+  }
+
+  stopSimulation() {
+    // No-op: simulation mode is not active in this build
+    // Kept for API compatibility
+    this.isSimulationMode = false;
+  }
+
+  startHybridSimulation() {
+    // Fallback when no token: show a toast guiding user to authenticate
+    this.isSimulationMode = true;
+    this.isConnected = false;
+    this.updateStatusUI("disconnected", "FYERS: DISCONNECTED", "var(--text-muted)");
+    if (window.app) window.app.showToast("FYERS Not Connected", "Enter your App ID and Access Token in the FYERS settings to get live data.");
   }
 
   setDisconnectedState(message = "Fyers disconnected. Showing accurate last closed market prices.") {
