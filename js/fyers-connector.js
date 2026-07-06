@@ -347,10 +347,9 @@ class FyersConnector {
     this.stopSimulation();
     this.updateStatusUI("connecting", "CONNECTING...", "var(--neutral-amber)");
 
-    // Fyers V3 quotes via Python backend proxy (with direct fallback)
+    // Test connectivity with a small quote ping via Python proxy
     const testSymbols = "NSE:RELIANCE-EQ,NSE:NIFTY50-INDEX";
     const proxyUrl = `/api/fyers/quotes?symbols=${encodeURIComponent(testSymbols)}`;
-    const directUrl = `https://api-t1.fyers.in/data/quotes?symbols=${encodeURIComponent(testSymbols)}`;
 
     fetch(proxyUrl, {
       method: "GET",
@@ -359,38 +358,38 @@ class FyersConnector {
         "Content-Type": "application/json"
       }
     })
-    .catch(() => fetch(directUrl, {
-      method: "GET",
-      headers: {
-        "Authorization": `${this.appId}:${this.accessToken}`,
-        "Content-Type": "application/json"
-      }
-    }))
-    .then(response => {
-      if (!response.ok) throw new Error(`HTTP ${response.status} — Check if your access token has expired`);
-      return response.json();
-    })
+    .then(response => response.json())
     .then(data => {
-      if (data && (data.s === "ok") && data.d) {
+      console.log("[FYERS] connect() test response:", data);
+
+      // Accept as connected if Fyers responds with s:ok OR if we got a real response
+      // (even errors like market closed are valid — token is working)
+      if (data && data.s === "ok") {
+        // Full live data confirmed
         this.isConnected = true;
         this.isSimulationMode = false;
-        this.updateStatusUI("connected", "🟢 LIVE FEED CONNECTED", "var(--bullish-green)");
-        if (window.app) window.app.showToast("🟢 FYERS LIVE", "Real-time institutional streaming active. Prices update every 2.5s.");
+        this.updateStatusUI("connected", "LIVE FEED CONNECTED", "var(--bullish-green)");
+        if (window.app) window.app.showToast("FYERS LIVE", "Real-time institutional streaming active. Prices update every 2.5s.");
+        this.startLivePolling();
+      } else if (data && data.s && data.s !== "error") {
+        // Partial response — token valid but market may be closed
+        this.isConnected = true;
+        this.isSimulationMode = false;
+        this.updateStatusUI("connected", "CONNECTED (MARKET CLOSED)", "#f59e0b");
+        if (window.app) window.app.showToast("FYERS CONNECTED", `Token valid. ${data.message || "Market may be closed — data will stream when market opens."}`);
         this.startLivePolling();
       } else {
-        throw new Error(data?.message || "Invalid Fyers response — token may be expired. Please reconnect.");
+        const msg = data?.message || data?.errmsg || "Token may be expired. Please reconnect.";
+        console.warn("[FYERS] connect() failed — Fyers said:", msg);
+        this.setDisconnectedState(msg);
+        if (window.app) window.app.showToast("FYERS ERROR", msg);
       }
     })
     .catch(err => {
-      console.warn("⚠️ FYERS connect error:", err.message);
+      console.warn("[FYERS] connect() network error:", err.message);
       this.isConnected = false;
-      if (err.message.toLowerCase().includes("failed to fetch")) {
-        this.updateStatusUI("error", "⚠️ CORS BLOCK", "orange");
-        if (window.app) window.app.showToast("⚠️ CORS Block", "Browser blocked direct API call. Open Fyers App dashboard and add this URL to allowed origins, or use the app from the same server as your redirect URI.");
-      } else {
-        this.setDisconnectedState(err.message);
-        if (window.app) window.app.showToast("⚫ FYERS DISCONNECTED", err.message);
-      }
+      this.setDisconnectedState(err.message);
+      if (window.app) window.app.showToast("FYERS DISCONNECTED", err.message);
     });
   }
 
@@ -443,16 +442,15 @@ class FyersConnector {
   }
 
   fetchLiveQuotes() {
-    // Collect all unique Fyers symbols from our universe
     const allStocks = this.getAllStocks();
-
     const symbols = [...new Set(allStocks.map(s => s.fyersSymbol || s.tvTicker || `NSE:${s.ticker}-EQ`).filter(Boolean))];
-    if (symbols.length === 0) return;
+    if (symbols.length === 0) {
+      console.log("[FYERS] fetchLiveQuotes: no symbols to poll");
+      return;
+    }
 
-    // Fyers V3 quotes via Python backend proxy (with direct fallback)
     const batchSymbols = symbols.slice(0, 50).join(",");
     const proxyUrl = `/api/fyers/quotes?symbols=${encodeURIComponent(batchSymbols)}`;
-    const directUrl = `https://api-t1.fyers.in/data/quotes?symbols=${encodeURIComponent(batchSymbols)}`;
 
     fetch(proxyUrl, {
       method: "GET",
@@ -461,27 +459,22 @@ class FyersConnector {
         "Content-Type": "application/json"
       }
     })
-    .catch(() => fetch(directUrl, {
-      method: "GET",
-      headers: {
-        "Authorization": `${this.appId}:${this.accessToken}`,
-        "Content-Type": "application/json"
-      }
-    }))
     .then(res => res.json())
     .then(data => {
+      console.log("[FYERS] quote poll response s:", data?.s, "count:", data?.d?.length);
       if (data && data.s === "ok" && data.d) {
         data.d.forEach(item => {
           if (item && item.v) {
             this.broadcastQuoteUpdate(item.n, item.v.lp, item.v.ch, item.v.chp, item.v.volume);
           }
         });
+      } else if (data && data.s === "error") {
+        console.warn("[FYERS] quote poll error from Fyers:", data.message);
+        // Don't disconnect on single poll error — token might still be valid
       }
     })
     .catch(err => {
-      console.warn("Live poll error, falling back to disconnected state:", err.message);
-      this.isConnected = false;
-      this.setDisconnectedState();
+      console.warn("[FYERS] live poll network error:", err.message);
     });
   }
 

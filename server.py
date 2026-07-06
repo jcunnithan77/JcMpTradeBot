@@ -127,23 +127,35 @@ class TradeBotHTTPRequestHandler(BaseHTTPRequestHandler):
         # 6. API: Fyers Live Quotes Proxy (solves CORS)
         if path == "/api/fyers/quotes":
             try:
+                import http.client
                 query = urllib.parse.urlparse(self.path).query
                 params = urllib.parse.parse_qs(query)
                 symbols = params.get("symbols", [""])[0]
-                
+
                 auth_header = self.headers.get("Authorization", "")
                 if not auth_header:
                     auth_header = params.get("auth", [""])[0]
-                
-                url = f"https://api-t1.fyers.in/data/quotes?symbols={urllib.parse.quote(symbols)}"
-                req = urllib.request.Request(
-                    url,
+
+                print(f"[FYERS-QUOTES] symbols={symbols[:60]}... | auth={auth_header[:20]}...")
+
+                conn = http.client.HTTPSConnection("api-t1.fyers.in", timeout=8)
+                conn.request(
+                    "GET",
+                    f"/data/quotes?symbols={urllib.parse.quote(symbols)}",
                     headers={"Authorization": auth_header, "Content-Type": "application/json"}
                 )
-                
-                with urllib.request.urlopen(req) as response:
-                    res_data = json.loads(response.read().decode("utf-8"))
-                    return self.send_json_response(res_data)
+                resp = conn.getresponse()
+                body = resp.read().decode("utf-8")
+                conn.close()
+
+                print(f"[FYERS-QUOTES] HTTP={resp.status} body={body[:120]}")
+
+                try:
+                    res_data = json.loads(body)
+                except Exception:
+                    res_data = {"s": "error", "message": body, "code": resp.status}
+
+                return self.send_json_response(res_data)
             except Exception as e:
                 return self.send_error_response(f"Fyers quote fetch failed: {str(e)}", status_code=500)
 
