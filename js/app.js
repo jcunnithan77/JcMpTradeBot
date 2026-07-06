@@ -18,7 +18,6 @@ class AppController {
     this.fyersConnector = new FyersConnector();
     this.liveScanner = new LiveScanner("live-scanner-container");
     this.backtestEngine = new BacktestEngine("backtest-studio-container");
-    this.stockPicker = new StockPicker("modal-stock-picker");
   }
 
   init() {
@@ -385,7 +384,7 @@ class AppController {
         </div>
       `;
       card.style.cursor = "pointer";
-      card.addEventListener("click", () => this.stockPicker.open(stock));
+      if (this.stockPicker) card.addEventListener("click", () => this.stockPicker.open(stock));
       grid.appendChild(card);
     });
   }
@@ -445,7 +444,7 @@ class AppController {
         </div>
       `;
       card.style.cursor = "pointer";
-      card.addEventListener("click", () => this.stockPicker.open(pick));
+      if (this.stockPicker) card.addEventListener("click", () => this.stockPicker.open(pick));
       grid.appendChild(card);
     });
   }

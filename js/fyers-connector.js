@@ -288,13 +288,18 @@ class FyersConnector {
         redirect_uri: payload.redirect_uri
       });
 
-      // Correct Fyers V3 token exchange endpoint
-      const response = await fetch("https://api-t1.fyers.in/api/v3/token", {
+      // Python backend proxy for Fyers V3 token exchange (avoids browser CORS)
+      const response = await fetch("/api/fyers/token", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify({
+          appId: this.appId,
+          secretId: this.secretId,
+          code: authCode,
+          redirect_uri: this.redirectUri
+        })
       });
 
       const data = await response.json();
@@ -336,17 +341,25 @@ class FyersConnector {
     this.stopSimulation();
     this.updateStatusUI("connecting", "CONNECTING...", "var(--neutral-amber)");
 
-    // Fyers V3 correct quotes endpoint
+    // Fyers V3 quotes via Python backend proxy (with direct fallback)
     const testSymbols = "NSE:RELIANCE-EQ,NSE:NIFTY50-INDEX";
-    const url = `https://api-t1.fyers.in/data/quotes?symbols=${encodeURIComponent(testSymbols)}`;
+    const proxyUrl = `/api/fyers/quotes?symbols=${encodeURIComponent(testSymbols)}`;
+    const directUrl = `https://api-t1.fyers.in/data/quotes?symbols=${encodeURIComponent(testSymbols)}`;
 
-    fetch(url, {
+    fetch(proxyUrl, {
       method: "GET",
       headers: {
         "Authorization": `${this.appId}:${this.accessToken}`,
         "Content-Type": "application/json"
       }
     })
+    .catch(() => fetch(directUrl, {
+      method: "GET",
+      headers: {
+        "Authorization": `${this.appId}:${this.accessToken}`,
+        "Content-Type": "application/json"
+      }
+    }))
     .then(response => {
       if (!response.ok) throw new Error(`HTTP ${response.status} — Check if your access token has expired`);
       return response.json();
@@ -410,10 +423,17 @@ class FyersConnector {
   }
 
   getAllStocks() {
-    if (window.liveScanner && window.liveScanner.stocks && window.liveScanner.stocks.length > 0) {
-      return window.liveScanner.stocks;
+    let stocks = [];
+    if (window.liveScanner && window.liveScanner.stocks) {
+      stocks = stocks.concat(window.liveScanner.stocks);
     }
-    return [];
+    if (window.aiProcessingEngine && typeof window.aiProcessingEngine.getLiveTickers === "function") {
+      stocks = stocks.concat(window.aiProcessingEngine.getLiveTickers());
+    }
+    if (window.app && window.app.state && window.app.state.swingTrades) {
+      stocks = stocks.concat(window.app.state.swingTrades);
+    }
+    return stocks;
   }
 
   fetchLiveQuotes() {
@@ -423,17 +443,25 @@ class FyersConnector {
     const symbols = [...new Set(allStocks.map(s => s.fyersSymbol || s.tvTicker || `NSE:${s.ticker}-EQ`).filter(Boolean))];
     if (symbols.length === 0) return;
 
-    // Fyers V3 correct quotes endpoint
+    // Fyers V3 quotes via Python backend proxy (with direct fallback)
     const batchSymbols = symbols.slice(0, 50).join(",");
-    const url = `https://api-t1.fyers.in/data/quotes?symbols=${encodeURIComponent(batchSymbols)}`;
+    const proxyUrl = `/api/fyers/quotes?symbols=${encodeURIComponent(batchSymbols)}`;
+    const directUrl = `https://api-t1.fyers.in/data/quotes?symbols=${encodeURIComponent(batchSymbols)}`;
 
-    fetch(url, {
+    fetch(proxyUrl, {
       method: "GET",
       headers: {
         "Authorization": `${this.appId}:${this.accessToken}`,
         "Content-Type": "application/json"
       }
     })
+    .catch(() => fetch(directUrl, {
+      method: "GET",
+      headers: {
+        "Authorization": `${this.appId}:${this.accessToken}`,
+        "Content-Type": "application/json"
+      }
+    }))
     .then(res => res.json())
     .then(data => {
       if (data && data.s === "ok" && data.d) {

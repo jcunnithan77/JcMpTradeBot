@@ -1,28 +1,21 @@
-# Lightweight Nginx Alpine base image for high performance & minimal footprint
-FROM nginx:alpine
+# TradeBot Market Profile - Python Backend Dockerfile
+FROM python:3.13-slim
 
-# Remove default Nginx static assets
-RUN rm -rf /usr/share/nginx/html/*
+# Set working directory
+WORKDIR /app
 
-# Copy custom Nginx configuration
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Copy project files into container
+COPY . /app/
 
-# Copy application web assets and dictionaries
-COPY index.html /usr/share/nginx/html/
-COPY index.css /usr/share/nginx/html/
-COPY course_data.json /usr/share/nginx/html/
-COPY market_profile_tutorial_data.json /usr/share/nginx/html/
-COPY js/ /usr/share/nginx/html/js/
+# Ensure proper read/execute permissions
+RUN chmod -R 755 /app
 
-# Ensure proper read permissions
-RUN chmod -R 755 /usr/share/nginx/html
+# Expose port 8000
+EXPOSE 8000
 
-# Expose port 80
-EXPOSE 80
-
-# Healthcheck to verify container web responsiveness
+# Healthcheck to verify Python API responsiveness
 HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
-    CMD wget --quiet --tries=1 --spider http://localhost/ || exit 1
+    CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/health')" || exit 1
 
-# Start Nginx in foreground
-CMD ["nginx", "-g", "daemon off;"]
+# Start Python HTTP & REST API server
+CMD ["python", "server.py", "--port", "8000"]

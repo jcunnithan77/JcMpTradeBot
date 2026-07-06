@@ -7,14 +7,15 @@ services:
     container_name: tradebot-market-profile
     restart: unless-stopped
     ports:
-      - "8000:80"
+      - "8000:8000"
     environment:
       - APP_ENV=production
       - TZ=Asia/Kolkata
+      - PORT=8000
     networks:
       - tradebot-net
     healthcheck:
-      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/"]
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/health')"]
       interval: 30s
       timeout: 5s
       retries: 3

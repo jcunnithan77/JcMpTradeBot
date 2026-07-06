@@ -54,6 +54,9 @@
       <button class="tab-btn" data-tab="tab-backtest">
         <i class="fa-solid fa-flask-vial"></i> Backtest Studio
       </button>
+      <button class="tab-btn" data-tab="tab-options-calc">
+        <i class="fa-solid fa-calculator"></i> Option Price Estimator
+      </button>
     </div>
   </nav>
 
@@ -340,6 +343,10 @@
       <div id="backtest-studio-container"></div>
     </section>
 
+    <!-- TAB 8: OPTION PRICE & TARGET ESTIMATOR -->
+    <section id="tab-options-calc" class="tab-pane">
+      <!-- Dynamically populated by OptionCalculator in js/option-calculator.js -->
+    </section>
   </main>
 
   <!-- MODAL 1: ADD DAILY SESSION LOG -->
@@ -520,7 +527,7 @@
   <script src="js/strategy-engine.js"></script>
   <script src="js/live-scanner.js"></script>
   <script src="js/backtest-engine.js"></script>
-  <script src="js/stock-picker.js"></script>
+  <script src="js/option-calculator.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
