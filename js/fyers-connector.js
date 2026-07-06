@@ -239,8 +239,9 @@ class FyersConnector {
     localStorage.setItem("tb_fyers_secret_id", this.secretId);
     localStorage.setItem("tb_fyers_redirect_uri", this.redirectUri);
 
-    // Fyers V3 OAuth Authorization URL
-    const authUrl = `https://api-t1.fyers.in/api/v3/generate-authcode?client_id=${encodeURIComponent(this.appId)}&redirect_uri=${encodeURIComponent(this.redirectUri)}&response_type=code&state=tradebot_auto_login`;
+    // Fyers V3 OAuth Authorization URL (remove -100 suffix for generate-authcode step)
+    const clientIdForUrl = this.appId.replace(/-100$/, "");
+    const authUrl = `https://api-t1.fyers.in/api/v3/generate-authcode?client_id=${encodeURIComponent(clientIdForUrl)}&redirect_uri=${encodeURIComponent(this.redirectUri)}&response_type=code&state=tradebot_auto_login`;
     
     if (window.app) window.app.showToast("⚡ Redirecting to FYERS Portal...", "Please complete secure login on Fyers.");
     
@@ -271,8 +272,14 @@ class FyersConnector {
         this.redirectUri = sessionStorage.getItem("tb_fyers_redirect_uri") || localStorage.getItem("tb_fyers_redirect_uri") || window.location.href.split("?")[0];
       }
 
+      // Enforce Fyers V3 requirement: appId MUST have -100 suffix when building hash
+      let appIdWithSuffix = this.appId;
+      if (!appIdWithSuffix.includes("-") && appIdWithSuffix.length === 10) {
+        appIdWithSuffix = `${appIdWithSuffix}-100`;
+      }
+
       // Compute SHA-256 hash of appId:secretId as required by Fyers V3
-      const sha256Hash = await this.computeSHA256(`${this.appId}:${this.secretId}`);
+      const sha256Hash = await this.computeSHA256(`${appIdWithSuffix}:${this.secretId}`);
 
       const payload = {
         grant_type: "authorization_code",
@@ -295,7 +302,7 @@ class FyersConnector {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          appId: this.appId,
+          appId: appIdWithSuffix,
           secretId: this.secretId,
           code: authCode,
           redirect_uri: this.redirectUri

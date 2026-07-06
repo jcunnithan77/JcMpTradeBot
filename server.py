@@ -229,10 +229,13 @@ class TradeBotHTTPRequestHandler(BaseHTTPRequestHandler):
         # 4. API: Fyers Token Exchange Proxy (solves CORS)
         if path == "/api/fyers/token":
             try:
-                app_id = payload.get("appId", "")
-                secret_id = payload.get("secretId", "")
-                auth_code = payload.get("code", "")
-                redirect_uri = payload.get("redirect_uri", "")
+                app_id = payload.get("appId", "").strip()
+                secret_id = payload.get("secretId", "").strip()
+                auth_code = payload.get("code", "").strip()
+                
+                # Fyers V3 requirement: appId MUST include the -100 suffix when building appIdHash
+                if "-" not in app_id and len(app_id) == 10:
+                    app_id = f"{app_id}-100"
 
                 raw_str = f"{app_id}:{secret_id}".encode("utf-8")
                 sha256_hash = hashlib.sha256(raw_str).hexdigest()
@@ -240,12 +243,11 @@ class TradeBotHTTPRequestHandler(BaseHTTPRequestHandler):
                 fyers_payload = {
                     "grant_type": "authorization_code",
                     "appIdHash": sha256_hash,
-                    "code": auth_code,
-                    "redirect_uri": redirect_uri
+                    "code": auth_code
                 }
 
                 req = urllib.request.Request(
-                    "https://api-t1.fyers.in/api/v3/token",
+                    "https://api-t1.fyers.in/api/v3/validate-authcode",
                     data=json.dumps(fyers_payload).encode("utf-8"),
                     headers={"Content-Type": "application/json"}
                 )
