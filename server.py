@@ -18,12 +18,22 @@ import os
 import io
 import sys
 import json
+import socket
 import urllib.parse
 import urllib.request
 import hashlib
 import mimetypes
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import argparse
+
+# Force IPv4 DNS resolution for Fyers API (prevents Windows/Cloudflare IPv6 [Errno 101] Network is unreachable)
+_orig_getaddrinfo = socket.getaddrinfo
+def _ipv4_only_getaddrinfo(host, port, family=0, type=0, proto=0, flags=0):
+    if host and "fyers.in" in str(host):
+        family = socket.AF_INET
+    return _orig_getaddrinfo(host, port, family, type, proto, flags)
+socket.getaddrinfo = _ipv4_only_getaddrinfo
+
 
 # Ensure UTF-8 stdout encoding across Windows terminals and Docker logs
 if hasattr(sys.stdout, 'buffer') and getattr(sys.stdout, 'encoding', '').lower() != 'utf-8':
@@ -268,7 +278,7 @@ class TradeBotHTTPRequestHandler(BaseHTTPRequestHandler):
                 print(f"[FYERS] appId={app_id} | hash={sha256_hash[:12]}... | code={auth_code[:10]}...")
 
                 ctx = ssl.create_default_context()
-                conn = http.client.HTTPSConnection("api-t1.fyers.in", context=ctx)
+                conn = http.client.HTTPSConnection("api-t1.fyers.in", timeout=8, context=ctx)
                 conn.request(
                     "POST",
                     "/api/v3/validate-authcode",
