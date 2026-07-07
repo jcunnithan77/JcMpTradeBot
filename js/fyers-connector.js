@@ -407,6 +407,15 @@ class FyersConnector {
     this.setDisconnectedState("Fyers disconnected. Showing accurate last closed market prices.");
   }
 
+  startIntervalPolling() {
+    if (this.pollTimer) clearInterval(this.pollTimer);
+    console.log("[FYERS] Starting interval polling fallback every 2.5s...");
+    this.pollTimer = setInterval(() => {
+      if (!this.isConnected) return;
+      this.fetchLiveQuotes();
+    }, 2500);
+  }
+
   startLivePolling() {
     this.stopLivePolling();
 
@@ -442,18 +451,16 @@ class FyersConnector {
           this.sseSource.onerror = (e) => {
             console.warn("[FYERS] SSE stream error or reconnecting...");
           };
-          console.log("[FYERS] SSE Live Stream initiated to Python Backend.");
+          console.log("[FYERS] SSE Live Stream initiated to Python Backend. Frontend REST polling disabled (backend pushing data).");
+          return; // STOP HERE: Do not start interval REST polling when SSE stream is active!
         }
       }
     } catch (err) {
       console.warn("[FYERS] SSE failed, falling back to interval polling:", err);
     }
 
-    // 2. Keep interval polling running every 2.5s as an unshakeable hybrid fallback
-    this.pollTimer = setInterval(() => {
-      if (!this.isConnected) return;
-      this.fetchLiveQuotes();
-    }, 2500);
+    // 2. Only start interval polling if SSE is NOT available or failed
+    this.startIntervalPolling();
   }
 
   stopLivePolling() {
@@ -554,15 +561,14 @@ class FyersConnector {
     const ch  = parseFloat(change)       || 0;
     const chp = parseFloat(changePercent)|| 0;
 
-    // Find ALL matching items across all arrays and pages (not just the first one)
+    // Find ALL matching items across all arrays and pages (strict exact matching to prevent options from overwriting index prices)
     const matchingStocks = allStocks.filter(s =>
       s.fyersSymbol === fyersSymbol ||
       s.tvTicker    === fyersSymbol ||
       `NSE:${s.ticker}-EQ` === fyersSymbol ||
       `NSE:${s.ticker}-INDEX` === fyersSymbol ||
-      s.ticker === fyersSymbol ||
-      (s.id && s.id.toUpperCase() === fyersSymbol.replace("NSE:", "").replace("-EQ", "").replace("-INDEX", "").toUpperCase()) ||
-      (s.ticker && fyersSymbol.includes(s.ticker))
+      `BSE:${s.ticker}-INDEX` === fyersSymbol ||
+      s.ticker === fyersSymbol
     );
 
     if (matchingStocks.length > 0) {

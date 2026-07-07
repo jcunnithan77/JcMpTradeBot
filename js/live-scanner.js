@@ -16,10 +16,10 @@ class LiveScanner {
   buildMultiAssetUniverse() {
     const rawUniverse = [
       // Major Indices
-      { id: "idx-1", name: "NIFTY 50", ticker: "NIFTY", tvTicker: "NSE:NIFTY", fyersSymbol: "NSE:NIFTY50-INDEX", cmp: "24,300.50", change: "+110.20", percent: "+0.46%", sector: "Indices", category: "Index", type: "Index" },
-      { id: "idx-2", name: "BANK NIFTY", ticker: "BANKNIFTY", tvTicker: "NSE:BANKNIFTY", fyersSymbol: "NSE:BANKNIFTY-INDEX", cmp: "52,650.00", change: "+320.50", percent: "+0.61%", sector: "Indices", category: "Index", type: "Index" },
-      { id: "idx-3", name: "SENSEX", ticker: "SENSEX", tvTicker: "BSE:SENSEX", fyersSymbol: "BSE:SENSEX-INDEX", cmp: "80,000.00", change: "+410.00", percent: "+0.51%", sector: "Indices", category: "Index", type: "Index" },
-      { id: "idx-4", name: "MIDCAP SELECT", ticker: "MIDCAP", tvTicker: "NSE:MIDCPNIFTY", fyersSymbol: "NSE:NIFTYMIDSELECT-INDEX", cmp: "12,480.00", change: "+85.00", percent: "+0.68%", sector: "Indices", category: "Index", type: "Index" },
+      { id: "nifty", name: "NIFTY 50", ticker: "NIFTY", tvTicker: "NSE:NIFTY", fyersSymbol: "NSE:NIFTY50-INDEX", cmp: "24,300.50", change: "+110.20", percent: "+0.46%", sector: "Indices", category: "Index", type: "Index" },
+      { id: "banknifty", name: "BANK NIFTY", ticker: "BANKNIFTY", tvTicker: "NSE:BANKNIFTY", fyersSymbol: "NSE:BANKNIFTY-INDEX", cmp: "52,650.00", change: "+320.50", percent: "+0.61%", sector: "Indices", category: "Index", type: "Index" },
+      { id: "sensex", name: "SENSEX", ticker: "SENSEX", tvTicker: "BSE:SENSEX", fyersSymbol: "BSE:SENSEX-INDEX", cmp: "80,000.00", change: "+410.00", percent: "+0.51%", sector: "Indices", category: "Index", type: "Index" },
+      { id: "midcap", name: "MIDCAP SELECT", ticker: "MIDCAP", tvTicker: "NSE:MIDCPNIFTY", fyersSymbol: "NSE:NIFTYMIDSELECT-INDEX", cmp: "12,480.00", change: "+85.00", percent: "+0.68%", sector: "Indices", category: "Index", type: "Index" },
 
       // Intraday Options
       { id: "opt-1", name: "Nifty 50 24200 CE", ticker: "NIFTY24JUL24200CE", tvTicker: "NSE:NIFTY", fyersSymbol: "NSE:NIFTY24JUL24200CE", cmp: "185.50", change: "+35.00", percent: "+23.25%", sector: "Indices / Options", category: "Options", strike: "24,200", type: "Option" },
