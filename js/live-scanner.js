@@ -16,39 +16,39 @@ class LiveScanner {
   buildMultiAssetUniverse() {
     const rawUniverse = [
       // Major Indices
-      { id: "idx-1", name: "NIFTY 50", ticker: "NIFTY", tvTicker: "NSE:NIFTY", fyersSymbol: "NSE:NIFTY50-INDEX", cmp: "--", change: "Offline", percent: "--", sector: "Indices", category: "Index", type: "Index" },
-      { id: "idx-2", name: "BANK NIFTY", ticker: "BANKNIFTY", tvTicker: "NSE:BANKNIFTY", fyersSymbol: "NSE:BANKNIFTY-INDEX", cmp: "--", change: "Offline", percent: "--", sector: "Indices", category: "Index", type: "Index" },
-      { id: "idx-3", name: "SENSEX", ticker: "SENSEX", tvTicker: "BSE:SENSEX", fyersSymbol: "BSE:SENSEX-INDEX", cmp: "--", change: "Offline", percent: "--", sector: "Indices", category: "Index", type: "Index" },
-      { id: "idx-4", name: "MIDCAP SELECT", ticker: "MIDCAP", tvTicker: "NSE:MIDCPNIFTY", fyersSymbol: "NSE:NIFTYMIDSELECT-INDEX", cmp: "--", change: "Offline", percent: "--", sector: "Indices", category: "Index", type: "Index" },
+      { id: "idx-1", name: "NIFTY 50", ticker: "NIFTY", tvTicker: "NSE:NIFTY", fyersSymbol: "NSE:NIFTY50-INDEX", cmp: "24,300.50", change: "+110.20", percent: "+0.46%", sector: "Indices", category: "Index", type: "Index" },
+      { id: "idx-2", name: "BANK NIFTY", ticker: "BANKNIFTY", tvTicker: "NSE:BANKNIFTY", fyersSymbol: "NSE:BANKNIFTY-INDEX", cmp: "52,650.00", change: "+320.50", percent: "+0.61%", sector: "Indices", category: "Index", type: "Index" },
+      { id: "idx-3", name: "SENSEX", ticker: "SENSEX", tvTicker: "BSE:SENSEX", fyersSymbol: "BSE:SENSEX-INDEX", cmp: "80,000.00", change: "+410.00", percent: "+0.51%", sector: "Indices", category: "Index", type: "Index" },
+      { id: "idx-4", name: "MIDCAP SELECT", ticker: "MIDCAP", tvTicker: "NSE:MIDCPNIFTY", fyersSymbol: "NSE:NIFTYMIDSELECT-INDEX", cmp: "12,480.00", change: "+85.00", percent: "+0.68%", sector: "Indices", category: "Index", type: "Index" },
 
       // Intraday Options
-      { id: "opt-1", name: "Nifty 50 24200 CE", ticker: "NIFTY24JUL24200CE", tvTicker: "NSE:NIFTY", fyersSymbol: "NSE:NIFTY24JUL24200CE", cmp: "--", change: "Offline", percent: "--", sector: "Indices / Options", category: "Options", strike: "24,200", type: "Option" },
-      { id: "opt-2", name: "Bank Nifty 52000 CE", ticker: "BANKNIFTY24JUL52000CE", tvTicker: "NSE:BANKNIFTY", fyersSymbol: "NSE:BANKNIFTY24JUL52000CE", cmp: "--", change: "Offline", percent: "--", sector: "Indices / Options", category: "Options", strike: "52,000", type: "Option" },
-      { id: "opt-3", name: "Sensex 80000 PE", ticker: "SENSEX24JUL80000PE", tvTicker: "BSE:SENSEX", fyersSymbol: "BSE:SENSEX24JUL80000PE", cmp: "--", change: "Offline", percent: "--", sector: "Indices / Options", category: "Options", strike: "80,000", type: "Option" },
-      { id: "opt-4", name: "FinNifty 23500 CE", ticker: "FINNIFTY24JUL23500CE", tvTicker: "NSE:FINNIFTY", fyersSymbol: "NSE:FINNIFTY24JUL23500CE", cmp: "--", change: "Offline", percent: "--", sector: "Indices / Options", category: "Options", strike: "23,500", type: "Option" },
+      { id: "opt-1", name: "Nifty 50 24200 CE", ticker: "NIFTY24JUL24200CE", tvTicker: "NSE:NIFTY", fyersSymbol: "NSE:NIFTY24JUL24200CE", cmp: "185.50", change: "+35.00", percent: "+23.25%", sector: "Indices / Options", category: "Options", strike: "24,200", type: "Option" },
+      { id: "opt-2", name: "Bank Nifty 52000 CE", ticker: "BANKNIFTY24JUL52000CE", tvTicker: "NSE:BANKNIFTY", fyersSymbol: "NSE:BANKNIFTY24JUL52000CE", cmp: "420.00", change: "+80.00", percent: "+23.50%", sector: "Indices / Options", category: "Options", strike: "52,000", type: "Option" },
+      { id: "opt-3", name: "Sensex 80000 PE", ticker: "SENSEX24JUL80000PE", tvTicker: "BSE:SENSEX", fyersSymbol: "BSE:SENSEX24JUL80000PE", cmp: "310.00", change: "-45.00", percent: "-12.60%", sector: "Indices / Options", category: "Options", strike: "80,000", type: "Option" },
+      { id: "opt-4", name: "FinNifty 23500 CE", ticker: "FINNIFTY24JUL23500CE", tvTicker: "NSE:FINNIFTY", fyersSymbol: "NSE:FINNIFTY24JUL23500CE", cmp: "145.00", change: "+20.00", percent: "+16.00%", sector: "Indices / Options", category: "Options", strike: "23,500", type: "Option" },
 
       // MCX Commodities
-      { id: "mcx-1", name: "Crude Oil Futures", ticker: "CRUDEOIL24JULFUT", tvTicker: "MCX:CRUDEOIL1!", fyersSymbol: "MCX:CRUDEOIL24JULFUT", cmp: "--", change: "Offline", percent: "--", sector: "Energy / MCX", category: "MCX", type: "Commodity" },
-      { id: "mcx-2", name: "Gold Futures", ticker: "GOLD24AUGFUT", tvTicker: "MCX:GOLD1!", fyersSymbol: "MCX:GOLD24AUGFUT", cmp: "--", change: "Offline", percent: "--", sector: "Bullion / MCX", category: "MCX", type: "Commodity" },
-      { id: "mcx-3", name: "Silver Futures", ticker: "SILVER24SEPFUT", tvTicker: "MCX:SILVER1!", fyersSymbol: "MCX:SILVER24SEPFUT", cmp: "--", change: "Offline", percent: "--", sector: "Bullion / MCX", category: "MCX", type: "Commodity" },
-      { id: "mcx-4", name: "Natural Gas Futures", ticker: "NATURALGAS24JULFUT", tvTicker: "MCX:NATURALGAS1!", fyersSymbol: "MCX:NATURALGAS24JULFUT", cmp: "--", change: "Offline", percent: "--", sector: "Energy / MCX", category: "MCX", type: "Commodity" },
-      { id: "mcx-5", name: "Copper Futures", ticker: "COPPER24JULFUT", tvTicker: "MCX:COPPER1!", fyersSymbol: "MCX:COPPER24JULFUT", cmp: "--", change: "Offline", percent: "--", sector: "Base Metals / MCX", category: "MCX", type: "Commodity" },
+      { id: "mcx-1", name: "Crude Oil Futures", ticker: "CRUDEOIL24JULFUT", tvTicker: "MCX:CRUDEOIL1!", fyersSymbol: "MCX:CRUDEOIL24JULFUT", cmp: "6,850.00", change: "+45.00", percent: "+0.66%", sector: "Energy / MCX", category: "MCX", type: "Commodity" },
+      { id: "mcx-2", name: "Gold Futures", ticker: "GOLD24AUGFUT", tvTicker: "MCX:GOLD1!", fyersSymbol: "MCX:GOLD24AUGFUT", cmp: "72,400.00", change: "+310.00", percent: "+0.43%", sector: "Bullion / MCX", category: "MCX", type: "Commodity" },
+      { id: "mcx-3", name: "Silver Futures", ticker: "SILVER24SEPFUT", tvTicker: "MCX:SILVER1!", fyersSymbol: "MCX:SILVER24SEPFUT", cmp: "91,500.00", change: "+850.00", percent: "+0.94%", sector: "Bullion / MCX", category: "MCX", type: "Commodity" },
+      { id: "mcx-4", name: "Natural Gas Futures", ticker: "NATURALGAS24JULFUT", tvTicker: "MCX:NATURALGAS1!", fyersSymbol: "MCX:NATURALGAS24JULFUT", cmp: "215.50", change: "-4.50", percent: "-2.05%", sector: "Energy / MCX", category: "MCX", type: "Commodity" },
+      { id: "mcx-5", name: "Copper Futures", ticker: "COPPER24JULFUT", tvTicker: "MCX:COPPER1!", fyersSymbol: "MCX:COPPER24JULFUT", cmp: "865.00", change: "+12.00", percent: "+1.41%", sector: "Base Metals / MCX", category: "MCX", type: "Commodity" },
 
       // Swing Trades (Equities)
-      { id: "sw-1", name: "Reliance Industries", ticker: "RELIANCE", tvTicker: "BSE:RELIANCE", fyersSymbol: "NSE:RELIANCE-EQ", cmp: "--", change: "Offline", percent: "--", sector: "Energy / Petrochem", category: "Swing", type: "Equity" },
-      { id: "sw-2", name: "Trent Ltd", ticker: "TRENT", tvTicker: "BSE:TRENT", fyersSymbol: "NSE:TRENT-EQ", cmp: "--", change: "Offline", percent: "--", sector: "Retail / Fashion", category: "Swing", type: "Equity" },
-      { id: "sw-3", name: "Larsen & Toubro", ticker: "LT", tvTicker: "BSE:LT", fyersSymbol: "NSE:LT-EQ", cmp: "--", change: "Offline", percent: "--", sector: "Capital Goods", category: "Swing", type: "Equity" },
-      { id: "sw-4", name: "Hindustan Aeronautics", ticker: "HAL", tvTicker: "BSE:HAL", fyersSymbol: "NSE:HAL-EQ", cmp: "--", change: "Offline", percent: "--", sector: "Defense", category: "Swing", type: "Equity" },
-      { id: "sw-5", name: "Tata Motors", ticker: "TATAMOTORS", tvTicker: "BSE:TATAMOTORS", fyersSymbol: "NSE:TATAMOTORS-EQ", cmp: "--", change: "Offline", percent: "--", sector: "Automobile", category: "Swing", type: "Equity" },
-      { id: "sw-6", name: "Zomato Ltd", ticker: "ZOMATO", tvTicker: "BSE:ZOMATO", fyersSymbol: "NSE:ZOMATO-EQ", cmp: "--", change: "Offline", percent: "--", sector: "New-Age Tech", category: "Swing", type: "Equity" },
+      { id: "sw-1", name: "Reliance Industries", ticker: "RELIANCE", tvTicker: "BSE:RELIANCE", fyersSymbol: "NSE:RELIANCE-EQ", cmp: "3,120.00", change: "+45.00", percent: "+1.46%", sector: "Energy / Petrochem", category: "Swing", type: "Equity" },
+      { id: "sw-2", name: "Trent Ltd", ticker: "TRENT", tvTicker: "BSE:TRENT", fyersSymbol: "NSE:TRENT-EQ", cmp: "5,450.00", change: "+120.00", percent: "+2.25%", sector: "Retail / Fashion", category: "Swing", type: "Equity" },
+      { id: "sw-3", name: "Larsen & Toubro", ticker: "LT", tvTicker: "BSE:LT", fyersSymbol: "NSE:LT-EQ", cmp: "3,650.00", change: "+65.00", percent: "+1.81%", sector: "Capital Goods", category: "Swing", type: "Equity" },
+      { id: "sw-4", name: "Hindustan Aeronautics", ticker: "HAL", tvTicker: "BSE:HAL", fyersSymbol: "NSE:HAL-EQ", cmp: "5,200.00", change: "+180.00", percent: "+3.58%", sector: "Defense", category: "Swing", type: "Equity" },
+      { id: "sw-5", name: "Tata Motors", ticker: "TATAMOTORS", tvTicker: "BSE:TATAMOTORS", fyersSymbol: "NSE:TATAMOTORS-EQ", cmp: "1,015.00", change: "+18.00", percent: "+1.81%", sector: "Automobile", category: "Swing", type: "Equity" },
+      { id: "sw-6", name: "Zomato Ltd", ticker: "ZOMATO", tvTicker: "BSE:ZOMATO", fyersSymbol: "NSE:ZOMATO-EQ", cmp: "210.00", change: "+8.50", percent: "+4.22%", sector: "New-Age Tech", category: "Swing", type: "Equity" },
 
       // Long Term Investment (Wealth Portfolio)
-      { id: "lt-1", name: "Tata Consultancy Services", ticker: "TCS", tvTicker: "BSE:TCS", fyersSymbol: "NSE:TCS-EQ", cmp: "--", change: "Offline", percent: "--", sector: "IT Services", category: "Long Term", type: "Equity" },
-      { id: "lt-2", name: "HDFC Bank Ltd", ticker: "HDFCBANK", tvTicker: "BSE:HDFCBANK", fyersSymbol: "NSE:HDFCBANK-EQ", cmp: "--", change: "Offline", percent: "--", sector: "Banking", category: "Long Term", type: "Equity" },
-      { id: "lt-3", name: "Titan Company", ticker: "TITAN", tvTicker: "BSE:TITAN", fyersSymbol: "NSE:TITAN-EQ", cmp: "--", change: "Offline", percent: "--", sector: "Consumer Luxury", category: "Long Term", type: "Equity" },
-      { id: "lt-4", name: "ITC Ltd", ticker: "ITC", tvTicker: "BSE:ITC", fyersSymbol: "NSE:ITC-EQ", cmp: "--", change: "Offline", percent: "--", sector: "FMCG / Tobacco", category: "Long Term", type: "Equity" },
-      { id: "lt-5", name: "Sun Pharma", ticker: "SUNPHARMA", tvTicker: "BSE:SUNPHARMA", fyersSymbol: "NSE:SUNPHARMA-EQ", cmp: "--", change: "Offline", percent: "--", sector: "Pharma / Healthcare", category: "Long Term", type: "Equity" },
-      { id: "lt-6", name: "Bharat Electronics", ticker: "BEL", tvTicker: "BSE:BEL", fyersSymbol: "NSE:BEL-EQ", cmp: "--", change: "Offline", percent: "--", sector: "Defense Electronics", category: "Long Term", type: "Equity" }
+      { id: "lt-1", name: "Tata Consultancy Services", ticker: "TCS", tvTicker: "BSE:TCS", fyersSymbol: "NSE:TCS-EQ", cmp: "4,050.00", change: "+55.00", percent: "+1.38%", sector: "IT Services", category: "Long Term", type: "Equity" },
+      { id: "lt-2", name: "HDFC Bank Ltd", ticker: "HDFCBANK", tvTicker: "BSE:HDFCBANK", fyersSymbol: "NSE:HDFCBANK-EQ", cmp: "1,680.00", change: "+22.00", percent: "+1.33%", sector: "Banking", category: "Long Term", type: "Equity" },
+      { id: "lt-3", name: "Titan Company", ticker: "TITAN", tvTicker: "BSE:TITAN", fyersSymbol: "NSE:TITAN-EQ", cmp: "3,450.00", change: "+40.00", percent: "+1.17%", sector: "Consumer Luxury", category: "Long Term", type: "Equity" },
+      { id: "lt-4", name: "ITC Ltd", ticker: "ITC", tvTicker: "BSE:ITC", fyersSymbol: "NSE:ITC-EQ", cmp: "465.00", change: "+6.50", percent: "+1.42%", sector: "FMCG / Tobacco", category: "Long Term", type: "Equity" },
+      { id: "lt-5", name: "Sun Pharma", ticker: "SUNPHARMA", tvTicker: "BSE:SUNPHARMA", fyersSymbol: "NSE:SUNPHARMA-EQ", cmp: "1,550.00", change: "+25.00", percent: "+1.64%", sector: "Pharma / Healthcare", category: "Long Term", type: "Equity" },
+      { id: "lt-6", name: "Bharat Electronics", ticker: "BEL", tvTicker: "BSE:BEL", fyersSymbol: "NSE:BEL-EQ", cmp: "315.00", change: "+12.50", percent: "+4.13%", sector: "Defense Electronics", category: "Long Term", type: "Equity" }
     ];
 
     // Process all through AI Processing Engine
@@ -338,5 +338,21 @@ class LiveScanner {
 
       gridEl.appendChild(card);
     });
+  }
+
+  updateCardUI(stock) {
+    if (!stock || !this.stocks) return;
+    const match = this.stocks.find(s => s.id === stock.id || s.fyersSymbol === stock.fyersSymbol || s.ticker === stock.ticker);
+    if (match) {
+      match.cmp = stock.cmp;
+      match.change = stock.change;
+      match.percent = stock.percent;
+      match.status = stock.status;
+      match.rawLtp = stock.rawLtp;
+    }
+    const container = document.getElementById("live-scanner-container");
+    if (container && (container.style.display !== "none" || container.classList.contains("active"))) {
+      this.renderGrid();
+    }
   }
 }

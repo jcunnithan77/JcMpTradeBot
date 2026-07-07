@@ -185,4 +185,19 @@ class StrategyEngine {
       </div>
     `;
   }
+
+  updateLivePrice(stock) {
+    if (!stock || !stock.rawLtp || !this.form) return;
+    const indexEl = this.form.querySelector('[name="index"]');
+    const cmpEl = this.form.querySelector('[name="cmp"]');
+    if (indexEl && cmpEl && document.activeElement !== cmpEl) {
+      const selectedIndex = indexEl.value;
+      if (stock.ticker === selectedIndex || stock.name === selectedIndex || (selectedIndex === "NIFTY 50" && stock.ticker === "NIFTY") || (selectedIndex === "BANK NIFTY" && stock.ticker === "BANKNIFTY")) {
+        cmpEl.value = stock.rawLtp;
+        if (this.output && !this.output.innerHTML.includes("Please connect your FYERS API")) {
+          this.generateStrategy();
+        }
+      }
+    }
+  }
 }

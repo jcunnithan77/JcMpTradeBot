@@ -606,6 +606,19 @@ class OptionCalculator {
       });
     }
   }
+
+  updateLivePrice(stock) {
+    if (!stock || !stock.rawLtp) return;
+    const idx = this.state.index || "";
+    if (stock.ticker === idx || stock.name === idx || (idx === "NIFTY 50" && stock.ticker === "NIFTY") || (idx === "BANK NIFTY" && stock.ticker === "BANKNIFTY") || (idx === "SENSEX" && stock.ticker === "SENSEX")) {
+      const futInput = document.getElementById("opt-current-future");
+      if (futInput && document.activeElement !== futInput) {
+        futInput.value = stock.rawLtp;
+        this.state.currentFuture = stock.rawLtp;
+        this.calculateAndUpdate();
+      }
+    }
+  }
 }
 
 // Global instance

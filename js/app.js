@@ -170,6 +170,10 @@ class AppController {
     const dateSelect = document.getElementById("date-selector-input");
     if (!dateSelect) return;
 
+    if (window.aiProcessingEngine) {
+      this.state.dailyLogs = window.aiProcessingEngine.getLiveDailyLogs();
+    }
+
     const logsForIndex = this.state.dailyLogs.filter(l => l.indexId === this.state.currentIndex);
     
     dateSelect.innerHTML = "";
@@ -210,6 +214,10 @@ class AppController {
   }
 
   renderIndexAnalyzer() {
+    if (window.aiProcessingEngine) {
+      this.state.dailyLogs = window.aiProcessingEngine.getLiveDailyLogs();
+    }
+
     // Populate date selector if empty
     const dateSelect = document.getElementById("date-selector-input");
     if (dateSelect && dateSelect.options.length === 0) {

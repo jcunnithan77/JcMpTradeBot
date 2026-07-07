@@ -409,6 +409,47 @@ class FyersConnector {
 
   startLivePolling() {
     this.stopLivePolling();
+
+    // 1. Attempt Server-Sent Events (SSE) Live Stream from Python Backend
+    try {
+      if (window.EventSource) {
+        const allStocks = this.getAllStocks();
+        const symbols = [
+          ...new Set(
+            allStocks
+              .map(s => s.fyersSymbol)
+              .filter(sym => sym && sym !== "undefined" && !sym.includes("undefined"))
+          )
+        ].slice(0, 50).join(",");
+
+        if (symbols) {
+          const sseUrl = `/api/fyers/stream?symbols=${encodeURIComponent(symbols)}&auth=${encodeURIComponent(`${this.appId}:${this.accessToken}`)}`;
+          this.sseSource = new EventSource(sseUrl);
+          this.sseSource.onmessage = (e) => {
+            try {
+              const data = JSON.parse(e.data);
+              if (data && data.s === "ok" && data.d) {
+                data.d.forEach(item => {
+                  if (item && item.v) {
+                    this.broadcastQuoteUpdate(item.n, item.v.lp, item.v.ch, item.v.chp, item.v.volume);
+                  }
+                });
+              }
+            } catch (err) {
+              console.warn("[FYERS] SSE parse error:", err);
+            }
+          };
+          this.sseSource.onerror = (e) => {
+            console.warn("[FYERS] SSE stream error or reconnecting...");
+          };
+          console.log("[FYERS] SSE Live Stream initiated to Python Backend.");
+        }
+      }
+    } catch (err) {
+      console.warn("[FYERS] SSE failed, falling back to interval polling:", err);
+    }
+
+    // 2. Keep interval polling running every 2.5s as an unshakeable hybrid fallback
     this.pollTimer = setInterval(() => {
       if (!this.isConnected) return;
       this.fetchLiveQuotes();
@@ -418,6 +459,10 @@ class FyersConnector {
   stopLivePolling() {
     if (this.pollTimer) clearInterval(this.pollTimer);
     this.pollTimer = null;
+    if (this.sseSource) {
+      this.sseSource.close();
+      this.sseSource = null;
+    }
   }
 
   stopSimulation() {
@@ -509,30 +554,47 @@ class FyersConnector {
     const ch  = parseFloat(change)       || 0;
     const chp = parseFloat(changePercent)|| 0;
 
-    const stock = allStocks.find(s =>
+    // Find ALL matching items across all arrays and pages (not just the first one)
+    const matchingStocks = allStocks.filter(s =>
       s.fyersSymbol === fyersSymbol ||
       s.tvTicker    === fyersSymbol ||
       `NSE:${s.ticker}-EQ` === fyersSymbol ||
-      s.ticker === fyersSymbol
+      `NSE:${s.ticker}-INDEX` === fyersSymbol ||
+      s.ticker === fyersSymbol ||
+      (s.id && s.id.toUpperCase() === fyersSymbol.replace("NSE:", "").replace("-EQ", "").replace("-INDEX", "").toUpperCase()) ||
+      (s.ticker && fyersSymbol.includes(s.ticker))
     );
 
-    if (stock) {
-      stock.cmp     = lp.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-      stock.change  = `${ch  >= 0 ? "+" : ""}${ch.toFixed(2)}`;
-      stock.percent = `${chp >= 0 ? "+" : ""}${chp.toFixed(2)}%`;
-      stock.status  = ch >= 0 ? "up" : "down";
-      stock.rawLtp  = lp;
+    if (matchingStocks.length > 0) {
+      matchingStocks.forEach(stock => {
+        stock.cmp     = lp.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        stock.change  = `${ch  >= 0 ? "+" : ""}${ch.toFixed(2)}`;
+        stock.percent = `${chp >= 0 ? "+" : ""}${chp.toFixed(2)}%`;
+        stock.status  = ch >= 0 ? "up" : "down";
+        stock.rawLtp  = lp;
 
-      if (window.aiProcessingEngine) {
-        window.aiProcessingEngine.processSymbol(stock);
-      }
-      this.notifyListeners(stock);
+        if (window.aiProcessingEngine) {
+          window.aiProcessingEngine.processSymbol(stock);
+        }
+        this.notifyListeners(stock);
+      });
+
+      // Trigger universal UI re-rendering across ALL pages & analytical modules
       if (window.app) {
-        if (stock.category === "Index")       window.app.renderTickers();
-        if (stock.category === "Swing")       window.app.renderSwingTrades();
-        if (stock.category === "Long Term")   window.app.renderLongTermPicks();
+        window.app.renderTickers();
+        window.app.renderSwingTrades();
+        window.app.renderLongTermPicks();
+        if (typeof window.app.renderIndexAnalyzer === "function") window.app.renderIndexAnalyzer();
       }
-
+      if (window.liveScanner && typeof window.liveScanner.updateCardUI === "function") {
+        matchingStocks.forEach(s => window.liveScanner.updateCardUI(s));
+      }
+      if (window.optionCalculator && typeof window.optionCalculator.updateLivePrice === "function") {
+        matchingStocks.forEach(s => window.optionCalculator.updateLivePrice(s));
+      }
+      if (window.strategyEngine && typeof window.strategyEngine.updateLivePrice === "function") {
+        matchingStocks.forEach(s => window.strategyEngine.updateLivePrice(s));
+      }
     }
   }
 

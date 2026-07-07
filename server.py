@@ -23,7 +23,7 @@ import urllib.parse
 import urllib.request
 import hashlib
 import mimetypes
-from http.server import HTTPServer, BaseHTTPRequestHandler
+from http.server import HTTPServer, ThreadingHTTPServer, BaseHTTPRequestHandler
 import argparse
 
 # Force IPv4 DNS resolution for Fyers API (prevents Windows/Cloudflare IPv6 [Errno 101] Network is unreachable)
@@ -174,7 +174,60 @@ class TradeBotHTTPRequestHandler(BaseHTTPRequestHandler):
             except Exception as e:
                 return self.send_error_response(f"Fyers quote fetch failed: {str(e)}", status_code=500)
 
-        # 7. Static File Routing
+        # 7. API: Fyers Live Data Stream (SSE - Server-Sent Events)
+        if path == "/api/fyers/stream":
+            try:
+                import time, http.client, ssl
+                query = urllib.parse.urlparse(self.path).query
+                params = urllib.parse.parse_qs(query)
+                symbols = params.get("symbols", [""])[0]
+
+                auth_header = self.headers.get("Authorization", "")
+                if not auth_header:
+                    auth_header = params.get("auth", [""])[0]
+
+                self.send_response(200)
+                self.send_header("Content-Type", "text/event-stream; charset=utf-8")
+                self.send_header("Cache-Control", "no-cache, no-store, must-revalidate")
+                self.send_header("Connection", "keep-alive")
+                self.send_header("Access-Control-Allow-Origin", "*")
+                self.end_headers()
+
+                ctx = ssl.create_default_context()
+                print(f"[FYERS-SSE] Client connected for stream: symbols={symbols[:40]}...")
+
+                while True:
+                    try:
+                        conn = http.client.HTTPSConnection("api-t1.fyers.in", timeout=8, context=ctx)
+                        conn.request(
+                            "GET",
+                            f"/data/quotes?symbols={urllib.parse.quote(symbols)}",
+                            headers={
+                                "Authorization": auth_header,
+                                "Content-Type": "application/json",
+                                "User-Agent": "Mozilla/5.0 (compatible; TradeBot/1.0)"
+                            }
+                        )
+                        resp = conn.getresponse()
+                        body = resp.read().decode("utf-8")
+                        conn.close()
+
+                        event_data = f"data: {body}\n\n"
+                        self.wfile.write(event_data.encode("utf-8"))
+                        self.wfile.flush()
+                    except Exception as poll_err:
+                        err_payload = json.dumps({"s": "error", "message": f"SSE Poll Error: {str(poll_err)}"})
+                        try:
+                            self.wfile.write(f"data: {err_payload}\n\n".encode("utf-8"))
+                            self.wfile.flush()
+                        except Exception:
+                            break
+                    time.sleep(2.5)
+            except (BrokenPipeError, ConnectionResetError, OSError):
+                print("[FYERS-SSE] Client disconnected from stream.")
+                return
+
+        # 8. Static File Routing
         if path == "/" or path == "":
             path = "/index.html"
         
@@ -363,7 +416,7 @@ class TradeBotHTTPRequestHandler(BaseHTTPRequestHandler):
 
 def run_server(port: int = 8000):
     server_address = ("", port)
-    httpd = HTTPServer(server_address, TradeBotHTTPRequestHandler)
+    httpd = ThreadingHTTPServer(server_address, TradeBotHTTPRequestHandler)
     print("\n" + "="*70)
     print(f"[READY] TRADEBOT PYTHON BACKEND SERVER RUNNING ON PORT {port}")
     print("="*70)
