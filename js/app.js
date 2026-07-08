@@ -5,7 +5,7 @@ class AppController {
   constructor() {
     this.state = {
       currentIndex: "nifty",
-      currentDate: "2026-07-03",
+      currentDate: new Date().toISOString().split("T")[0],
       swingFilterStatus: "all",
       swingFilterSector: "all",
       dailyLogs: [],
@@ -45,6 +45,10 @@ class AppController {
     this.renderCourseBible();
     this.strategyEngine.generateStrategy();
     this.fyersConnector.init();
+    this.fyersConnector.subscribe(() => {
+      this.renderTickers();
+      this.renderIndexAnalyzer();
+    });
     this.liveScanner.init();
     this.backtestEngine.init();
 
@@ -155,7 +159,7 @@ class AppController {
 
   setIndex(indexId) {
     this.state.currentIndex = indexId;
-    
+
     // Update pills
     document.querySelectorAll(".index-pill").forEach(pill => {
       pill.classList.toggle("active", pill.getAttribute("data-index") === indexId);
@@ -175,7 +179,7 @@ class AppController {
     }
 
     const logsForIndex = this.state.dailyLogs.filter(l => l.indexId === this.state.currentIndex);
-    
+
     dateSelect.innerHTML = "";
     logsForIndex.forEach((log, idx) => {
       const opt = document.createElement("option");

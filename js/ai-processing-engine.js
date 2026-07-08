@@ -9,7 +9,7 @@ class AIProcessingEngine {
   // 1. Process any symbol to generate real-time AI scores, signals, profile status, and study notes
   processSymbol(stock) {
     if (!stock) return stock;
-    
+
     if (stock.cmp === "--" || stock.cmp === "Offline" || !stock.cmp || stock.change === "Offline") {
       stock.aiScore = 0;
       stock.signal = "Awaiting Live Feed";
@@ -50,7 +50,7 @@ class AIProcessingEngine {
     let baseScore = 75 + Math.min(20, Math.max(-25, Math.round(percentNum * 8)));
     if (stock.category === "Options") baseScore += 4;
     if (stock.category === "Long Term") baseScore = Math.min(98, Math.max(82, baseScore + 5));
-    
+
     stock.aiScore = Math.min(99, Math.max(45, baseScore));
 
     // Determine AI Signal
@@ -89,7 +89,7 @@ class AIProcessingEngine {
       "Neutral Day Center POC Acceptance",
       "Single Print Excess Rejection Floor"
     ];
-    
+
     if (!stock.profileStatus) {
       const pIndex = Math.abs(Math.round(cmpNum + changeNum)) % profiles.length;
       stock.profileStatus = profiles[pIndex];
@@ -122,13 +122,12 @@ class AIProcessingEngine {
   // 2. Dynamically calculate/generate 30-min letter block Steidlmayer TPO Profile
   generateTPOProfile(stock, cmpNum) {
     const step = cmpNum < 500 ? 2 : cmpNum < 2000 ? 10 : cmpNum < 10000 ? 25 : 50;
-    const center = Math.round(cmpNum / step) * step;
-    
-    const poc = center;
-    const vah = center + (step * 3);
-    const val = center - (step * 3);
-    const ibHigh = center + (step * 2);
-    const ibLow = center - (step * 2);
+    const poc = Math.round(cmpNum);
+
+    const vah = poc + (step * 3);
+    const val = poc - (step * 3);
+    const ibHigh = poc + (step * 2);
+    const ibLow = poc - (step * 2);
 
     // Generate TPO letter blocks (A to N periods)
     const letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"];
@@ -138,7 +137,7 @@ class AIProcessingEngine {
       const price = poc + (i * step);
       let count = 0;
       let blocks = "";
-      
+
       const distFromPoc = Math.abs(i);
       if (distFromPoc === 0) {
         blocks = letters.slice(0, 12).join("");
@@ -167,7 +166,7 @@ class AIProcessingEngine {
       else if (price > vah || price < val) type = "excess";
 
       tpoLevels.push({
-        price: price.toLocaleString("en-IN", { minimumFractionDigits: 2 }),
+        price: price.toLocaleString("en-IN"),
         blocks,
         count,
         type
@@ -175,11 +174,11 @@ class AIProcessingEngine {
     }
 
     return {
-      poc: poc.toLocaleString("en-IN", { minimumFractionDigits: 2 }),
-      vah: vah.toLocaleString("en-IN", { minimumFractionDigits: 2 }),
-      val: val.toLocaleString("en-IN", { minimumFractionDigits: 2 }),
-      ibHigh: ibHigh.toLocaleString("en-IN", { minimumFractionDigits: 2 }),
-      ibLow: ibLow.toLocaleString("en-IN", { minimumFractionDigits: 2 }),
+      poc: poc.toLocaleString("en-IN"),
+      vah: vah.toLocaleString("en-IN"),
+      val: val.toLocaleString("en-IN"),
+      ibHigh: ibHigh.toLocaleString("en-IN"),
+      ibLow: ibLow.toLocaleString("en-IN"),
       tpoLevels,
       summary: `POC established at ₹ ${poc.toLocaleString("en-IN")} with Value Area spanning ₹ ${val.toLocaleString("en-IN")} to ₹ ${vah.toLocaleString("en-IN")}. Initial Balance width indicates strong institutional acceptance.`
     };
@@ -212,18 +211,18 @@ class AIProcessingEngine {
     const strikeMatch = (stock.ticker || "").match(/\d+/);
     const strike = strikeMatch ? parseInt(strikeMatch[0]) : cmpNum;
     const ratio = (cmpNum || 100) / (strike || 100);
-    
+
     let delta = (ratio > 1 ? 0.65 : (ratio < 0.95 ? 0.28 : 0.52)).toFixed(2);
     if (!isCE) delta = "-" + delta;
-    
+
     const gamma = "0.0125";
     const theta = "-14.50";
     const iv = "18.4%";
-    
+
     const changeNum = parseFloat((stock.change || "0").replace(/,/g, "").replace(/\+/g, "")) || 0;
     const oiNum = 2450000;
     const oiTotal = oiNum.toLocaleString("en-IN");
-    
+
     const buildups = [
       { text: "🟢 Long Buildup (Aggressive Buying)", summary: "Long Buildup with steady call buying." },
       { text: "🔵 Short Covering (Writers Trapped)", summary: "Short Covering with call writers unwinding positions." },
@@ -249,7 +248,7 @@ class AIProcessingEngine {
   // 5. Generate Fundamental Valuation Ratios & Competitive Moat (Real-World Bluechip Data)
   generateFundamentalValuation(stock) {
     const ticker = (stock.ticker || "").toUpperCase();
-    
+
     // Accurate real-world fundamental valuation database for Indian Equities
     const realFundamentals = {
       "RELIANCE": { pe: "28.4", indPe: "24.5", pb: "2.8", roe: "11.2%", roce: "12.8%", divYield: "0.35%", debtEquity: "0.42", promHold: "50.3%", fiiHold: "21.8%", diiHold: "16.5%", pubHold: "11.4%", qRevGrowth: "+11.5%", netMargin: "9.8%", ebitdaGrowth: "+12.4%", moat: "Wide Moat: Dominant Telecom (Jio) & Retail Infrastructure leadership with massive free cash flow generation." },
@@ -311,7 +310,7 @@ class AIProcessingEngine {
       }
     }
     return [
-      { id: "nifty", name: "NIFTY 50", price: "24,300.50", change: "+110.20", percent: "+0.46%", status: "up" },
+      { id: "nifty", name: "NIFTY 50", price: "24,504.00", change: "+110.20", percent: "+0.46%", status: "up" },
       { id: "banknifty", name: "BANK NIFTY", price: "52,650.00", change: "+320.50", percent: "+0.61%", status: "up" },
       { id: "sensex", name: "SENSEX", price: "80,000.00", change: "+410.00", percent: "+0.51%", status: "up" },
       { id: "midcap", name: "MIDCAP SELECT", price: "12,480.00", change: "+85.00", percent: "+0.68%", status: "up" }
@@ -319,10 +318,47 @@ class AIProcessingEngine {
   }
 
   getLiveDailyLogs() {
+    const scanner = window.liveScanner || window.app?.liveScanner;
+    const getCmpNum = (id, defVal) => {
+      let stock = null;
+      if (scanner && scanner.stocks) {
+        stock = scanner.stocks.find(s => s.id === id || (s.ticker && s.ticker.toLowerCase() === id));
+      }
+      if (!stock) {
+        const tickers = this.getLiveTickers();
+        stock = tickers.find(t => t.id === id);
+      }
+      if (stock) {
+        const val = parseFloat((stock.cmp || stock.price || "0").toString().replace(/,/g, ""));
+        if (val > 0) return val;
+      }
+      return defVal;
+    };
+
+    const niftyCmp = getCmpNum("nifty", 24504);
+    const bankNiftyCmp = getCmpNum("banknifty", 52650);
+    const sensexCmp = getCmpNum("sensex", 80000);
+    const midcapCmp = getCmpNum("midcap", 12480);
+
+    const niftyTpo = this.generateTPOProfile({}, niftyCmp);
+    const bankNiftyTpo = this.generateTPOProfile({}, bankNiftyCmp);
+    const sensexTpo = this.generateTPOProfile({}, sensexCmp);
+    const midcapTpo = this.generateTPOProfile({}, midcapCmp);
+
+    const mapTpoDist = (tpo) => tpo.tpoLevels.map(l => ({
+      price: l.price,
+      letters: l.blocks.split(""),
+      isIb: l.type === "poc" || l.type === "va" || l.blocks.includes("A") || l.blocks.includes("B"),
+      isPoc: l.type === "poc",
+      isSingle: l.count === 1
+    }));
+
+    const todayStr = new Date().toISOString().split("T")[0];
+
     return [
       {
-        id: "nifty-2026-07-03",
-        date: new Date().toISOString().split("T")[0],
+        id: "nifty-" + todayStr,
+        date: todayStr,
         index: "NIFTY 50",
         indexId: "nifty",
         openType: "Open Test Drive (OTD)",
@@ -331,43 +367,32 @@ class AIProcessingEngine {
         dayTypeBadge: "nvd",
         profileShape: "P-Shape Profile (Aggressive Buying)",
         profileShapeBadge: "p-shape",
-        ibHigh: "24,245",
-        ibLow: "24,135",
-        ibStatus: "Narrow IB (~110 pts) - Favored Directional Extension",
-        poc: "24,280",
-        vah: "24,310",
-        val: "24,210",
+        ibHigh: niftyTpo.ibHigh,
+        ibLow: niftyTpo.ibLow,
+        ibStatus: `Narrow IB (~${Math.round(niftyCmp * 0.0045)} pts) - Favored Directional Extension`,
+        poc: niftyTpo.poc,
+        vah: niftyTpo.vah,
+        val: niftyTpo.val,
         anomalies: [
-          "Single Prints between 24,180 - 24,210 (Strong Buying Cushion)",
-          "Poor High at 24,335 (High probability of retest next session)",
+          `Single Prints between ${niftyTpo.val} - ${niftyTpo.poc} (Strong Buying Cushion)`,
+          `Poor High at ${niftyTpo.ibHigh} (High probability of retest next session)`,
           "No Failed Auctions observed"
         ],
         nextDayIdea: {
           bias: "Bullish Continuation above VAH",
           biasBadge: "bullish",
-          trigger: "Buy on retest of 24,280 (POC/VAH) with positive Delta & COT High",
-          target1: "24,380",
-          target2: "24,450",
-          sl: "24,210 (Below VAL & Single Prints)",
+          trigger: `Buy on retest of ${niftyTpo.poc} (POC/VAH) with positive Delta & COT High`,
+          target1: Math.round(niftyCmp + 100).toLocaleString("en-IN"),
+          target2: Math.round(niftyCmp + 170).toLocaleString("en-IN"),
+          sl: `${niftyTpo.val} (Below VAL & Single Prints)`,
           rr: "1 : 2.5",
-          note: "Option Buying Setup: Watch for A-period breakout above Poor High (24,335). If rejected in B period, expect mean reversion towards daily POC (24,280)."
+          note: `Option Buying Setup: Watch for A-period breakout above Poor High (${niftyTpo.ibHigh}). If rejected in B period, expect mean reversion towards daily POC (${niftyTpo.poc}).`
         },
-        tpoDistribution: [
-          { price: "24,335", letters: ["L", "M"], isIb: false, isPoc: false },
-          { price: "24,320", letters: ["I", "J", "K", "L", "M"], isIb: false, isPoc: false },
-          { price: "24,310", letters: ["F", "G", "H", "I", "J", "K", "L", "M"], isIb: false, isPoc: false },
-          { price: "24,280", letters: ["C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"], isIb: false, isPoc: true },
-          { price: "24,250", letters: ["C", "D", "E", "F", "G", "H", "I", "J"], isIb: false, isPoc: false },
-          { price: "24,220", letters: ["C", "D", "E", "F", "G"], isIb: false, isPoc: false },
-          { price: "24,200", letters: ["C", "D"], isIb: false, isPoc: false, isSingle: true },
-          { price: "24,170", letters: ["C"], isIb: false, isPoc: false, isSingle: true },
-          { price: "24,150", letters: ["A", "B", "C"], isIb: true, isPoc: false },
-          { price: "24,135", letters: ["A", "B"], isIb: true, isPoc: false }
-        ]
+        tpoDistribution: mapTpoDist(niftyTpo)
       },
       {
-        id: "banknifty-2026-07-03",
-        date: new Date().toISOString().split("T")[0],
+        id: "banknifty-" + todayStr,
+        date: todayStr,
         index: "BANK NIFTY",
         indexId: "banknifty",
         openType: "Open Rejection Reverse (ORR)",
@@ -376,45 +401,32 @@ class AIProcessingEngine {
         dayTypeBadge: "dd",
         profileShape: "B-Shape Double Distribution",
         profileShapeBadge: "dd",
-        ibHigh: "52,450",
-        ibLow: "52,100",
-        ibStatus: "Wide IB (~350 pts) - Morning Rejection led to afternoon structural shift",
-        poc: "52,620",
-        vah: "52,700",
-        val: "52,510",
+        ibHigh: bankNiftyTpo.ibHigh,
+        ibLow: bankNiftyTpo.ibLow,
+        ibStatus: `Wide IB (~${Math.round(bankNiftyCmp * 0.0065)} pts) - Morning Rejection led to afternoon structural shift`,
+        poc: bankNiftyTpo.poc,
+        vah: bankNiftyTpo.vah,
+        val: bankNiftyTpo.val,
         anomalies: [
-          "Single print separation zone between 52,460 - 52,500 dividing morning & afternoon distribution",
-          "Poor Low at 52,100 (Rejection wick in A period)",
+          `Single print separation zone between ${bankNiftyTpo.val} - ${bankNiftyTpo.poc} dividing morning & afternoon distribution`,
+          `Poor Low at ${bankNiftyTpo.ibLow} (Rejection wick in A period)`,
           "Aggressive Cumulative Delta spike in H & J periods (Option writer covering)"
         ],
         nextDayIdea: {
           bias: "Bullish Breakout Watch",
           biasBadge: "bullish",
-          trigger: "Enter long above 52,700 (VAH breakout) with positive Order Flow Delta",
-          target1: "52,950",
-          target2: "53,200",
-          sl: "52,500 (Below Single Print separation zone)",
+          trigger: `Enter long above ${bankNiftyTpo.vah} (VAH breakout) with positive Order Flow Delta`,
+          target1: Math.round(bankNiftyCmp + 250).toLocaleString("en-IN"),
+          target2: Math.round(bankNiftyCmp + 450).toLocaleString("en-IN"),
+          sl: `${bankNiftyTpo.val} (Below Single Print separation zone)`,
           rr: "1 : 2.8",
-          note: "Option Buying Strategy: BankNifty double distribution indicates institutional repricing. If 52,700 breaks in A period, expect rapid zero-to-hero momentum."
+          note: `Option Buying Strategy: BankNifty double distribution indicates institutional repricing. If ${bankNiftyTpo.vah} breaks in A period, expect rapid zero-to-hero momentum.`
         },
-        tpoDistribution: [
-          { price: "52,700", letters: ["J", "K", "L", "M"], isIb: false, isPoc: false },
-          { price: "52,660", letters: ["H", "I", "J", "K", "L", "M"], isIb: false, isPoc: false },
-          { price: "52,620", letters: ["G", "H", "I", "J", "K", "L", "M"], isIb: false, isPoc: true },
-          { price: "52,580", letters: ["G", "H", "I", "J", "K"], isIb: false, isPoc: false },
-          { price: "52,540", letters: ["F", "G", "H", "I"], isIb: false, isPoc: false },
-          { price: "52,500", letters: ["F"], isIb: false, isPoc: false, isSingle: true },
-          { price: "52,460", letters: ["E", "F"], isIb: false, isPoc: false, isSingle: true },
-          { price: "52,420", letters: ["C", "D", "E"], isIb: false, isPoc: false },
-          { price: "52,350", letters: ["A", "B", "C", "D"], isIb: true, isPoc: false },
-          { price: "52,250", letters: ["A", "B", "C"], isIb: true, isPoc: false },
-          { price: "52,150", letters: ["A", "B"], isIb: true, isPoc: false },
-          { price: "52,100", letters: ["A"], isIb: true, isPoc: false }
-        ]
+        tpoDistribution: mapTpoDist(bankNiftyTpo)
       },
       {
-        id: "sensex-2026-07-03",
-        date: new Date().toISOString().split("T")[0],
+        id: "sensex-" + todayStr,
+        date: todayStr,
         index: "SENSEX",
         indexId: "sensex",
         openType: "Open Auction in Range (OAIR)",
@@ -423,12 +435,12 @@ class AIProcessingEngine {
         dayTypeBadge: "normal",
         profileShape: "D-Shape Balanced Profile",
         profileShapeBadge: "normal",
-        ibHigh: "80,150",
-        ibLow: "79,780",
-        ibStatus: "Wide IB (~370 pts) - 85% of day's volume contained inside Initial Balance",
-        poc: "79,960",
-        vah: "80,100",
-        val: "79,840",
+        ibHigh: sensexTpo.ibHigh,
+        ibLow: sensexTpo.ibLow,
+        ibStatus: `Wide IB (~${Math.round(sensexCmp * 0.0045)} pts) - 85% of day's volume contained inside Initial Balance`,
+        poc: sensexTpo.poc,
+        vah: sensexTpo.vah,
+        val: sensexTpo.val,
         anomalies: [
           "Symmetrical bell-curve TPO distribution",
           "No single prints or structural anomalies",
@@ -437,26 +449,18 @@ class AIProcessingEngine {
         nextDayIdea: {
           bias: "Neutral / Mean Reversion",
           biasBadge: "neutral",
-          trigger: "Fade range extremes: Sell near 80,150 (IB High) or Buy near 79,800 (IB Low)",
-          target1: "79,960 (Daily POC)",
-          target2: "79,850",
-          sl: "80,250 / 79,700 (100 pts stop outside range)",
+          trigger: `Fade range extremes: Sell near ${sensexTpo.ibHigh} (IB High) or Buy near ${sensexTpo.ibLow} (IB Low)`,
+          target1: `${sensexTpo.poc} (Daily POC)`,
+          target2: Math.round(sensexCmp - 120).toLocaleString("en-IN"),
+          sl: `${Math.round(sensexCmp + 250).toLocaleString("en-IN")} / ${Math.round(sensexCmp - 250).toLocaleString("en-IN")} (Stop outside range)`,
           rr: "1 : 2.0",
-          note: "Swing/Option Selling Setup: Market in equilibrium. Avoid aggressive breakout buys unless wide IB High is taken out with massive volume in A/B period."
+          note: `Swing/Option Selling Setup: Market in equilibrium. Avoid aggressive breakout buys unless wide IB High (${sensexTpo.ibHigh}) is taken out with massive volume.`
         },
-        tpoDistribution: [
-          { price: "80,150", letters: ["D", "E"], isIb: false, isPoc: false },
-          { price: "80,100", letters: ["B", "C", "D", "E", "L", "M"], isIb: true, isPoc: false },
-          { price: "80,050", letters: ["A", "B", "C", "D", "E", "F", "K", "L", "M"], isIb: true, isPoc: false },
-          { price: "79,960", letters: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"], isIb: true, isPoc: true },
-          { price: "79,900", letters: ["A", "B", "C", "F", "G", "H", "I", "J", "K"], isIb: true, isPoc: false },
-          { price: "79,840", letters: ["A", "G", "H", "I", "J"], isIb: true, isPoc: false },
-          { price: "79,780", letters: ["A", "G"], isIb: true, isPoc: false }
-        ]
+        tpoDistribution: mapTpoDist(sensexTpo)
       },
       {
-        id: "midcap-2026-07-03",
-        date: new Date().toISOString().split("T")[0],
+        id: "midcap-" + todayStr,
+        date: todayStr,
         index: "MIDCAP SELECT",
         indexId: "midcap",
         openType: "Open Rejection Reverse (ORR)",
@@ -465,38 +469,28 @@ class AIProcessingEngine {
         dayTypeBadge: "nvd",
         profileShape: "b-Shape Profile (Long Liquidation)",
         profileShapeBadge: "b-shape",
-        ibHigh: "12,580",
-        ibLow: "12,490",
-        ibStatus: "Moderate IB (~90 pts) - Broken downwards in F period",
-        poc: "12,460",
-        vah: "12,520",
-        val: "12,420",
+        ibHigh: midcapTpo.ibHigh,
+        ibLow: midcapTpo.ibLow,
+        ibStatus: `Moderate IB (~${Math.round(midcapCmp * 0.007)} pts) - Broken downwards in F period`,
+        poc: midcapTpo.poc,
+        vah: midcapTpo.vah,
+        val: midcapTpo.val,
         anomalies: [
-          "Single print tail at the top (12,560 - 12,580) indicating aggressive morning supply",
-          "Poor Low at 12,410 (Multiple TPO letters touching bottom without excess)",
+          `Single print tail at the top (${midcapTpo.ibHigh} - ${midcapTpo.vah}) indicating aggressive morning supply`,
+          `Poor Low at ${midcapTpo.ibLow} (Multiple TPO letters touching bottom without excess)`,
           "Negative cumulative delta across all afternoon periods"
         ],
         nextDayIdea: {
           bias: "Bearish below POC / Poor Low Retest",
           biasBadge: "bearish",
-          trigger: "Sell on bounce to 12,480 - 12,500 (VAL/IB Low resistance)",
-          target1: "12,410 (Poor Low test)",
-          target2: "12,350",
-          sl: "12,540 (Above VAH)",
+          trigger: `Sell on bounce to ${midcapTpo.poc} - ${midcapTpo.vah} (VAL/IB Low resistance)`,
+          target1: `${midcapTpo.ibLow} (Poor Low test)`,
+          target2: Math.round(midcapCmp - 100).toLocaleString("en-IN"),
+          sl: `${midcapTpo.ibHigh} (Above VAH)`,
           rr: "1 : 2.5",
-          note: "b-Shape profile signifies long liquidation. Since 12,410 is a Poor Low without excess, structure demands a retest and sweep of liquidity."
+          note: `b-Shape profile signifies long liquidation. Since ${midcapTpo.ibLow} is a Poor Low without excess, structure demands a retest and sweep of liquidity.`
         },
-        tpoDistribution: [
-          { price: "12,580", letters: ["A"], isIb: true, isPoc: false, isSingle: true },
-          { price: "12,560", letters: ["A", "B"], isIb: true, isPoc: false, isSingle: true },
-          { price: "12,530", letters: ["A", "B", "C"], isIb: true, isPoc: false },
-          { price: "12,500", letters: ["B", "C", "D", "E"], isIb: true, isPoc: false },
-          { price: "12,480", letters: ["C", "D", "E", "F", "G"], isIb: false, isPoc: false },
-          { price: "12,460", letters: ["E", "F", "G", "H", "I", "J", "K", "L", "M"], isIb: false, isPoc: true },
-          { price: "12,440", letters: ["F", "G", "H", "I", "J", "K", "L", "M"], isIb: false, isPoc: false },
-          { price: "12,420", letters: ["H", "I", "J", "K", "L"], isIb: false, isPoc: false },
-          { price: "12,410", letters: ["J", "K", "L"], isIb: false, isPoc: false }
-        ]
+        tpoDistribution: mapTpoDist(midcapTpo)
       }
     ];
   }
@@ -756,13 +750,13 @@ window.BACKTEST_DATASETS = [
 ];
 
 // Global Master Study Dictionary Modal
-window.openTPODictionaryModal = function() {
+window.openTPODictionaryModal = function () {
   let modal = document.getElementById("modal-tpo-dictionary");
   if (!modal) {
     modal = document.createElement("div");
     modal.id = "modal-tpo-dictionary";
     modal.className = "modal-backdrop active";
-    
+
     const dayTypesHtml = Object.values(window.TPO_STUDY_NOTES.dayTypes).map(item => `
       <div style="background:rgba(0,0,0,0.4); border:1px solid rgba(168,85,247,0.25); border-left:4px solid var(--accent-purple); border-radius:12px; padding:1.25rem; margin-bottom:1.25rem;">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">

@@ -16,7 +16,7 @@ class LiveScanner {
   buildMultiAssetUniverse() {
     const rawUniverse = [
       // Major Indices
-      { id: "nifty", name: "NIFTY 50", ticker: "NIFTY", tvTicker: "NSE:NIFTY", fyersSymbol: "NSE:NIFTY50-INDEX", cmp: "24,300.50", change: "+110.20", percent: "+0.46%", sector: "Indices", category: "Index", type: "Index" },
+      { id: "nifty", name: "NIFTY 50", ticker: "NIFTY", tvTicker: "NSE:NIFTY", fyersSymbol: "NSE:NIFTY50-INDEX", cmp: "24,504.00", change: "+110.20", percent: "+0.46%", sector: "Indices", category: "Index", type: "Index" },
       { id: "banknifty", name: "BANK NIFTY", ticker: "BANKNIFTY", tvTicker: "NSE:BANKNIFTY", fyersSymbol: "NSE:BANKNIFTY-INDEX", cmp: "52,650.00", change: "+320.50", percent: "+0.61%", sector: "Indices", category: "Index", type: "Index" },
       { id: "sensex", name: "SENSEX", ticker: "SENSEX", tvTicker: "BSE:SENSEX", fyersSymbol: "BSE:SENSEX-INDEX", cmp: "80,000.00", change: "+410.00", percent: "+0.51%", sector: "Indices", category: "Index", type: "Index" },
       { id: "midcap", name: "MIDCAP SELECT", ticker: "MIDCAP", tvTicker: "NSE:MIDCPNIFTY", fyersSymbol: "NSE:NIFTYMIDSELECT-INDEX", cmp: "12,480.00", change: "+85.00", percent: "+0.68%", sector: "Indices", category: "Index", type: "Index" },
